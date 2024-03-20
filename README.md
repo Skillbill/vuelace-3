@@ -69,7 +69,7 @@ npm run build
 - install the library locally adding the following line to the dependecies inside your package.json
 
 ```js
-   "vuelace-3": "file:/path/to/the/lib/vuelace3"
+   "@skillbill/vuelace-3": "file:/path/to/the/lib/vuelace-3"
 ```
 
 ## Usage
@@ -81,9 +81,9 @@ npm run build
 ```js
 import { createApp } from 'vue'
 
-import 'vuelace/styles/vuelace.css'
-import 'vuelace/styles/theme_primevue.css'
-import { installVuelace } from 'vuelace'
+import '@skillbill/vuelace-3/styles/vuelace.css'
+import '@skillbill/vuelace-3/styles/theme_primevue.css'
+import { installVuelace } from '@skillbill/vuelace-3'
 
 const app = createApp(App)
 
@@ -100,7 +100,7 @@ Example adding an icon using MDI svgs
 
 ```js
 import cat from '@mdi/svg/svg/cat.svg'
-import { addIcon } from 'vuelace'
+import { addIcon } from '@skillbill/vuelace-3'
 
 addIcon('cat', cat)
 ```
