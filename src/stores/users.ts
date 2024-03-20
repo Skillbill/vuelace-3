@@ -1,0 +1,69 @@
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+import {
+  createUserAPI,
+  getUsersAPI,
+  getUserAPI,
+  updateUserAPI,
+  deleteUserAPI
+} from '../services/users'
+import { User } from '../components/examples/types/user'
+
+export const useUsersStore = defineStore('users', () => {
+  const users = ref<User[]>([])
+
+  const getUsers = async (filters?: any) => {
+    try {
+      const response = await getUsersAPI(filters)
+      users.value = [...response]
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getUser = async (id: string) => {
+    try {
+      const response = await getUserAPI(id)
+      return response
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const createUser = async (user: User) => {
+    try {
+      await createUserAPI({ ...user, id: `${users.value.length + 1}` })
+      await getUsers()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const updateUser = async (id: string, user: User) => {
+    try {
+      await updateUserAPI(id, user)
+      await getUsers()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteUser = async (id: string) => {
+    try {
+      await deleteUserAPI(id)
+      await getUsers()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return {
+    users,
+    createUser,
+    getUser,
+    getUsers,
+    updateUser,
+    deleteUser
+  }
+})

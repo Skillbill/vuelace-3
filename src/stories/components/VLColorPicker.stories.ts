@@ -1,0 +1,20 @@
+import type { Meta, StoryObj } from '@storybook/vue3'
+
+import ColorPickerInput from '../../components/VLColorPicker.vue'
+
+const meta = {
+  title: 'Vuelace3/Color picker',
+  component: ColorPickerInput,
+  tags: ['autodocs'],
+  argTypes: {
+    size: { control: 'select', options: ['small', 'medium', 'large', undefined] }
+  },
+  args: { label: 'Select a color (VLColorPicker)' }
+} satisfies Meta<typeof ColorPickerInput>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Primary: Story = {
+  args: {}
+}
