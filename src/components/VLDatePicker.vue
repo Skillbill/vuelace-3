@@ -1,6 +1,7 @@
 <template>
   <sl-dropdown
     :open="isDropdownOpen"
+    hoist
     @sl-show.stop="isDropdownOpen = true"
     @sl-hide.stop="isDropdownOpen = false"
   >
@@ -172,6 +173,14 @@ defineExpose({
 :deep(.p-datepicker-title) {
   display: flex;
   gap: 1rem;
+}
+
+:deep(.p-datepicker table td) {
+  padding: 0;
+}
+
+:deep(span.p-calendar) {
+  max-height: 50vh;
 }
 
 .date-input::part(input) {
