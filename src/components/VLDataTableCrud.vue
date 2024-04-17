@@ -40,6 +40,7 @@
     <PrimeVueColumn v-if="actions.length" :header="actionHeaderLabel">
       <template #body="{ data }">
         <div class="flex gap-2">
+          <slot name="actions" v-bind="{ data }"></slot>
           <component
             v-for="(action, index) in actions"
             :key="action.name ?? index"
@@ -74,7 +75,7 @@ interface Props {
   lazy?: boolean
   defaultRows?: number
   rowsPerPageOptions?: number[]
-  rowClass?: (data: any) => object | string | undefined
+  rowClass?: (data: any) => object | undefined
   rowStyle?: (data: any) => object | undefined
   totalRecords?: number
   paginator?: boolean

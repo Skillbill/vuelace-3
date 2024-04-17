@@ -18,6 +18,8 @@ import windowClose from '@mdi/svg/svg/window-close.svg'
 import closeCircle from '@mdi/svg/svg/close-circle.svg'
 import calendar from '@mdi/svg/svg/calendar.svg'
 import cogs from '@mdi/svg/svg/cogs.svg'
+import pencil from '@mdi/svg/svg/pencil.svg'
+import deleteIcon from '@mdi/svg/svg/delete.svg'
 
 export const icons = {
   paperclip,
@@ -39,7 +41,9 @@ export const icons = {
   circleMedium,
   star,
   windowClose,
-  closeCircle
+  closeCircle,
+  pencil,
+  delete: deleteIcon
 }
 
 export const addIcon = (name: string, svg: string) => {

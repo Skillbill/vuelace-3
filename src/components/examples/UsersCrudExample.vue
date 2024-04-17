@@ -5,7 +5,7 @@
     :headers="users_crud.headers"
     :filters="users_crud.filters"
     :form_fields="users_crud.form_fields"
-    :actions="[]"
+    :actions="users_crud.actions"
     :getItems="usersStore.getUsers"
     :components="{
       boolean: ActiveCell,
@@ -37,12 +37,12 @@ const users_crud = {
     {
       i18n_key: 'header.firstname',
       sortable: false,
-      value: 'firstname'
+      value: 'firstName'
     },
     {
       i18n_key: 'header.lastname',
       sortable: false,
-      value: 'lastname'
+      value: 'lastName'
     },
     {
       i18n_key: 'header.active',
@@ -64,11 +64,6 @@ const users_crud = {
       value: 'expiration_date',
       sortable: false,
       type: 'date'
-    },
-    {
-      i18n_key: 'header.actions',
-      sortable: false,
-      value: 'actions'
     }
   ],
   filters: [
@@ -124,12 +119,11 @@ const users_crud = {
     }
   ],
   actions: [
-    // {
-    //   name: 'Delete',
-    //   i18n_key: 'tooltip.delete',
-    //   component: Delete,
-    //   icon_name: 'mdi-delete'
-    // }
+    {
+      name: 'Delete',
+      i18n_key: 'tooltip.delete',
+      icon_name: 'delete'
+    }
     // {
     //   name: 'Change Password',
     //   i18n_key: 'tooltip.change_password',

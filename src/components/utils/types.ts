@@ -43,8 +43,9 @@ export interface Header {
 }
 
 export interface Filter {
-  i18n_key: string
   value: string
+  i18n_key: string
+  label: string
   input_type: string //TODO: Aggiungere tipi supportati dal VLCrudInput
   default_value?: any
   props?: any

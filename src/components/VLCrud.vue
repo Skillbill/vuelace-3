@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VLFiltersCrud class="w-full" :filters="filters" @filtersApplied="() => {}" />
+    <VLCrudFilters class="w-full" :filters="filters" @filtersApplied="() => {}" />
     <VLDataTableCrud
       class="w-full"
       removableSort
@@ -8,16 +8,43 @@
       :columns="columns"
       :actions="actions"
       :paginator="false"
-      actionHeaderLabel="actions"
+      :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
     >
       <!-- template for empty table state -->
       <template #empty>
         <div class="flex justify-center p-4">Empty</div>
       </template>
+
       <!-- template for actions to show some default actions -->
       <template #actions="{ data }">
-        <VLButton v-if="editable" @click="() => {}">Edit</VLButton>
-        <slot name="actions" v-bind="{ data }"></slot>
+        <VLTooltip
+          v-if="editable"
+          key="edit"
+          :content="translationFn('tooltip.edit')"
+          :distance="4"
+          placement="top"
+        >
+          <VLButton class="w-10 hover:opacity-40" variant="text">
+            <div class="flex items-center h-full">
+              <VLIcon class="text-2xl text-black cursor-pointer" name="pencil" />
+            </div>
+          </VLButton>
+        </VLTooltip>
+        <slot name="actions" v-bind="{ data }">
+          <VLTooltip
+            v-for="action in actions"
+            :key="action.name"
+            :content="translationFn(action.i18n_key)"
+            :distance="4"
+            placement="top"
+          >
+            <VLButton class="w-10 hover:opacity-40" variant="text">
+              <div class="flex items-center h-full">
+                <VLIcon class="text-2xl text-black cursor-pointer" :name="action.icon_name" />
+              </div>
+            </VLButton>
+          </VLTooltip>
+        </slot>
       </template>
     </VLDataTableCrud>
     <div class="flex justify-end w-full">
@@ -38,31 +65,49 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch, onMounted, Component, computed } from 'vue'
-import { VLDataTableCrud, VLPaginator, VLDialog, VLButton } from '.'
+import {
+  VLDataTableCrud,
+  VLPaginator,
+  VLDialog,
+  VLButton,
+  VLTooltip,
+  VLIcon,
+  VLCrudFilters
+} from '.'
 
-import VLFiltersCrud from './VLFiltersCrud.vue'
 import type { Header, Filter } from './utils/types'
 
 interface Props {
   primary_key: string
   singular_label: string
   headers: Header[]
-  filters: Filter[]
+  filters: Omit<Filter, 'label'>[]
   form_fields: any[]
   actions: any[]
   editable?: boolean
   getItems: (page: number, rowsPerPage: number, filters: any) => any
   editItem?: (id: any, item: any) => any
   components?: { [key: string]: Component }
+  translationFn?: (key: string, props?: { [key: string]: any }) => string
+  actionHeaderI18nKey?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  editable: true
+  editable: true,
+  translationFn: (key: string) => key,
+  actionHeaderI18nKey: 'header.actions'
 })
+
+const filters = computed(() =>
+  props.filters.map((filter) => ({
+    ...filter,
+    label: props.translationFn(filter.i18n_key)
+  }))
+)
 
 const columns = computed(() =>
   props.headers.map((header) => ({
-    name: header.i18n_key,
+    name: props.translationFn(header.i18n_key),
     value: header.value,
     sortable: header.sortable,
     ...(header.type

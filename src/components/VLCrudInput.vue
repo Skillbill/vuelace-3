@@ -13,8 +13,6 @@
 <script setup lang="ts">
 import VLInput from './VLInput.vue'
 
-import { defineProps } from 'vue'
-
 const atValueChange = (value: any) => {
   console.log(value)
 }
