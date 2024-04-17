@@ -5,7 +5,7 @@
       class="w-full"
       removableSort
       :items="items"
-      :columns="headers"
+      :columns="columns"
       :actions="actions"
       :paginator="false"
       actionHeaderLabel="actions"
@@ -37,27 +37,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted } from 'vue'
+import { ref, reactive, watch, onMounted, Component, computed } from 'vue'
 import { VLDataTableCrud, VLPaginator, VLDialog, VLButton } from '.'
-import VLFiltersCrud from './VLFiltersCrud.vue'
 
-import type { Filter } from './VLFiltersCrud.vue'
+import VLFiltersCrud from './VLFiltersCrud.vue'
+import type { Header, Filter } from './utils/types'
 
 interface Props {
   primary_key: string
   singular_label: string
-  headers: any[]
+  headers: Header[]
   filters: Filter[]
   form_fields: any[]
   actions: any[]
-  editable: boolean
+  editable?: boolean
   getItems: (page: number, rowsPerPage: number, filters: any) => any
   editItem?: (id: any, item: any) => any
+  components?: { [key: string]: Component }
 }
 
 const props = withDefaults(defineProps<Props>(), {
   editable: true
 })
+
+const columns = computed(() =>
+  props.headers.map((header) => ({
+    name: header.i18n_key,
+    value: header.value,
+    sortable: header.sortable,
+    ...(header.type
+      ? { component: props.components?.[header.type], componentProps: header.componentProps }
+      : {}) //TODO: componente per errore nel caso in cui non ci sia il componente per type
+  }))
+)
 
 const pagination = reactive({
   totalRows: 0,

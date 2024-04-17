@@ -33,17 +33,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { VLButton, VLExpansionCard, VLCrudInput } from '../'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
-export type Filter = {
-  i18n_key: string
-  value: string
-  input_type: string //TODO: Aggiungere tipi supportati dal VLCrudInput
-  default_value?: any
-  props?: any
-}
+import { VLButton, VLExpansionCard, VLCrudInput } from '../'
+import { Filter } from './utils/types'
 
 const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show'])
 

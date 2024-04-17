@@ -13,11 +13,17 @@ import { User } from '../components/examples/types/user'
 export const useUsersStore = defineStore('users', () => {
   const users = ref<User[]>([])
 
-  const getUsers = async (filters?: any) => {
+  const getUsers = async (page: number, rows: number, filters?: any) => {
     try {
       const response = await getUsersAPI(filters)
-      users.value = [...response]
+      return {
+        result: [...response],
+        page: {
+          totalRows: 3
+        }
+      }
     } catch (error) {
+      console.log(page, rows, filters)
       console.log(error)
     }
   }
@@ -34,7 +40,7 @@ export const useUsersStore = defineStore('users', () => {
   const createUser = async (user: User) => {
     try {
       await createUserAPI({ ...user, id: `${users.value.length + 1}` })
-      await getUsers()
+      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }
@@ -43,7 +49,7 @@ export const useUsersStore = defineStore('users', () => {
   const updateUser = async (id: string, user: User) => {
     try {
       await updateUserAPI(id, user)
-      await getUsers()
+      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }
@@ -52,7 +58,7 @@ export const useUsersStore = defineStore('users', () => {
   const deleteUser = async (id: string) => {
     try {
       await deleteUserAPI(id)
-      await getUsers()
+      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }

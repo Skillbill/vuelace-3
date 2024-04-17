@@ -7,6 +7,10 @@
     :form_fields="users_crud.form_fields"
     :actions="[]"
     :getItems="usersStore.getUsers"
+    :components="{
+      boolean: ActiveCell,
+      date: DateCell
+    }"
   >
   </VLCrud>
 </template>
@@ -14,6 +18,9 @@
 <script setup lang="ts">
 import VLCrud from '../VLCrud.vue'
 import { useUsersStore } from '@/stores/users'
+
+import ActiveCell from './cells/ActiveCell.vue'
+import DateCell from './cells/DateCell.vue'
 
 const usersStore = useUsersStore()
 
@@ -24,46 +31,42 @@ const users_crud = {
   headers: [
     {
       i18n_key: 'header.username',
-      align: 'start',
       sortable: false,
       value: 'username'
     },
     {
       i18n_key: 'header.firstname',
-      align: 'start',
       sortable: false,
       value: 'firstname'
     },
     {
       i18n_key: 'header.lastname',
-      align: 'start',
       sortable: false,
       value: 'lastname'
     },
     {
       i18n_key: 'header.active',
-      align: 'start',
       sortable: false,
       value: 'active',
-      type: 'boolean'
+      type: 'boolean',
+      componentProps: {
+        trueColor: 'text-red-500'
+      }
     },
     {
       i18n_key: 'header.activation_date',
       value: 'activation_date',
-      align: 'start',
       sortable: false,
       type: 'date'
     },
     {
       i18n_key: 'header.expiration_date',
       value: 'expiration_date',
-      align: 'start',
       sortable: false,
       type: 'date'
     },
     {
       i18n_key: 'header.actions',
-      align: 'start',
       sortable: false,
       value: 'actions'
     }

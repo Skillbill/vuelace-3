@@ -31,3 +31,21 @@ export interface Action {
   props?: any
   onClick?: (data: any) => void
 }
+
+// VLCrud types
+
+export interface Header {
+  i18n_key: string
+  value: string
+  sortable?: boolean
+  type?: string
+  componentProps?: any
+}
+
+export interface Filter {
+  i18n_key: string
+  value: string
+  input_type: string //TODO: Aggiungere tipi supportati dal VLCrudInput
+  default_value?: any
+  props?: any
+}
