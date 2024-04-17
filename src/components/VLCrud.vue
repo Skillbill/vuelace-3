@@ -2,7 +2,7 @@
   <div>
     <VLCrudFilters class="w-full" :filters="filters" @filtersApplied="() => {}" />
     <VLDataTableCrud
-      class="w-full"
+      class="w-full my-4"
       removableSort
       :items="items"
       :columns="columns"
@@ -17,33 +17,14 @@
 
       <!-- template for actions to show some default actions -->
       <template #actions="{ data }">
-        <VLTooltip
-          v-if="editable"
-          key="edit"
-          :content="translationFn('tooltip.edit')"
-          :distance="4"
-          placement="top"
-        >
-          <VLButton class="w-10 hover:opacity-40" variant="text">
-            <div class="flex items-center h-full">
-              <VLIcon class="text-2xl text-black cursor-pointer" name="pencil" />
-            </div>
-          </VLButton>
-        </VLTooltip>
+        <VLCrudAction v-if="editable" :tooltip="translationFn('tooltip.edit')" icon="pencil" />
         <slot name="actions" v-bind="{ data }">
-          <VLTooltip
+          <VLCrudAction
             v-for="action in actions"
             :key="action.name"
-            :content="translationFn(action.i18n_key)"
-            :distance="4"
-            placement="top"
-          >
-            <VLButton class="w-10 hover:opacity-40" variant="text">
-              <div class="flex items-center h-full">
-                <VLIcon class="text-2xl text-black cursor-pointer" :name="action.icon_name" />
-              </div>
-            </VLButton>
-          </VLTooltip>
+            :tooltip="translationFn(action.i18n_key)"
+            :icon="action.icon_name"
+          />
         </slot>
       </template>
     </VLDataTableCrud>
@@ -65,15 +46,9 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch, onMounted, Component, computed } from 'vue'
-import {
-  VLDataTableCrud,
-  VLPaginator,
-  VLDialog,
-  VLButton,
-  VLTooltip,
-  VLIcon,
-  VLCrudFilters
-} from '.'
+import { VLDataTableCrud, VLPaginator, VLDialog, VLCrudFilters } from '.'
+
+import VLCrudAction from './VLCrudAction.vue'
 
 import type { Header, Filter } from './utils/types'
 
@@ -85,11 +60,11 @@ interface Props {
   form_fields: any[]
   actions: any[]
   editable?: boolean
+  components?: { [key: string]: Component }
+  actionHeaderI18nKey?: string
   getItems: (page: number, rowsPerPage: number, filters: any) => any
   editItem?: (id: any, item: any) => any
-  components?: { [key: string]: Component }
   translationFn?: (key: string, props?: { [key: string]: any }) => string
-  actionHeaderI18nKey?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -122,6 +97,7 @@ const pagination = reactive({
   rowsPerPage: 10,
   rowsPerPageOptions: [5, 10, 25, 50]
 })
+
 const items = ref<any[]>([])
 
 const getItems = async (page: number, rowsPerPage: number, filters: any) => {
