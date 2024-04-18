@@ -22,6 +22,8 @@ import { useUsersStore } from '../../stores/users'
 import ActiveCell from './cells/ActiveCell.vue'
 import DateCell from './cells/DateCell.vue'
 
+import DeleteDialog from './dialogs/DeleteDialog.vue'
+
 const usersStore = useUsersStore()
 
 const users_crud = {
@@ -122,7 +124,11 @@ const users_crud = {
     {
       name: 'Delete',
       i18n_key: 'tooltip.delete',
-      icon_name: 'delete'
+      icon_name: 'delete',
+      onClick: (data: any) => {
+        console.log('Delete side effect', { ...data })
+      },
+      component: DeleteDialog
     }
     // {
     //   name: 'Change Password',

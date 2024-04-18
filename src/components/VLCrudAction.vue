@@ -12,16 +12,15 @@
 import { VLTooltip, VLButton, VLIcon } from '.'
 
 interface Props {
-  tooltip: string
-  placement: 'top' | 'bottom' | 'left' | 'right'
-  distance: number
   icon: string
+  tooltip?: string
+  placement?: 'top' | 'bottom' | 'left' | 'right'
+  distance?: number
 }
 
 withDefaults(defineProps<Props>(), {
   tooltip: '',
   placement: 'top',
-  distance: 4,
-  icon: ''
+  distance: 4
 })
 </script>

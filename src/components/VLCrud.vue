@@ -45,6 +45,7 @@
             v-if="action.name === dialog"
             :is="action.component"
             :data="{ ...(action.properties ?? {}), item: selectedItem }"
+            @close="closeDialog"
           ></component>
         </template>
       </slot>
@@ -53,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted, Component, computed } from 'vue'
+import { ref, reactive, watch, onMounted, type Component, computed } from 'vue'
 import { VLDataTableCrud, VLPaginator, VLDialog, VLCrudFilters } from '.'
 
 import VLCrudAction from './VLCrudAction.vue'
