@@ -128,7 +128,10 @@ const users_crud = {
       onClick: (data: any) => {
         console.log('Delete side effect', { ...data })
       },
-      component: DeleteDialog
+      component: DeleteDialog,
+      dialogProperties: {
+        noCloseOnOutsideClick: false
+      }
     }
     // {
     //   name: 'Change Password',

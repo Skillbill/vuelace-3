@@ -1,6 +1,8 @@
 <template>
+  <div slot="label">Delete - {{ data?.item?.username }}</div>
+
   <div class="flex flex-col">
-    Do you want to delete the user {{ data?.item?.username }}?
+    Do you want to delete the user?
     <div class="flex justify-end w-full gap-2">
       <VLButton @click="onCanceled">Cancel</VLButton>
       <VLButton @click="onConfirm">Confirm</VLButton>

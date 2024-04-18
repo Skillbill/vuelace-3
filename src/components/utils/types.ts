@@ -60,4 +60,5 @@ export interface CrudAction {
   component?: Component
   onClick?: (data: any) => void
   properties?: Object
+  dialogProperties?: Object
 }

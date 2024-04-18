@@ -46,7 +46,11 @@
             :is="action.component"
             :data="{ ...(action.properties ?? {}), item: selectedItem }"
             @close="closeDialog"
+            @cancel="() => {}"
+            @confirm="() => {}"
           ></component>
+          <!-- TODO: gestire cancel in base all'action -->
+          <!-- TODO: gestire confirm in base all'action -->
         </template>
       </slot>
     </VLDialog>
@@ -125,6 +129,7 @@ const onClickAction = (action: CrudAction) => (data: any) => {
   if (action.component) {
     selectedItem.value = data
     dialog.value = action.name
+    dialogProps.value = action.dialogProperties ?? {}
     showDialog.value = true
   }
 }
@@ -144,15 +149,11 @@ watch(
 //   getItems(pagination.currentPage, pagination.rowsPerPage, filters.value)
 // })
 
-const dialog = ref<string | null>(null)
-
-const showDialog = ref(false)
-
-const dialogProps = ref({})
-
 const selectedItem = ref<any>(null)
 
-const emit = defineEmits(['actionClose'])
+const dialog = ref<string | null>(null)
+const dialogProps = ref({})
+const showDialog = ref(false)
 
 const closeDialog = () => {
   showDialog.value = false
@@ -161,8 +162,6 @@ const closeDialog = () => {
   setTimeout(() => {
     dialog.value = null
     selectedItem.value = null
-
-    emit('actionClose', null)
   }, 300)
 }
 </script>
