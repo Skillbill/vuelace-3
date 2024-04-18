@@ -30,18 +30,18 @@ const users = [
   }
 ] as User[]
 
-export const getUsersAPI = async (filters?: any) => {
+export const getUsersAPI = async (page: number, rows: number, filters?: any) => {
   let result: any = [...users]
 
   if (filters && Object.keys(filters).length) {
     result = result.filter((user: any) => {
       return Object.keys(filters).every((key) => {
-        return user[key].includes(filters[key])
+        return !filters[key] || user[key].includes(filters[key])
       })
     })
   }
 
-  return result
+  return { result, page: { totalRows: 3, currentPage: page, pageRows: rows, totalPages: 1 } }
 }
 
 export const getUserAPI = async (id: string) => {

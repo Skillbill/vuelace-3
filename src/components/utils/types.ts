@@ -1,4 +1,5 @@
 import { Component } from 'vue'
+import { VLDialog } from '..'
 
 export interface Radio {
   label: string
@@ -60,5 +61,5 @@ export interface CrudAction {
   component?: Component
   onClick?: (data: any) => void
   properties?: Object
-  dialogProperties?: Object
+  dialogProperties?: Omit<InstanceType<typeof VLDialog>['$props'], 'modelValue' | 'onRequestClose'>
 }

@@ -1,5 +1,6 @@
 <template>
   <VLCrud
+    :id="users_crud.id"
     :singular_label="users_crud.singular_label"
     :primary_key="users_crud.primary_key"
     :headers="users_crud.headers"
@@ -72,17 +73,16 @@ const users_crud = {
     {
       i18n_key: 'header.username',
       value: 'username',
-      input_type: 'text',
-      default_value: 'biagio'
+      input_type: 'text'
     },
     {
       i18n_key: 'header.firstname',
-      value: 'firstname',
+      value: 'firstName',
       input_type: 'text'
     },
     {
       i18n_key: 'header.lastname',
-      value: 'lastname',
+      value: 'lastName',
       input_type: 'text'
     }
   ],

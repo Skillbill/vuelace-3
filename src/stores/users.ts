@@ -15,15 +15,17 @@ export const useUsersStore = defineStore('users', () => {
 
   const getUsers = async (page: number, rows: number, filters?: any) => {
     try {
-      const response = await getUsersAPI(filters)
+      const response = await getUsersAPI(page, rows, filters)
+
       return {
-        result: [...response],
+        result: [...response.result],
         page: {
-          totalRows: 3
+          currentPage: response.page.currentPage,
+          totalRows: response.page.totalRows,
+          pageRows: response.page.pageRows
         }
       }
     } catch (error) {
-      console.log(page, rows, filters)
       console.log(error)
     }
   }
@@ -40,7 +42,6 @@ export const useUsersStore = defineStore('users', () => {
   const createUser = async (user: User) => {
     try {
       await createUserAPI({ ...user, id: `${users.value.length + 1}` })
-      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }
@@ -49,7 +50,6 @@ export const useUsersStore = defineStore('users', () => {
   const updateUser = async (id: string, user: User) => {
     try {
       await updateUserAPI(id, user)
-      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +58,6 @@ export const useUsersStore = defineStore('users', () => {
   const deleteUser = async (id: string) => {
     try {
       await deleteUserAPI(id)
-      await getUsers(0, 0)
     } catch (error) {
       console.log(error)
     }

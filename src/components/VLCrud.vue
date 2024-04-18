@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VLCrudFilters class="w-full" :filters="filters" @filtersApplied="() => {}" />
+    <VLCrudFilters class="w-full" :filters="filters" @filtersApplied="onFiltersApplied" />
     <VLDataTableCrud
       class="w-full my-4"
       removableSort
@@ -15,9 +15,11 @@
         <div class="flex justify-center p-4">Empty</div>
       </template>
 
-      <!-- template for actions to show some default actions -->
+      <!-- template for actions -->
       <template #actions="{ data }">
+        <!-- base actions -->
         <VLCrudAction v-if="editable" :tooltip="translationFn('tooltip.edit')" icon="pencil" />
+        <!-- custom actions -->
         <slot name="actions" v-bind="{ data }">
           <VLCrudAction
             v-for="action in actions"
@@ -37,35 +39,39 @@
         :rowsPerPageOptions="pagination.rowsPerPageOptions"
       />
     </div>
-
-    <VLDialog v-model="showDialog" v-bind="dialogProps" @request-close="closeDialog">
-      <slot name="dialogs" v-bind="{ selectedItem, closeDialog }">
-        <template v-for="action in actions.filter((action) => action.component)" :key="action.name">
-          <component
-            v-if="action.name === dialog"
-            :is="action.component"
-            :data="{ ...(action.properties ?? {}), item: selectedItem }"
-            @close="closeDialog"
-            @cancel="() => {}"
-            @confirm="() => {}"
-          ></component>
-          <!-- TODO: gestire cancel in base all'action -->
-          <!-- TODO: gestire confirm in base all'action -->
-        </template>
-      </slot>
+    <VLDialog v-bind="dialogProps" v-model="showDialog" @request-close="closeDialog">
+      <template v-for="action in actions.filter((action) => action.component)" :key="action.name">
+        <component
+          v-if="action.name === dialog"
+          :is="action.component"
+          :data="{
+            id,
+            item: selectedItem,
+            ...(action.properties ?? {})
+          }"
+          @close="closeDialog"
+          @cancel="() => {}"
+          @confirm="() => onConfirm(action, selectedItem)"
+        />
+        <!-- TODO: gestire cancel in base all'action -->
+        <!-- TODO: gestire confirm in base all'action -->
+      </template>
     </VLDialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted, type Component, computed } from 'vue'
-import { VLDataTableCrud, VLPaginator, VLDialog, VLCrudFilters } from '.'
-
-import VLCrudAction from './VLCrudAction.vue'
+import { ref, reactive, watch, type Component, computed } from 'vue'
 
 import type { Header, Filter, CrudAction } from './utils/types'
+import VLCrudAction from './VLCrudAction.vue'
+import VLPaginator from './VLPaginator.vue'
+import VLDialog from './VLDialog.vue'
+import VLDataTableCrud from './VLDataTableCrud.vue'
+import VLCrudFilters from './VLCrudFilters.vue'
 
 interface Props {
+  id: string
   primary_key: string
   singular_label: string
   headers: Header[]
@@ -75,15 +81,35 @@ interface Props {
   editable?: boolean
   components?: { [key: string]: Component }
   actionHeaderI18nKey?: string
-  getItems: (page: number, rowsPerPage: number, filters: any) => any
+  rowsPerPage?: number
+  rowsPerPageOptions?: number[]
+  getItems: (
+    page: number,
+    rowsPerPage: number,
+    filters: any
+  ) => Promise<
+    | {
+        result: any[]
+        page: {
+          currentPage: number
+          pageRows: number
+          totalRows: number
+        }
+      }
+    | undefined
+  >
   editItem?: (id: any, item: any) => any
   translationFn?: (key: string, props?: { [key: string]: any }) => string
 }
 
+const emit = defineEmits(['fetchError'])
+
 const props = withDefaults(defineProps<Props>(), {
   editable: true,
-  translationFn: (key: string) => key,
-  actionHeaderI18nKey: 'header.actions'
+  actionHeaderI18nKey: 'header.actions',
+  rowsPerPage: 10,
+  rowsPerPageOptions: () => [5, 10, 25, 50],
+  translationFn: (key: string) => key
 })
 
 const filters = computed(() =>
@@ -106,20 +132,34 @@ const columns = computed(() =>
 
 const pagination = reactive({
   totalRows: 0,
-  currentPage: 1,
-  rowsPerPage: 10,
-  rowsPerPageOptions: [5, 10, 25, 50]
+  currentPage: 0,
+  rowsPerPage: props.rowsPerPageOptions.includes(props.rowsPerPage)
+    ? props.rowsPerPage
+    : props.rowsPerPageOptions[0],
+  rowsPerPageOptions: props.rowsPerPageOptions
 })
 
 const items = ref<any[]>([])
 
-const getItems = async (page: number, rowsPerPage: number, filters: any) => {
-  const response = await props.getItems(page, rowsPerPage, filters)
+const fetchData = async () => {
+  const response = await props
+    .getItems(pagination.currentPage, pagination.rowsPerPage, { ...filtersApplied.value })
+    .catch((e) => {
+      console.error(e)
+      emit('fetchError')
+    })
 
-  if (!response) return
+  if (!response) {
+    emit('fetchError')
+    return
+  }
 
   items.value = response.result
-  pagination.totalRows = response.page.totalRows
+
+  const { currentPage, totalRows } = response.page
+
+  pagination.currentPage = currentPage
+  pagination.totalRows = totalRows
 }
 
 const onClickAction = (action: CrudAction) => (data: any) => {
@@ -134,20 +174,21 @@ const onClickAction = (action: CrudAction) => (data: any) => {
   }
 }
 
-onMounted(() => {
-  getItems(pagination.currentPage, pagination.rowsPerPage, {})
-})
+const filtersApplied = ref({})
 
-watch(
-  () => [pagination.currentPage, pagination.rowsPerPage],
-  () => {
-    getItems(pagination.currentPage, pagination.rowsPerPage, {})
-  }
-)
+const onFiltersApplied = (filters: any) => {
+  filtersApplied.value = filters
+  pagination.currentPage = 1
+}
 
-// watch(filters, () => {
-//   getItems(pagination.currentPage, pagination.rowsPerPage, filters.value)
-// })
+const onConfirm = (action: CrudAction, data: any) => {
+  console.log(action, { ...data })
+  fetchData()
+  //TODO: aggiungere highlight riga
+  //OPZIONALE: aggiungere side effect al conferma dell'azione
+}
+
+watch(() => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], fetchData)
 
 const selectedItem = ref<any>(null)
 
