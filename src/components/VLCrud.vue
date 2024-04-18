@@ -124,6 +124,7 @@ const columns = computed(() =>
     name: props.translationFn(header.i18n_key),
     value: header.value,
     sortable: header.sortable,
+    ...(header.columnProps ? { columnProps: header.columnProps } : {}),
     ...(header.type
       ? { component: props.components?.[header.type], componentProps: header.componentProps }
       : {}) //TODO: componente per errore nel caso in cui non ci sia il componente per type

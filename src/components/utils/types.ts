@@ -1,5 +1,6 @@
 import { Component } from 'vue'
 import { VLDialog } from '..'
+import PrimeVueColumn from 'primevue/column'
 
 export interface Radio {
   label: string
@@ -24,7 +25,10 @@ export interface Column {
   value: string
   sortable?: boolean
   component?: any
-  columnProps?: any
+  columnProps?: Omit<
+    InstanceType<typeof PrimeVueColumn>['$props'],
+    'key' | 'field' | 'sortable' | 'header'
+  >
   componentProps?: any
 }
 
@@ -43,6 +47,10 @@ export interface Header {
   sortable?: boolean
   type?: string
   componentProps?: any
+  columnProps?: Omit<
+    InstanceType<typeof PrimeVueColumn>['$props'],
+    'key' | 'field' | 'sortable' | 'header'
+  >
 }
 
 export interface Filter {

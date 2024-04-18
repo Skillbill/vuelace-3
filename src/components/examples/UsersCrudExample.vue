@@ -35,7 +35,10 @@ const users_crud = {
     {
       i18n_key: 'header.username',
       sortable: false,
-      value: 'username'
+      value: 'username',
+      columnProps: {
+        class: 'w-1/4'
+      }
     },
     {
       i18n_key: 'header.firstname',
