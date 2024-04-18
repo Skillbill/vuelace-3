@@ -37,7 +37,7 @@
         >
       </template>
     </PrimeVueColumn>
-    <PrimeVueColumn v-if="actions.length" :header="actionHeaderLabel">
+    <PrimeVueColumn v-if="actions.length || $slots.actions" :header="actionHeaderLabel">
       <template #body="{ data }">
         <div class="flex gap-2">
           <slot name="actions" v-bind="{ data }"></slot>

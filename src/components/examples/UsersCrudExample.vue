@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import VLCrud from '../VLCrud.vue'
-import { useUsersStore } from '@/stores/users'
+import { useUsersStore } from '../../stores/users'
 
 import ActiveCell from './cells/ActiveCell.vue'
 import DateCell from './cells/DateCell.vue'

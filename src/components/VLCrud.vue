@@ -6,7 +6,7 @@
       removableSort
       :items="items"
       :columns="columns"
-      :actions="actions"
+      :actions="[]"
       :paginator="false"
       :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
     >
@@ -24,6 +24,7 @@
             :key="action.name"
             :tooltip="translationFn(action.i18n_key)"
             :icon="action.icon_name"
+            @click="() => onClickAction(action)(data)"
           />
         </slot>
       </template>
@@ -38,8 +39,15 @@
     </div>
 
     <VLDialog v-model="showDialog" v-bind="dialogProps" @request-close="closeDialog">
-      <div slot="label"><slot name="dialogName"></slot></div>
-      <slot name="dialogs" v-bind="{ selectedItem, closeDialog }"></slot>
+      <slot name="dialogs" v-bind="{ selectedItem, closeDialog }">
+        <template v-for="action in actions.filter((action) => action.component)" :key="action.name">
+          <component
+            v-if="action.name === dialog"
+            :is="action.component"
+            :data="{ ...(action.properties ?? {}), item: selectedItem }"
+          ></component>
+        </template>
+      </slot>
     </VLDialog>
   </div>
 </template>
@@ -50,7 +58,7 @@ import { VLDataTableCrud, VLPaginator, VLDialog, VLCrudFilters } from '.'
 
 import VLCrudAction from './VLCrudAction.vue'
 
-import type { Header, Filter } from './utils/types'
+import type { Header, Filter, CrudAction } from './utils/types'
 
 interface Props {
   primary_key: string
@@ -58,7 +66,7 @@ interface Props {
   headers: Header[]
   filters: Omit<Filter, 'label'>[]
   form_fields: any[]
-  actions: any[]
+  actions: CrudAction[]
   editable?: boolean
   components?: { [key: string]: Component }
   actionHeaderI18nKey?: string
@@ -107,6 +115,17 @@ const getItems = async (page: number, rowsPerPage: number, filters: any) => {
 
   items.value = response.result
   pagination.totalRows = response.page.totalRows
+}
+
+const onClickAction = (action: CrudAction) => (data: any) => {
+  if (action.onClick) {
+    action.onClick(data)
+  }
+  if (action.component) {
+    selectedItem.value = data
+    dialog.value = action.name
+    showDialog.value = true
+  }
 }
 
 onMounted(() => {

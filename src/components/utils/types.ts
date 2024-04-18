@@ -1,3 +1,5 @@
+import { Component } from 'vue'
+
 export interface Radio {
   label: string
   value: any
@@ -49,4 +51,13 @@ export interface Filter {
   input_type: string //TODO: Aggiungere tipi supportati dal VLCrudInput
   default_value?: any
   props?: any
+}
+
+export interface CrudAction {
+  name: string
+  i18n_key: string
+  icon_name: string
+  component?: Component
+  onClick?: (data: any) => void
+  properties?: Object
 }
