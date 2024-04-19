@@ -8,7 +8,7 @@
   >
     <template v-slot:title><slot name="title"></slot></template>
     <div class="flex flex-col justify-between gap-4">
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 items-center">
         <VLCrudInput
           :class="[!field?.props?.class && 'min-w-fit']"
           v-for="field in filters"

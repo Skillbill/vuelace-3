@@ -2,26 +2,40 @@
   <VLInput
     v-if="type === 'text'"
     :placeholder="placeholder"
-    :key="input_name"
     :name="input_name"
     :label="label"
-    :model-value="initialValue"
+    :model-value="cheatType(initialValue)"
     @update:model-value="atValueChange"
   />
+  <VLCheckbox
+    v-else-if="type === 'checkbox'"
+    :name="input_name"
+    :label="label"
+    :model-value="cheatType(initialValue)"
+    @update:model-value="atValueChange"
+  ></VLCheckbox>
 </template>
 
 <script setup lang="ts">
 import VLInput from './VLInput.vue'
+import VLCheckbox from './VLCheckbox.vue'
 
 const atValueChange = (value: any) => {
   console.log(value)
 }
 
+type ValueType = string | boolean | Date | number | undefined
+type InputType = 'text' | 'checkbox'
+
+function cheatType<T>(value: ValueType): T {
+  return value as T
+}
+
 interface Props {
   input_name: string
   label: string
-  type: string
-  initialValue?: string | boolean | Date | number
+  type: InputType
+  initialValue?: ValueType
   disabled?: boolean
   placeholder?: string
   // options: Array,

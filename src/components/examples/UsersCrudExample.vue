@@ -87,6 +87,12 @@ const users_crud = {
       i18n_key: 'header.lastname',
       value: 'lastName',
       input_type: 'text'
+    },
+    {
+      i18n_key: 'header.bool',
+      value: 'bool',
+      input_type: 'checkbox',
+      default_value: false
     }
   ],
   form_fields: [
