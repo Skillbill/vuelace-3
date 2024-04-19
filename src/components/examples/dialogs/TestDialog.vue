@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import VLDialog from '../../VLDialog.vue'
+import { VLDialog } from '../../'
 
 const show = defineModel<boolean>()
 </script>

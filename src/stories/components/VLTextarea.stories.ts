@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import TextArea from '../../components/VLTextArea.vue'
+import { VLTextArea } from '../../components'
 
 const meta = {
   title: 'Vuelace3/TextArea',
-  component: TextArea,
+  component: VLTextArea,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -21,7 +21,7 @@ const meta = {
     },
     resize: { control: 'select', options: ['auto', 'none', 'vertical', undefined] }
   }
-} satisfies Meta<typeof TextArea>
+} satisfies Meta<typeof VLTextArea>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import RadioGroupInput from '../../components/VLRadioGroup.vue'
+import { VLRadioGroup } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Radio group',
-  component: RadioGroupInput,
+  component: VLRadioGroup,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large', undefined] }
@@ -11,7 +11,7 @@ const meta = {
   args: {
     size: 'small'
   }
-} satisfies Meta<typeof RadioGroupInput>
+} satisfies Meta<typeof VLRadioGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>

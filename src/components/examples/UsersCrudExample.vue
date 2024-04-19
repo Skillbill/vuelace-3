@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import VLCrud from '../VLCrud.vue'
+import { VLCrud, type VLCrudProps } from '../VLCrud'
 import { useUsersStore } from '../../stores/users'
 
 import ActiveCell from './cells/ActiveCell.vue'
@@ -27,7 +27,7 @@ import DeleteDialog from './dialogs/DeleteDialog.vue'
 
 const usersStore = useUsersStore()
 
-const users_crud = {
+const users_crud: Omit<VLCrudProps, 'getItems'> = {
   id: 'users',
   singular_label: 'user',
   primary_key: 'username',

@@ -125,16 +125,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import VLInput from './components/VLInput.vue'
-import VLNumberInput from './components/VLNumberInput.vue'
-import VLSelect from './components/VLSelect.vue'
-import VLCheckbox from './components/VLCheckbox.vue'
-import VLDatePicker from './components/VLDatePicker.vue'
-import VLColorPicker from './components/VLColorPicker.vue'
-import VLRadioGroup from './components/VLRadioGroup.vue'
-import VLIcon from './components/VLIcon.vue'
-import VLImageUpload from './components/VLImageUpload.vue'
-import VLButton from './components/VLButton.vue'
+import VLInput from './components/VLInput/VLInput.vue'
+import VLNumberInput from './components/VLNumberInput/VLNumberInput.vue'
+import VLSelect from './components/VLSelect/VLSelect.vue'
+import VLCheckbox from './components/VLCheckbox/VLCheckbox.vue'
+import VLDatePicker from './components/VLDatePicker/VLDatePicker.vue'
+import VLColorPicker from './components/VLColorPicker/VLColorPicker.vue'
+import VLRadioGroup from './components/VLRadioGroup/VLRadioGroup.vue'
+import VLIcon from './components/VLIcon/VLIcon.vue'
+import VLImageUpload from './components/VLImageUpload/VLImageUpload.vue'
+import VLButton from './components/VLButton/VLButton.vue'
 
 const values = ref({})
 

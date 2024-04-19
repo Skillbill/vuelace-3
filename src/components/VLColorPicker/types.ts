@@ -1,0 +1,15 @@
+export interface VLColorPickerProps {
+  defaultValue?: string
+  label: string
+  size?: 'small' | 'medium' | 'large'
+  name?: string
+  hoist?: boolean
+  uppercase?: boolean
+  swatches?: string | string[]
+  form?: string
+  required?: boolean
+  disabled?: boolean
+  // noFormatToggle?: boolean
+  // opacity?: boolean
+  // format?: string
+}

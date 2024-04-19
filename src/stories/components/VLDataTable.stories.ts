@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import DataTable from '../../components/VLDataTableCrud.vue'
+import { VLDataTableCrud } from '../../components'
 import ActiveComponent from '../../components/examples/cells/ActiveCell.vue'
 
 import ActionDelete from '../../components/examples/actions/ActionDelete.vue'
@@ -20,13 +20,13 @@ const getItems = () => {
 
 const meta = {
   title: 'Vuelace3/Data Table',
-  component: DataTable,
+  component: VLDataTableCrud,
   tags: ['autodocs'],
   argTypes: {
     selectionMode: { control: 'select', options: [undefined, 'single', 'multiple'] }
   },
   args: {}
-} satisfies Meta<typeof DataTable>
+} satisfies Meta<typeof VLDataTableCrud>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -51,7 +51,7 @@ export const Simple: Story = {
         name: 'header.active',
         value: 'active',
         component: ActiveComponent,
-        props: {
+        componentProps: {
           trueColor: 'text-yellow-500'
         }
       },
