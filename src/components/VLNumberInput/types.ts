@@ -1,4 +1,13 @@
-import type { VLInputRuleType } from '../utils/types'
+import type {
+  VLInputRuleType,
+  SlFocusEvent,
+  SlBlurEvent,
+  SlInputEvent,
+  SlChangeEvent,
+  SlInvalidEvent,
+  SlClearEvent
+} from '../utils/types'
+
 export interface VLNumberInputProps {
   name?: string
   defaultValue?: string
@@ -20,4 +29,10 @@ export interface VLNumberInputProps {
   autofocus?: boolean
   error?: string
   rules?: VLInputRuleType[]
+  onFocus?: (e: SlFocusEvent) => void
+  onBlur?: (e: SlBlurEvent) => void
+  onInput?: (e: SlInputEvent) => void
+  onChange?: (e: SlChangeEvent) => void
+  onClear?: (e: SlClearEvent) => void
+  onInvalid?: (e: SlInvalidEvent) => void
 }

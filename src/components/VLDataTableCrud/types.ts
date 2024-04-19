@@ -1,4 +1,5 @@
 import PrimeVueColumn from 'primevue/column'
+import { DataTablePageEvent } from 'primevue/datatable'
 
 export interface Column {
   name: string
@@ -39,4 +40,5 @@ export interface VLDataTableCrudProps {
   actionHeaderLabel?: string
   selectionMode?: 'single' | 'multiple'
   selectionColumnProps?: object
+  onPage?: (event: DataTablePageEvent) => void
 }

@@ -22,10 +22,10 @@
       :spellcheck="spellcheck"
       :inputmode="inputmode"
       @sl-change="atChange"
-      @sl-blur="(evt: any) => emit('blur', evt)"
-      @sl-focus="(evt: any) => emit('focus', evt)"
-      @sl-invalid="(evt: any) => emit('invalid', evt)"
-      @sl-input="(evt: any) => emit('input', evt)"
+      @sl-blur="(evt: SlBlurEvent) => emit('blur', evt)"
+      @sl-focus="(evt: SlFocusEvent) => emit('focus', evt)"
+      @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
+      @sl-input="(evt: SlInputEvent) => emit('input', evt)"
     >
     </sl-textarea>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
@@ -36,7 +36,13 @@
 import { computed, ref, watch } from 'vue'
 
 import ErrorMessage from '../utils/ErrorMessage.vue'
-import type { VLInputRuleType } from '../utils/types'
+import type {
+  VLInputRuleType,
+  SlBlurEvent,
+  SlFocusEvent,
+  SlInvalidEvent,
+  SlInputEvent
+} from '../utils/types'
 import type { VLTextAreaProps } from './types'
 
 const emit = defineEmits(['blur', 'change', 'focus', 'input', 'invalid'])

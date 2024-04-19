@@ -14,4 +14,9 @@ export interface VLCrudFiltersProps {
   filters?: VLCrudFilterType[]
   applyLabel?: string
   resetLabel?: string
+  onApply?: () => void
+  onHide?: () => void
+  onReset?: () => void
+  onShow?: () => void
+  onFiltersApplied?: (filters: any) => void
 }

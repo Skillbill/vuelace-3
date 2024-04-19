@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
+    modelValue: true,
     label: 'I agree with the terms and conditions (VLCheckbox)',
     rules: [
       {

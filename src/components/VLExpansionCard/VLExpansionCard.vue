@@ -2,9 +2,9 @@
   <sl-details
     :open="model"
     @sl-show="onShow"
-    @sl-after-show="() => emit('afterShow')"
     @sl-hide="onHide"
-    @sl-after-hide="() => emit('afterHide')"
+    @sl-after-show="(evt: SlAfterShowEvent) => emit('afterShow', evt)"
+    @sl-after-hide="(evt: SlAfterHideEvent) => emit('afterHide', evt)"
   >
     <div slot="summary">
       <slot name="title"
@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { VLIcon } from '..'
+import type { SlAfterShowEvent, SlHideEvent, SlShowEvent, SlAfterHideEvent } from '../utils/types'
 
 const emit = defineEmits(['show', 'afterShow', 'hide', 'afterHide'])
 
@@ -38,14 +39,14 @@ defineProps<Props>()
 
 const model = defineModel<boolean>()
 
-const onShow = () => {
+const onShow = (evt: SlShowEvent) => {
   model.value = true
-  emit('show')
+  emit('show', evt)
 }
 
-const onHide = () => {
+const onHide = (evt: SlHideEvent) => {
   model.value = false
-  emit('hide')
+  emit('hide', evt)
 }
 </script>
 

@@ -1,4 +1,12 @@
-import type { VLInputRuleType } from '../utils/types'
+import type {
+  VLInputRuleType,
+  SlChangeEvent,
+  SlBlurEvent,
+  SlFocusEvent,
+  SlInputEvent,
+  SlInvalidEvent
+} from '../utils/types'
+
 export interface VLTextAreaProps {
   name?: string
   defaultValue?: string
@@ -20,4 +28,9 @@ export interface VLTextAreaProps {
   inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
   rules?: VLInputRuleType[]
   error?: string
+  onChange?: (e: SlChangeEvent) => void
+  onBlur?: (e: SlBlurEvent) => void
+  onFocus?: (e: SlFocusEvent) => void
+  onInput?: (e: SlInputEvent) => void
+  onInvalid?: (e: SlInvalidEvent) => void
 }

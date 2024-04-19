@@ -24,11 +24,11 @@
       :step="step"
       :autofocus="autofocus"
       @sl-change="atChange"
-      @sl-blur="(evt: any) => emit('blur', evt)"
-      @sl-focus="(evt: any) => emit('focus', evt)"
-      @sl-invalid="(evt: any) => emit('invalid', evt)"
-      @sl-clear="(evt: any) => emit('clear', evt)"
-      @sl-input="(evt: any) => emit('input', evt)"
+      @sl-blur="(evt: SlBlurEvent) => emit('blur', evt)"
+      @sl-focus="(evt: SlFocusEvent) => emit('focus', evt)"
+      @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
+      @sl-clear="(evt: SlClearEvent) => emit('clear', evt)"
+      @sl-input="(evt: SlInputEvent) => emit('input', evt)"
     >
       <slot></slot>
     </sl-input>
@@ -40,7 +40,15 @@
 import { computed, ref, watch } from 'vue'
 
 import ErrorMessage from '../utils/ErrorMessage.vue'
-import type { VLInputRuleType } from '../utils/types'
+import type {
+  VLInputRuleType,
+  SlFocusEvent,
+  SlBlurEvent,
+  SlInputEvent,
+  SlInvalidEvent,
+  SlClearEvent
+} from '../utils/types'
+
 import type { VLNumberInputProps } from './types'
 
 const emit = defineEmits(['focus', 'blur', 'change', 'clear', 'input', 'invalid'])

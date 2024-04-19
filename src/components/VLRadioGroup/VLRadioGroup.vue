@@ -10,8 +10,8 @@
       :form="form"
       :required="required"
       @sl-change="atUpdate"
-      @sl-invalid="(evt: any) => emit('invalid', evt)"
-      @sl-input="(evt: any) => emit('input', evt)"
+      @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
+      @sl-input="(evt: SlInputEvent) => emit('input', evt)"
     >
       <sl-radio
         :class="[errorMessage?.length && 'error']"
@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 
-import type { VLInputRuleType } from '../utils/types'
+import type { VLInputRuleType, SlInputEvent, SlInvalidEvent } from '../utils/types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import type { VLRadioGroup } from './types'
 
@@ -52,6 +52,7 @@ const model = defineModel<any>()
 
 const atUpdate = (evt: any) => {
   model.value = evt.target.value
+  emit('change', evt)
 }
 
 const validationError = ref<string | undefined>()

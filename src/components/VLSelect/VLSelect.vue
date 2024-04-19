@@ -22,15 +22,15 @@
       :form="form"
       :getTag="getTag"
       @sl-change="atChange"
-      @sl-clear="(evt: any) => emit('clear', evt)"
-      @sl-blur="(evt: any) => emit('blur', evt)"
-      @sl-input="(evt: any) => emit('input', evt)"
-      @sl-focus="(evt: any) => emit('focus', evt)"
-      @sl-show.stop="(evt: any) => emit('show', evt)"
-      @sl-after-show.stop="(evt: any) => emit('after-show', evt)"
-      @sl-hide.stop="(evt: any) => emit('hide', evt)"
-      @sl-after-hide.stop="(evt: any) => emit('after-hide', evt)"
-      @sl-invalid="(evt: any) => emit('invalid', evt)"
+      @sl-clear="(evt: SlClearEvent) => emit('clear', evt)"
+      @sl-blur="(evt: SlBlurEvent) => emit('blur', evt)"
+      @sl-input="(evt: SlInputEvent) => emit('input', evt)"
+      @sl-focus="(evt: SlFocusEvent) => emit('focus', evt)"
+      @sl-show.stop="(evt: SlShowEvent) => emit('show', evt)"
+      @sl-after-show.stop="(evt: SlAfterShowEvent) => emit('after-show', evt)"
+      @sl-hide.stop="(evt: SlHideEvent) => emit('hide', evt)"
+      @sl-after-hide.stop="(evt: SlAfterHideEvent) => emit('after-hide', evt)"
+      @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
     >
       <sl-option v-for="option in options" :key="option.value" :value="option.value">
         {{ option.text }}
@@ -42,9 +42,20 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import type {
+  VLInputRuleType,
+  SlFocusEvent,
+  SlBlurEvent,
+  SlAfterHideEvent,
+  SlInputEvent,
+  SlShowEvent,
+  SlHideEvent,
+  SlInvalidEvent,
+  SlClearEvent,
+  SlAfterShowEvent
+} from '../utils/types'
 
 import ErrorMessage from '../utils/ErrorMessage.vue'
-import type { VLInputRuleType } from '../utils/types'
 import type { VLSelectOptionType, VLSelectProps } from './types'
 
 const emit = defineEmits([

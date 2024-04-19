@@ -55,4 +55,5 @@ export interface VLCrudProps {
   >
   editItem?: (id: any, item: any) => any
   translationFn?: (key: string, props?: { [key: string]: any }) => string
+  onFetchError?: () => void
 }

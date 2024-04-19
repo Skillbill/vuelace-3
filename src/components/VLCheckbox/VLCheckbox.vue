@@ -12,11 +12,11 @@
       :defaultChecked="defaultChecked"
       :form="form"
       :required="required"
-      @sl-input="atChange"
-      @sl-change="(evt: any) => emit('change', evt)"
-      @sl-blur="(evt: any) => emit('blur', evt)"
-      @sl-focus="(evt: any) => emit('focus', evt)"
-      @sl-invalid="(evt: any) => emit('invalid', evt)"
+      @sl-input="atInput"
+      @sl-change="(evt: SlChangeEvent) => emit('change', evt)"
+      @sl-blur="(evt: SlBlurEvent) => emit('blur', evt)"
+      @sl-focus="(evt: SlFocusEvent) => emit('focus', evt)"
+      @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
     >
       <span v-if="label.length" :class="[errorMessage?.length && 'text-error']">{{ label }}</span>
     </sl-checkbox>
@@ -26,8 +26,13 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-
-import type { VLInputRuleType } from '../utils/types'
+import type {
+  VLInputRuleType,
+  SlChangeEvent,
+  SlFocusEvent,
+  SlBlurEvent,
+  SlInvalidEvent
+} from '../utils/types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import type { VLCheckboxProps } from './types'
 
@@ -53,9 +58,9 @@ const updateModel = (value: boolean) => {
   model.value = value
 }
 
-const atChange = (evt: any) => {
+const atInput = (evt: any) => {
   updateModel(evt.target.checked)
-  emit('change', evt)
+  emit('input', evt)
 }
 
 const validateInput = () => {

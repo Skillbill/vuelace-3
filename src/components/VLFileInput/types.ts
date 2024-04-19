@@ -1,4 +1,5 @@
 import type { VLInputRuleType } from '../utils/types'
+
 export interface VLFileInputProps {
   name?: string
   label: string
@@ -13,4 +14,11 @@ export interface VLFileInputProps {
   maxFileSize?: number //bytes
   fileLimit?: number
   rules?: VLInputRuleType[]
+  onError?: (error: {
+    file?: string
+    size?: number
+    count?: number
+    type?: string
+    message: string
+  }) => void
 }
