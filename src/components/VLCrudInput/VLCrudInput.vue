@@ -6,6 +6,13 @@
     :label="label"
     :model-value="cheatType(initialValue)"
   />
+  <VLNumberInput
+    v-else-if="type === 'number'"
+    :placeholder="placeholder"
+    :name="input_name"
+    :label="label"
+    :model-value="cheatType(initialValue)"
+  />
   <VLCheckbox
     v-else-if="type === 'checkbox'"
     :name="input_name"
@@ -22,10 +29,11 @@
 </template>
 
 <script setup lang="ts">
+import type { VLCrudInputProps, VLCrudInputValueType } from './types'
 import VLInput from '../VLInput/VLInput.vue'
 import VLCheckbox from '../VLCheckbox/VLCheckbox.vue'
 import VLSelect from '../VLSelect/VLSelect.vue'
-import type { VLCrudInputProps, VLCrudInputValueType } from './types'
+import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T
@@ -33,7 +41,7 @@ function cheatType<T>(value: VLCrudInputValueType): T {
 
 withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false
-  // autofocus: false,
+  // autofocus: false
   // img_style: '',
   // placeholder: '',
   // hidden: false,

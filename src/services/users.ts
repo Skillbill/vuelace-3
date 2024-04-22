@@ -8,6 +8,7 @@ const users = [
     lastName: 'Admin',
     active: true,
     role: 'admin',
+    age: 30,
     activation_date: new Date(),
     expiration_date: new Date()
   },
@@ -18,6 +19,7 @@ const users = [
     lastName: 'User',
     active: true,
     role: 'user',
+    age: 25,
     activation_date: new Date(),
     expiration_date: new Date()
   },
@@ -28,6 +30,7 @@ const users = [
     lastName: 'Guest',
     role: 'guest',
     active: false,
+    age: 20,
     activation_date: new Date(),
     expiration_date: new Date()
   }
@@ -39,12 +42,16 @@ export const getUsersAPI = async (page: number, rows: number, filters?: any) => 
   if (filters && Object.keys(filters).length) {
     result = result.filter((user: any) => {
       return Object.keys(filters).every((key) => {
-        return (
-          ['', null, undefined].includes(filters[key]) ||
-          (typeof filters[key] === 'boolean'
-            ? filters[key] === user[key]
-            : user[key].includes(filters[key]))
-        )
+        if (['', null, undefined].includes(filters[key])) return true
+
+        switch (typeof filters[key]) {
+          case 'boolean':
+            return user[key] === filters[key]
+          case 'number':
+            return user[key] === filters[key]
+          default:
+            return user[key].includes(filters[key])
+        }
       })
     })
   }

@@ -1,7 +1,7 @@
 import { VLSelectOptionType } from '../VLSelect'
 
 export type VLCrudInputValueType = string | boolean | Date | number | undefined
-export type VLCrudInputFieldType = 'text' | 'checkbox' | 'select'
+export type VLCrudInputFieldType = 'text' | 'checkbox' | 'select' | 'number'
 export interface VLCrudInputProps {
   input_name: string
   label: string
@@ -10,8 +10,8 @@ export interface VLCrudInputProps {
   disabled?: boolean
   placeholder?: string
   options?: VLSelectOptionType[]
+  // autofocus?: boolean
   //rules: (() => void)[],
-  // autofocus: boolean,
   // img_style: string,
   // hidden: boolean,
   // hide_details: boolean

@@ -51,6 +51,16 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       value: 'lastName'
     },
     {
+      i18n_key: 'header.role',
+      sortable: false,
+      value: 'role'
+    },
+    {
+      i18n_key: 'header.age',
+      sortable: false,
+      value: 'age'
+    },
+    {
       i18n_key: 'header.active',
       sortable: false,
       value: 'active',
@@ -105,6 +115,12 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       value: 'active',
       input_type: 'checkbox',
       default_value: true
+    },
+    {
+      i18n_key: 'header.age',
+      value: 'age',
+      input_type: 'number',
+      default_value: 30
     }
   ],
   form_fields: [
