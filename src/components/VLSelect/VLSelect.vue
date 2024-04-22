@@ -52,11 +52,13 @@ import type {
   SlHideEvent,
   SlInvalidEvent,
   SlClearEvent,
-  SlAfterShowEvent
+  SlAfterShowEvent,
+  SlChangeEvent
 } from '../utils/types'
 
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import type { VLSelectOptionType, VLSelectProps } from './types'
+import { SlSelect } from '@shoelace-style/shoelace'
 
 const emit = defineEmits([
   'focus',
@@ -98,11 +100,11 @@ const props = withDefaults(defineProps<VLSelectProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel<string | string[] | undefined>()
+const model = defineModel<string | string[] | undefined | null>()
 // model.value = [] as string[]
 
-const atChange = (evt: any) => {
-  model.value = evt.target.value
+const atChange = (evt: SlChangeEvent) => {
+  model.value = (evt.target as SlSelect)?.value
   emit('change', evt)
 }
 

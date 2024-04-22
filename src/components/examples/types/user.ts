@@ -4,6 +4,7 @@ export interface User {
   firstName: string
   lastName: string
   active: boolean
+  role?: string
   activation_date?: Date
   expiration_date?: Date
 }

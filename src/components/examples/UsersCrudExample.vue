@@ -56,7 +56,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       value: 'active',
       type: 'boolean',
       componentProps: {
-        trueColor: 'text-red-500'
+        trueColor: 'text-success-500'
       }
     },
     {
@@ -89,10 +89,22 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       input_type: 'text'
     },
     {
-      i18n_key: 'header.bool',
-      value: 'bool',
+      i18n_key: 'header.role',
+      value: 'role',
+      input_type: 'select',
+      options: [
+        { value: '', text: '' },
+        { value: 'admin', text: 'admin' },
+        { value: 'user', text: 'user' },
+        { value: 'guest', text: 'guest' }
+      ],
+      default_value: ''
+    },
+    {
+      i18n_key: 'header.active',
+      value: 'active',
       input_type: 'checkbox',
-      default_value: false
+      default_value: true
     }
   ],
   form_fields: [

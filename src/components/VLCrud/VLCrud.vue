@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import { ref, reactive, watch, computed } from 'vue'
 
-import VLCrudAction from '../VLCrudAction/VLCrudAction.vue'
-import VLPaginator from '../VLPaginator/VLPaginator.vue'
+import { VLCrudAction } from '../VLCrudAction'
+import { VLPaginator } from '../VLPaginator'
 import { VLDialog } from '../VLDialog'
 import { VLDataTableCrud } from '../VLDataTableCrud'
 import { VLCrudFilters } from '../VLCrudFilters'

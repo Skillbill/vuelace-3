@@ -5,25 +5,27 @@
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
-    @update:model-value="atValueChange"
   />
   <VLCheckbox
     v-else-if="type === 'checkbox'"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
-    @update:model-value="atValueChange"
-  ></VLCheckbox>
+  />
+  <VLSelect
+    v-else-if="type === 'select'"
+    :name="input_name"
+    :label="label"
+    :options="options"
+    :model-value="cheatType(initialValue)"
+  />
 </template>
 
 <script setup lang="ts">
 import VLInput from '../VLInput/VLInput.vue'
 import VLCheckbox from '../VLCheckbox/VLCheckbox.vue'
+import VLSelect from '../VLSelect/VLSelect.vue'
 import type { VLCrudInputProps, VLCrudInputValueType } from './types'
-
-const atValueChange = (value: any) => {
-  console.log(value)
-}
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T
