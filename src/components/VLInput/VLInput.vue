@@ -47,9 +47,11 @@ import type {
   SlBlurEvent,
   SlInputEvent,
   SlInvalidEvent,
-  SlClearEvent
+  SlClearEvent,
+  SlChangeEvent
 } from '../utils/types'
 import type { VLInputProps } from './types'
+import { SlInput } from '@shoelace-style/shoelace'
 
 const emit = defineEmits(['focus', 'blur', 'change', 'clear', 'input', 'invalid'])
 
@@ -108,8 +110,8 @@ watch(model, () => {
   validateInput()
 })
 
-const atChange = (evt: any) => {
-  updateModel(evt.target?.value)
+const atChange = (evt: SlChangeEvent) => {
+  updateModel((evt.target as SlInput)?.value)
   emit('change', evt)
 }
 

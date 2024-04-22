@@ -31,10 +31,12 @@ import type {
   SlChangeEvent,
   SlFocusEvent,
   SlBlurEvent,
-  SlInvalidEvent
+  SlInvalidEvent,
+  SlInputEvent
 } from '../utils/types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import type { VLCheckboxProps } from './types'
+import { SlCheckbox } from '@shoelace-style/shoelace'
 
 const emit = defineEmits(['focus', 'blur', 'change', 'input', 'invalid'])
 
@@ -58,8 +60,8 @@ const updateModel = (value: boolean) => {
   model.value = value
 }
 
-const atInput = (evt: any) => {
-  updateModel(evt.target.checked)
+const atInput = (evt: SlInputEvent) => {
+  updateModel((evt.target as SlCheckbox)?.checked)
   emit('input', evt)
 }
 

@@ -41,9 +41,11 @@ import type {
   SlBlurEvent,
   SlFocusEvent,
   SlInvalidEvent,
-  SlInputEvent
+  SlInputEvent,
+  SlChangeEvent
 } from '../utils/types'
 import type { VLTextAreaProps } from './types'
+import { SlTextarea } from '@shoelace-style/shoelace'
 
 const emit = defineEmits(['blur', 'change', 'focus', 'input', 'invalid'])
 
@@ -100,8 +102,8 @@ watch(model, () => {
   validateInput()
 })
 
-const atChange = (evt: any) => {
-  updateModel(evt.target.value)
+const atChange = (evt: SlChangeEvent) => {
+  updateModel((evt.target as SlTextarea)?.value)
   emit('change', evt)
 }
 
