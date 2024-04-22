@@ -19,7 +19,7 @@
       >
         <div
           slot="suffix"
-          class="flex items-center justify-end w-16 gap-2"
+          class="flex items-center justify-end gap-2"
           :class="[disabled && 'cursor-not-allowed']"
         >
           <sl-icon-button
