@@ -1,38 +1,34 @@
 <template>
-  <div class="relative">
-    <sl-input
-      :class="[error?.length && 'error']"
-      type="text"
-      :value="fileName"
-      :label="label"
-      :placeholder="placeholder"
-      :required="required"
-      :disabled="disabled"
-      :help-text="helpText"
-      @click="openFileSelection"
-      readonly
-    >
-      <VLIcon library="system" name="paperclip" slot="prefix"></VLIcon>
-      <sl-icon-button
-        v-if="fileName"
-        slot="suffix"
-        library="system"
-        name="windowClose"
-        @click.prevent="clearFile"
-      ></sl-icon-button>
-    </sl-input>
-    <input ref="hiddenInput" type="file" accept="image/*" hidden @change="readFile" />
-    <ErrorMessage v-if="error?.length">{{ error }}</ErrorMessage>
-  </div>
+  <div v-if="typeof model === 'string'"></div>
+  <VLFileInput
+    v-else
+    v-model="model"
+    :name="props.name"
+    :label="props.label"
+    :placeholder="props.placeholder"
+    :clearable="props.clearable"
+    :required="props.required"
+    :disabled="props.disabled"
+    :error="errorMessage"
+    :rules="props.rules"
+    accept="image/*"
+    :acceptedTypes="['image/jpeg']"
+    @click="openFileSelection"
+    @error="onError"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 
+import VLFileInput from '../VLFileInput/VLFileInput.vue'
 import type { VLInputRuleType } from '../utils/types'
-import ErrorMessage from '../utils/ErrorMessage.vue'
-import VLIcon from '../VLIcon/VLIcon.vue'
 import type { VLImageUploadProps } from './types'
+import type { VLFileInputErrorEvent } from '../VLFileInput'
+
+const onError = (error: VLFileInputErrorEvent) => {
+  console.error('error', error)
+}
 
 const props = withDefaults(defineProps<VLImageUploadProps>(), {
   name: '',
@@ -45,39 +41,12 @@ const props = withDefaults(defineProps<VLImageUploadProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel()
+const model = defineModel<File | File[] | string | null>()
 
 const hiddenInput = ref<HTMLInputElement | null>(null)
 
 const openFileSelection = () => {
   hiddenInput.value && hiddenInput.value.click()
-}
-
-const fileName = ref<string>('')
-const fileSize = ref<string>('')
-
-const readFile = (evt: any) => {
-  const file = evt.target?.files[0]
-  if (file) {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      model.value = e.target?.result || ''
-    }
-    fileName.value = file.name
-    fileSize.value = file.size
-    reader.readAsDataURL(file)
-    return
-  }
-}
-
-const clearFile = (evt: any) => {
-  model.value = ''
-  fileName.value = ''
-  fileSize.value = ''
-  if (hiddenInput.value) {
-    hiddenInput.value.value = ''
-  }
-  evt.stopPropagation()
 }
 
 const validationError = ref<string | undefined>()

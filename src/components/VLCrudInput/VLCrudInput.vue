@@ -38,6 +38,12 @@
     :label="label"
     :model-value="cheatType(initialValue)"
   />
+  <VLImageUpload
+    v-else-if="type === 'image'"
+    :name="input_name"
+    :label="label"
+    :model-value="cheatType(initialValue)"
+  />
 </template>
 
 <script setup lang="ts">
@@ -48,6 +54,7 @@ import VLSelect from '../VLSelect/VLSelect.vue'
 import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
 import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
 import VLColorPicker from '../VLColorPicker/VLColorPicker.vue'
+import VLImageUpload from '../VLImageUpload/VLImageUpload.vue'
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T

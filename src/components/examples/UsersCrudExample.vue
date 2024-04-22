@@ -137,6 +137,11 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       i18n_key: 'header.color',
       value: 'color',
       input_type: 'color'
+    },
+    {
+      i18n_key: 'header.image',
+      value: 'image',
+      input_type: 'image'
     }
   ],
   form_fields: [
