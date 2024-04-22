@@ -32,6 +32,12 @@
     :label="label"
     :model-value="cheatType(initialValue)"
   />
+  <VLColorPicker
+    v-else-if="type === 'color'"
+    :name="input_name"
+    :label="label"
+    :model-value="cheatType(initialValue)"
+  />
 </template>
 
 <script setup lang="ts">
@@ -41,10 +47,13 @@ import VLCheckbox from '../VLCheckbox/VLCheckbox.vue'
 import VLSelect from '../VLSelect/VLSelect.vue'
 import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
 import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
+import VLColorPicker from '../VLColorPicker/VLColorPicker.vue'
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T
 }
+
+//TODO: gestire hidden
 
 withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false

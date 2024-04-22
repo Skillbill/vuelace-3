@@ -1,4 +1,5 @@
 export interface VLColorPickerProps {
+  class?: string
   defaultValue?: string
   label: string
   size?: 'small' | 'medium' | 'large'

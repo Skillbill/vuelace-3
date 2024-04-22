@@ -132,6 +132,11 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       i18n_key: 'header.expiration_date',
       value: 'expiration_date',
       input_type: 'date'
+    },
+    {
+      i18n_key: 'header.color',
+      value: 'color',
+      input_type: 'color'
     }
   ],
   form_fields: [

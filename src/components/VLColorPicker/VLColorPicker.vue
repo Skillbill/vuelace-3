@@ -1,10 +1,10 @@
 <template>
-  <sl-dropdown hoist>
-    <div slot="trigger">
-      <div>
+  <sl-dropdown hoist @sl-show.stop="() => {}" @sl-hide.stop="() => {}">
+    <div :class="props.class" slot="trigger">
+      <div class="w-full">
         {{ label }}
       </div>
-      <sl-button caret :disabled="disabled"
+      <sl-button class="w-full" caret :disabled="disabled"
         ><div class="flex items-center gap-4">
           <div v-show="model" ref="colorPreview" class="w-6 h-6 rounded-full"></div>
           {{ model }}
@@ -32,7 +32,7 @@ import type { VLColorPickerProps } from './types'
 
 //TODO - add multiple color format support
 
-withDefaults(defineProps<VLColorPickerProps>(), {
+const props = withDefaults(defineProps<VLColorPickerProps>(), {
   defaultValue: '',
   label: '',
   size: 'medium',
@@ -48,6 +48,12 @@ withDefaults(defineProps<VLColorPickerProps>(), {
 const colorPreview = ref<HTMLElement | null>(null)
 const model = defineModel<string | undefined>('modelValue', { default: '#000000' })
 
+watch(model, () => {
+  if (colorPreview.value && model.value) {
+    colorPreview.value.style.backgroundColor = model.value
+  }
+})
+
 watch(colorPreview, () => {
   if (colorPreview.value && model.value) {
     colorPreview.value.style.backgroundColor = model.value
@@ -56,8 +62,5 @@ watch(colorPreview, () => {
 
 const atChange = (evt: any) => {
   model.value = evt.target.value
-  if (colorPreview.value) {
-    colorPreview.value.style.backgroundColor = evt.target.value
-  }
 }
 </script>
