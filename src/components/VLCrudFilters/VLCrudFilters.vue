@@ -37,7 +37,7 @@
 import { ref, onMounted } from 'vue'
 
 import { VLButton, VLExpansionCard, VLCrudInput } from '../..'
-import type { VLCrudFiltersProps } from './types'
+import type { VLCrudFilterType, VLCrudFiltersProps } from './types'
 
 const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show'])
 
@@ -53,9 +53,22 @@ const props = withDefaults(defineProps<VLCrudFiltersProps>(), {
   resetLabel: 'reset'
 })
 
+const parseDefaultValue = (field: VLCrudFilterType) => {
+  if (field.input_type === 'date' && typeof field.default_value === 'string') {
+    return new Date(field.default_value)
+  }
+  return field.default_value
+}
+
 const resetFields = () => {
   currentFiltersStatus =
-    props.filters?.reduce((acc, curr) => ({ ...acc, [curr.value]: curr.default_value }), {}) ?? {}
+    props.filters?.reduce(
+      (acc, curr) => ({
+        ...acc,
+        [curr.value]: parseDefaultValue(curr)
+      }),
+      {}
+    ) ?? {}
 
   model.value = { ...currentFiltersStatus }
 }

@@ -49,6 +49,10 @@ export const getUsersAPI = async (page: number, rows: number, filters?: any) => 
             return user[key] === filters[key]
           case 'number':
             return user[key] === filters[key]
+          case 'object':
+            if (key === 'activation_date') return user[key] > filters[key]
+            if (key === 'expiration_date') return user[key] < filters[key]
+            return user[key] === filters[key]
           default:
             return user[key].includes(filters[key])
         }

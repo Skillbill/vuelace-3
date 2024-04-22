@@ -26,6 +26,12 @@
     :options="options"
     :model-value="cheatType(initialValue)"
   />
+  <VLDatePicker
+    v-else-if="type === 'date'"
+    :name="input_name"
+    :label="label"
+    :model-value="cheatType(initialValue)"
+  />
 </template>
 
 <script setup lang="ts">
@@ -34,6 +40,7 @@ import VLInput from '../VLInput/VLInput.vue'
 import VLCheckbox from '../VLCheckbox/VLCheckbox.vue'
 import VLSelect from '../VLSelect/VLSelect.vue'
 import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
+import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T

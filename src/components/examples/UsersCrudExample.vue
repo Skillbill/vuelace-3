@@ -121,6 +121,17 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       value: 'age',
       input_type: 'number',
       default_value: 30
+    },
+    {
+      i18n_key: 'header.activation_date',
+      value: 'activation_date',
+      input_type: 'date',
+      default_value: '2021-01-01'
+    },
+    {
+      i18n_key: 'header.expiration_date',
+      value: 'expiration_date',
+      input_type: 'date'
     }
   ],
   form_fields: [
