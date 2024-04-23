@@ -1,6 +1,6 @@
-import { VLFileInputErrorEvent } from '../VLFileInput'
-import { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput'
-import { VLSelectOptionType } from '../VLSelect'
+import type { VLFileInputErrorEvent } from '../VLFileInput'
+import type { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput'
+import type { VLSelectOptionType } from '../VLSelect'
 
 export interface VLCrudFilterType {
   value: string
@@ -9,7 +9,7 @@ export interface VLCrudFilterType {
   input_type: VLCrudInputFieldType
   options?: VLSelectOptionType[]
   default_value?: VLCrudInputValueType
-  props?: any
+  class?: string
 }
 
 export interface VLCrudFiltersProps {

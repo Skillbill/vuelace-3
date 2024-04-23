@@ -8,6 +8,7 @@
     :form_fields="users_crud.form_fields"
     :actions="users_crud.actions"
     :getItems="usersStore.getUsers"
+    :addItem="usersStore.createUser"
     :components="{
       boolean: ActiveCell,
       date: DateCell
@@ -31,6 +32,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
   id: 'users',
   singular_label: 'user',
   primary_key: 'username',
+  filters_title: 'filters',
   headers: [
     {
       i18n_key: 'header.username',
@@ -83,9 +85,63 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     }
   ],
   filters: [
+    // {
+    //   i18n_key: 'header.username',
+    //   value: 'username',
+    //   input_type: 'text'
+    // },
+    // {
+    //   i18n_key: 'header.firstname',
+    //   value: 'firstName',
+    //   input_type: 'text'
+    // },
+    // {
+    //   i18n_key: 'header.lastname',
+    //   value: 'lastName',
+    //   input_type: 'text'
+    // },
+    // {
+    //   i18n_key: 'header.role',
+    //   value: 'role',
+    //   input_type: 'select',
+    //   options: [
+    //     { value: '', text: '' },
+    //     { value: 'admin', text: 'admin' },
+    //     { value: 'user', text: 'user' },
+    //     { value: 'guest', text: 'guest' }
+    //   ],
+    //   default_value: ''
+    // },
+    // {
+    //   i18n_key: 'header.active',
+    //   value: 'active',
+    //   input_type: 'checkbox',
+    //   default_value: true
+    // },
+    // {
+    //   i18n_key: 'header.age',
+    //   value: 'age',
+    //   input_type: 'number',
+    //   default_value: 30
+    // },
+    // {
+    //   i18n_key: 'header.activation_date',
+    //   value: 'activation_date',
+    //   input_type: 'date',
+    //   default_value: '2021-01-01'
+    // },
+    // {
+    //   i18n_key: 'header.expiration_date',
+    //   value: 'expiration_date',
+    //   input_type: 'date'
+    // }
+  ],
+  form_fields: [
     {
       i18n_key: 'header.username',
       value: 'username',
+      required: true,
+      rules: [{ validateFn: (v: string) => !!v, message: 'Username is required' }], // eslint-disable-line
       input_type: 'text'
     },
     {
@@ -99,6 +155,12 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       input_type: 'text'
     },
     {
+      i18n_key: 'header.active',
+      value: 'active',
+      input_type: 'checkbox',
+      default_value: true
+    },
+    {
       i18n_key: 'header.role',
       value: 'role',
       input_type: 'select',
@@ -107,66 +169,12 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
         { value: 'admin', text: 'admin' },
         { value: 'user', text: 'user' },
         { value: 'guest', text: 'guest' }
-      ],
-      default_value: ''
-    },
-    {
-      i18n_key: 'header.active',
-      value: 'active',
-      input_type: 'checkbox',
-      default_value: true
+      ]
     },
     {
       i18n_key: 'header.age',
       value: 'age',
-      input_type: 'number',
-      default_value: 30
-    },
-    {
-      i18n_key: 'header.activation_date',
-      value: 'activation_date',
-      input_type: 'date',
-      default_value: '2021-01-01'
-    },
-    {
-      i18n_key: 'header.expiration_date',
-      value: 'expiration_date',
-      input_type: 'date'
-    },
-    {
-      i18n_key: 'header.color',
-      value: 'color',
-      input_type: 'color'
-    },
-    {
-      i18n_key: 'header.image',
-      value: 'image',
-      input_type: 'image',
-      default_value: `data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7`
-    }
-  ],
-  form_fields: [
-    {
-      i18n_key: 'header.username',
-      value: 'username',
-      required: true,
-      input_type: 'text'
-    },
-    {
-      i18n_key: 'header.firstname',
-      value: 'firstname',
-      input_type: 'text'
-    },
-    {
-      i18n_key: 'header.lastname',
-      value: 'lastname',
-      input_type: 'text'
-    },
-    {
-      i18n_key: 'header.active',
-      value: 'active',
-      input_type: 'checkbox',
-      default_value: true
+      input_type: 'number'
     },
     {
       i18n_key: 'header.activation_date',

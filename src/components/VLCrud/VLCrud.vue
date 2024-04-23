@@ -2,6 +2,7 @@
   <div>
     <VLCrudFilters
       class="w-full"
+      :title="filters_title && translationFn(filters_title)"
       :filters="filters"
       @filtersApplied="onFiltersApplied"
       @error="(evt) => emit('error', evt)"
@@ -36,7 +37,8 @@
         </slot>
       </template>
     </VLDataTableCrud>
-    <div class="flex justify-end w-full">
+    <div class="flex justify-between w-full">
+      <VLButton @click="addItem">{{ translationFn(`button.add_${singular_label}`) }}</VLButton>
       <VLPaginator
         v-model:page="pagination.currentPage"
         v-model:rowsPerPage="pagination.rowsPerPage"
@@ -45,6 +47,15 @@
       />
     </div>
     <VLDialog v-bind="dialogProps" v-model="showDialog" @request-close="closeDialog">
+      <VLCrudForm
+        v-if="dialog === 'add'"
+        :fields="formFields"
+        :title="translationFn(`message.add_${singular_label}`)"
+        @close="closeDialog"
+        @cancel="closeDialog"
+        @confirm="onAdd"
+        @error="(evt) => emit('error', evt)"
+      />
       <template v-for="action in actions.filter((action) => action.component)" :key="action.name">
         <component
           v-if="action.name === dialog"
@@ -73,6 +84,8 @@ import { VLPaginator } from '../VLPaginator'
 import { VLDialog } from '../VLDialog'
 import { VLDataTableCrud } from '../VLDataTableCrud'
 import { VLCrudFilters } from '../VLCrudFilters'
+import { VLCrudForm } from '../VLCrudForm'
+import { VLButton } from '../VLButton'
 import type { VLCrudActionType, VLCrudProps } from './types'
 
 const emit = defineEmits(['fetchError', 'error'])
@@ -101,6 +114,17 @@ const columns = computed(() =>
     ...(header.type
       ? { component: props.components?.[header.type], componentProps: header.componentProps }
       : {}) //TODO: componente per errore nel caso in cui non ci sia il componente per type
+  }))
+)
+
+const formFields = computed(() =>
+  props.form_fields.map((field) => ({
+    label: props.translationFn(field.i18n_key),
+    value: field.value,
+    input_type: field.input_type,
+    options: field.options,
+    rules: field.rules,
+    props: field.componentProps
   }))
 )
 
@@ -148,6 +172,13 @@ const onClickAction = (action: VLCrudActionType) => (data: any) => {
   }
 }
 
+const addItem = () => {
+  selectedItem.value = {}
+  dialog.value = 'add'
+  dialogProps.value = {}
+  showDialog.value = true
+}
+
 const filtersApplied = ref({})
 
 const onFiltersApplied = (filters: any) => {
@@ -160,6 +191,12 @@ const onConfirm = (action: VLCrudActionType, data: any) => {
   fetchData()
   //TODO: aggiungere highlight riga
   //OPZIONALE: aggiungere side effect al conferma dell'azione
+}
+
+const onAdd = (data: any) => {
+  props.addItem?.(data)
+
+  fetchData()
 }
 
 watch(() => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], fetchData)

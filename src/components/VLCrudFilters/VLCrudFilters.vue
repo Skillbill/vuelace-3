@@ -12,14 +12,14 @@
         class="grid flex-wrap items-center grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       >
         <VLCrudInput
-          :class="[!field?.props?.class && 'w-full']"
           v-for="field in filters"
           :key="field.value"
+          class="w-full"
+          :class="field?.class"
           :input_name="field.value"
           :type="field.input_type"
           :label="field.label"
           :options="field.options"
-          v-bind="field.props"
           v-model="model[field.value]"
           @error="(evt) => emit('error', evt)"
         />

@@ -18,6 +18,7 @@ export interface VLCrudInputProps {
   disabled?: boolean
   placeholder?: string
   options?: VLSelectOptionType[]
+  rules?: ((value: VLCrudInputValueType) => string | boolean)[]
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
   //rules: (() => void)[],

@@ -32,6 +32,7 @@ export interface VLCrudProps {
   singular_label: string
   headers: VLCrudHeaderType[]
   filters: Omit<VLCrudFilterType, 'label'>[]
+  filters_title?: string
   form_fields: any[]
   actions: VLCrudActionType[]
   editable?: boolean
@@ -54,6 +55,7 @@ export interface VLCrudProps {
       }
     | undefined
   >
+  addItem?: (item: any) => any
   editItem?: (id: any, item: any) => any
   translationFn?: (key: string, props?: { [key: string]: any }) => string
   onFetchError?: () => void
