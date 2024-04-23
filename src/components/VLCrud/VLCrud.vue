@@ -1,6 +1,11 @@
 <template>
   <div>
-    <VLCrudFilters class="w-full" :filters="filters" @filtersApplied="onFiltersApplied" />
+    <VLCrudFilters
+      class="w-full"
+      :filters="filters"
+      @filtersApplied="onFiltersApplied"
+      @error="(evt) => emit('error', evt)"
+    />
     <VLDataTableCrud
       class="w-full my-4"
       removableSort
@@ -70,7 +75,7 @@ import { VLDataTableCrud } from '../VLDataTableCrud'
 import { VLCrudFilters } from '../VLCrudFilters'
 import type { VLCrudActionType, VLCrudProps } from './types'
 
-const emit = defineEmits(['fetchError'])
+const emit = defineEmits(['fetchError', 'error'])
 
 const props = withDefaults(defineProps<VLCrudProps>(), {
   editable: true,

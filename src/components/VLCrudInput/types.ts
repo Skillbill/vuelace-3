@@ -1,3 +1,4 @@
+import { VLFileInputErrorEvent } from '..'
 import { VLSelectOptionType } from '../VLSelect'
 
 export type VLCrudInputValueType = string | boolean | Date | number | undefined
@@ -17,6 +18,7 @@ export interface VLCrudInputProps {
   disabled?: boolean
   placeholder?: string
   options?: VLSelectOptionType[]
+  onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
   //rules: (() => void)[],
   // img_style: string,

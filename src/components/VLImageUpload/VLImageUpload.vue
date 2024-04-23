@@ -1,20 +1,28 @@
 <template>
-  <div v-if="typeof model === 'string'"></div>
+  <div v-if="model" class="flex flex-col">
+    <span>{{ label }}<span v-if="required">*</span></span>
+    <div class="flex items-center justify-between">
+      <div
+        class="w-20 h-20 bg-center bg-no-repeat bg-contain"
+        :style="{ backgroundImage: imageUrl }"
+      ></div>
+      <VLIcon class="text-2xl hover:opacity-40" name="delete" @click="clear"></VLIcon>
+    </div>
+  </div>
   <VLFileInput
     v-else
-    v-model="model"
+    v-model="fileModel"
     :name="props.name"
     :label="props.label"
     :placeholder="props.placeholder"
     :clearable="props.clearable"
     :required="props.required"
     :disabled="props.disabled"
-    :error="errorMessage"
+    :error="props.error"
     :rules="props.rules"
     accept="image/*"
-    :acceptedTypes="['image/jpeg']"
-    @click="openFileSelection"
-    @error="onError"
+    :acceptedTypes="['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml']"
+    @error="(evt) => emit('error', evt)"
   />
 </template>
 
@@ -22,13 +30,12 @@
 import { ref, computed, watch } from 'vue'
 
 import VLFileInput from '../VLFileInput/VLFileInput.vue'
+import VLIcon from '../VLIcon/VLIcon.vue'
+
 import type { VLInputRuleType } from '../utils/types'
 import type { VLImageUploadProps } from './types'
-import type { VLFileInputErrorEvent } from '../VLFileInput'
 
-const onError = (error: VLFileInputErrorEvent) => {
-  console.error('error', error)
-}
+const emit = defineEmits(['error'])
 
 const props = withDefaults(defineProps<VLImageUploadProps>(), {
   name: '',
@@ -41,50 +48,24 @@ const props = withDefaults(defineProps<VLImageUploadProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel<File | File[] | string | null>()
+const fileModel = ref<File | null>(null)
+const model = defineModel<string | null>()
 
-const hiddenInput = ref<HTMLInputElement | null>(null)
+const imageUrl = computed(() => `url(${model.value})`)
 
-const openFileSelection = () => {
-  hiddenInput.value && hiddenInput.value.click()
-}
-
-const validationError = ref<string | undefined>()
-
-const errorMessage = computed(() => {
-  if (props.error) {
-    return props.error
-  }
-  return validationError.value
-})
-
-const validateInput = () => {
-  if (props.rules.length) {
-    for (const rule of props.rules) {
-      if (!rule.validateFn(model.value)) {
-        validationError.value = rule.message
-        return false
-      }
+watch(fileModel, () => {
+  if (fileModel.value) {
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      model.value = e.target?.result as string
     }
+    reader.readAsDataURL(fileModel.value)
+    return
   }
-  validationError.value = undefined
-  return true
+})
+
+const clear = () => {
+  model.value = null
+  fileModel.value = null
 }
-
-watch(model, () => {
-  validateInput()
-})
-
-defineExpose({
-  isValid: () => errorMessage.value === undefined || errorMessage.value.length === 0,
-  validateInput
-})
 </script>
-
-<style scoped>
-.error::part(base),
-.error::part(form-control-label) {
-  border-color: var(--sl-color-danger-500);
-  color: var(--sl-color-danger-500);
-}
-</style>

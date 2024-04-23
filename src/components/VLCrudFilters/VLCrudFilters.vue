@@ -21,6 +21,7 @@
           :options="field.options"
           v-bind="field.props"
           v-model="model[field.value]"
+          @error="(evt) => emit('error', evt)"
         />
       </div>
       <div class="flex justify-end gap-2">
@@ -41,7 +42,7 @@ import { ref, onMounted } from 'vue'
 import { VLButton, VLExpansionCard, VLCrudInput } from '../..'
 import type { VLCrudFilterType, VLCrudFiltersProps } from './types'
 
-const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show'])
+const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show', 'error'])
 
 const open = ref(false)
 

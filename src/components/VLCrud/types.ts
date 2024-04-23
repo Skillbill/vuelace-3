@@ -2,6 +2,7 @@ import PrimeVueColumn from 'primevue/column'
 import { Component } from 'vue'
 import { VLDialogProps } from '../VLDialog'
 import type { VLCrudFilterType } from '../VLCrudFilters/types'
+import { VLFileInputErrorEvent } from '../VLFileInput'
 
 export interface VLCrudHeaderType {
   i18n_key: string
@@ -56,4 +57,5 @@ export interface VLCrudProps {
   editItem?: (id: any, item: any) => any
   translationFn?: (key: string, props?: { [key: string]: any }) => string
   onFetchError?: () => void
+  onError?: (error: VLFileInputErrorEvent) => void
 }

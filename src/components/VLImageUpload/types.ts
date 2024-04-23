@@ -1,5 +1,7 @@
+import { VLFileInputErrorEvent } from '../VLFileInput'
 import type { VLInputRuleType } from '../utils/types'
 export interface VLImageUploadProps {
+  class?: string
   name?: string
   label: string
   placeholder?: string
@@ -9,4 +11,5 @@ export interface VLImageUploadProps {
   required?: boolean
   disabled?: boolean
   rules?: VLInputRuleType[]
+  onError?: (error: VLFileInputErrorEvent) => void
 }

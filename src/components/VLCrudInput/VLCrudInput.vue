@@ -43,6 +43,7 @@
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
+    @error="(evt) => emit('error', evt)"
   />
 </template>
 
@@ -55,6 +56,8 @@ import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
 import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
 import VLColorPicker from '../VLColorPicker/VLColorPicker.vue'
 import VLImageUpload from '../VLImageUpload/VLImageUpload.vue'
+
+const emit = defineEmits(['error'])
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T

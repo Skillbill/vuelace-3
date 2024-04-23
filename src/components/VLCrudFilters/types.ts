@@ -1,3 +1,4 @@
+import { VLFileInputErrorEvent } from '../VLFileInput'
 import { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput'
 import { VLSelectOptionType } from '../VLSelect'
 
@@ -21,4 +22,5 @@ export interface VLCrudFiltersProps {
   onReset?: () => void
   onShow?: () => void
   onFiltersApplied?: (filters: any) => void
+  onError?: (error: VLFileInputErrorEvent) => void
 }
