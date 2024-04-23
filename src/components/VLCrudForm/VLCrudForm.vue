@@ -3,6 +3,7 @@
   <div class="flex flex-col gap-8">
     <VLCrudInput
       v-for="field in fields"
+      :ref="(el) => fieldsRefs.push(el)"
       :key="field.value"
       class="w-full"
       :class="field?.class"
@@ -50,18 +51,17 @@ watch(
   }
 )
 
-// const fieldsRefs = ref([])
+const fieldsRefs = ref<any>([])
 
 const onConfirm = () => {
   let valid = true
 
-  // for (const field of fieldsRefs.value) {
-  //   console.log(field)
-  //   if (!field.validateInput?.()) {
-  //     valid = false
-  //     if (!props.validateAll) break
-  //   }
-  // }
+  for (const field of fieldsRefs.value) {
+    if (!field?.validateInput()) {
+      valid = false
+      if (!props.validateAll) break
+    }
+  }
 
   if (valid) {
     emit('confirm', { ...model.value })

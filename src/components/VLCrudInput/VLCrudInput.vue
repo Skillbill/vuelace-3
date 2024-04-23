@@ -1,13 +1,16 @@
 <template>
   <VLInput
     v-if="type === 'text'"
+    ref="inputRef"
     :placeholder="placeholder"
     :name="input_name"
     :label="label"
+    :rules="rules"
     :model-value="cheatType(initialValue)"
   />
   <VLNumberInput
     v-else-if="type === 'number'"
+    ref="inputRef"
     :placeholder="placeholder"
     :name="input_name"
     :label="label"
@@ -15,12 +18,14 @@
   />
   <VLCheckbox
     v-else-if="type === 'checkbox'"
+    ref="inputRef"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
   />
   <VLSelect
     v-else-if="type === 'select'"
+    ref="inputRef"
     :name="input_name"
     :label="label"
     :options="options"
@@ -28,18 +33,21 @@
   />
   <VLDatePicker
     v-else-if="type === 'date'"
+    ref="inputRef"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
   />
   <VLColorPicker
     v-else-if="type === 'color'"
+    ref="inputRef"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
   />
   <VLImageUpload
     v-else-if="type === 'image'"
+    ref="inputRef"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
@@ -56,8 +64,11 @@ import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
 import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
 import VLColorPicker from '../VLColorPicker/VLColorPicker.vue'
 import VLImageUpload from '../VLImageUpload/VLImageUpload.vue'
+import { ref } from 'vue'
 
 const emit = defineEmits(['error'])
+
+const inputRef = ref<InstanceType<typeof VLInput> | null>(null)
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T
@@ -73,5 +84,9 @@ withDefaults(defineProps<VLCrudInputProps>(), {
   // hidden: false,
   // hide_details: false,
   // dense: false
+})
+
+defineExpose({
+  validateInput: () => inputRef.value?.validateInput()
 })
 </script>

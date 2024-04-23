@@ -1,4 +1,4 @@
-import { VLFileInputErrorEvent } from '..'
+import { VLFileInputErrorEvent, VLInputRuleType } from '..'
 import { VLSelectOptionType } from '../VLSelect'
 
 export type VLCrudInputValueType = string | boolean | Date | number | undefined
@@ -18,7 +18,7 @@ export interface VLCrudInputProps {
   disabled?: boolean
   placeholder?: string
   options?: VLSelectOptionType[]
-  rules?: ((value: VLCrudInputValueType) => string | boolean)[]
+  rules?: VLInputRuleType[]
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
   //rules: (() => void)[],

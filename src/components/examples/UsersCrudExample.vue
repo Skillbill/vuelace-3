@@ -141,12 +141,19 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       i18n_key: 'header.username',
       value: 'username',
       required: true,
-      rules: [{ validateFn: (v: string) => !!v, message: 'Username is required' }], // eslint-disable-line
+      rules: [
+        { validateFn: (v: string) => !!v, message: 'Username is required' },
+        {
+          validateFn: (v: string) => v.length > 3,
+          message: 'Username must be at least 4 characters long'
+        }
+      ],
       input_type: 'text'
     },
     {
       i18n_key: 'header.firstname',
       value: 'firstName',
+      rules: [{ validateFn: (v: string) => !!v, message: 'first name is required' }],
       input_type: 'text'
     },
     {
