@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed, type Ref } from 'vue'
+import { ref, reactive, watch, computed } from 'vue'
 
 import { VLCrudAction } from '../VLCrudAction'
 import { VLPaginator } from '../VLPaginator'
@@ -117,11 +117,12 @@ const columns = computed(() =>
   }))
 )
 
-const formFields: Ref<VLCrudFormFieldType[]> = computed(() =>
-  props.form_fields.map((field) => ({
-    ...field,
-    label: props.translationFn(field.i18n_key)
-  }))
+const formFields = computed(
+  () =>
+    props.form_fields.map((field) => ({
+      ...field,
+      label: props.translationFn(field.i18n_key)
+    })) as VLCrudFormFieldType[]
 )
 
 const pagination = reactive({

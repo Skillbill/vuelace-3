@@ -9,7 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { VLTooltip, VLButton, VLIcon } from '..'
+import { VLTooltip } from '../VLTooltip'
+import { VLButton } from '../VLButton'
+import { VLIcon } from '../VLIcon'
 import type { VLCrudActionProps } from './types'
 
 withDefaults(defineProps<VLCrudActionProps>(), {

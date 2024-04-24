@@ -1,8 +1,8 @@
 import PrimeVueColumn from 'primevue/column'
-import { Component } from 'vue'
-import { VLDialogProps } from '../VLDialog'
-import type { VLCrudFilterType } from '../VLCrudFilters/types'
-import { VLFileInputErrorEvent } from '../VLFileInput'
+import type { Component } from 'vue'
+import type { VLDialogProps } from '../VLDialog'
+import type { VLCrudFilterType } from '../VLCrudFilters'
+import type { VLFileInputErrorEvent } from '../VLFileInput'
 import type { VLCrudFormFieldType } from '../VLCrudForm'
 
 export interface VLCrudHeaderType {

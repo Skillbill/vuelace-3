@@ -39,7 +39,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { VLButton, VLExpansionCard, VLCrudInput } from '../..'
+import { VLButton } from '../VLButton'
+import { VLExpansionCard } from '../VLExpansionCard'
+import { VLCrudInput } from '../VLCrudInput'
 import type { VLCrudFilterType, VLCrudFiltersProps } from './types'
 
 const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show', 'error'])

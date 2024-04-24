@@ -28,8 +28,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import VLCrudInput from '../VLCrudInput/VLCrudInput.vue'
-import VLButton from '../VLButton/VLButton.vue'
+import { VLCrudInput } from '../VLCrudInput'
+import { VLButton } from '../VLButton'
 
 import type { VLCrudFormProps } from './types'
 import type { VLInputRuleType } from '../utils/types'
