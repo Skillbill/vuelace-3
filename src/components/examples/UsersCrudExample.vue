@@ -127,8 +127,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     {
       i18n_key: 'header.activation_date',
       value: 'activation_date',
-      input_type: 'date',
-      default_value: '2021-01-01'
+      input_type: 'date'
     }
     // {
     //   i18n_key: 'header.expiration_date',
@@ -148,17 +147,26 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
           message: 'Username must be at least 4 characters long'
         }
       ],
-      input_type: 'text'
+
+      input_type: 'text',
+      default_value: 'default_value'
     },
     {
       i18n_key: 'header.firstname',
       value: 'firstName',
-      rules: [{ validateFn: (v: string) => !!v, message: 'first name is required' }],
-      input_type: 'text'
+      input_type: 'text',
+      side_effect: (value, fields) => {
+        if (typeof value === 'string') fields.value.lastName.disabled = value?.length > 0
+        return { username: value }
+      }
     },
     {
       i18n_key: 'header.lastname',
       value: 'lastName',
+      side_effect: (value, fields) => {
+        if (typeof value === 'string') fields.value.firstName.disabled = value?.length > 0
+        return { username: value }
+      },
       input_type: 'text'
     },
     {

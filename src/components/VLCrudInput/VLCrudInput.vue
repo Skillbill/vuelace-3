@@ -7,6 +7,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />

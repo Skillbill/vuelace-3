@@ -2,7 +2,7 @@
   <div slot="label">{{ title }}</div>
   <div class="flex flex-col gap-8">
     <VLCrudInput
-      v-for="field in fields"
+      v-for="field in Object.values(fields)"
       :ref="(el) => fieldsRefs.push(el)"
       :key="field.value"
       class="w-full"
@@ -14,7 +14,9 @@
       :rules="!field.required ? field.rules : (field.rules ?? []).concat([requiredRule])"
       :required="field.required"
       :initialValue="field.default_value"
+      :disabled="field.disabled"
       v-model="model[field.value]"
+      @update:modelValue="(value) => field.side_effect && runSideEffect(field.side_effect, value)"
       @error="(evt) => emit('error', evt)"
     />
     <div class="flex justify-end w-full gap-2">
@@ -27,27 +29,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 import { VLCrudInput, type VLCrudInputValueType } from '../VLCrudInput'
 import { VLButton } from '../VLButton'
 
-import type { VLCrudFormProps } from './types'
+import type { VLCrudFormFieldType, VLCrudFormProps } from './types'
 import type { VLInputRuleType } from '../utils/types'
-import { computed } from 'vue'
 
 const emit = defineEmits(['close', 'cancel', 'confirm', 'update:modelValue', 'error'])
 
 const model = ref<{ [key: string]: VLCrudInputValueType }>({})
 
 const props = withDefaults(defineProps<VLCrudFormProps>(), {
-  validateAll: false,
-  modelValue: () => ({})
+  validateAll: false
 })
 
 onMounted(() => {
-  model.value = { ...props.modelValue }
+  if (props.modelValue) model.value = { ...props.modelValue }
 })
+
+const fields = ref(
+  props.fields.reduce((acc, field) => ({ ...acc, [field.value]: field }), {}) as {
+    [key: string]: VLCrudFormFieldType
+  }
+)
+
+const runSideEffect = (sideEffectFn: any, value: any) => {
+  const newModel = sideEffectFn(value, fields)
+
+  if (newModel) {
+    model.value = { ...model.value, ...newModel }
+  }
+}
 
 const fieldsRefs = ref<any>([])
 

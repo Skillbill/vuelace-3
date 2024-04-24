@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import type { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput'
 import type { VLSelectOptionType } from '../VLSelect'
 import type { VLInputRuleType } from '../utils/types'
@@ -18,7 +19,12 @@ export interface VLCrudFormFieldType {
   hidden?: boolean //TODO VLCrudInputProp
   disabledEdit?: boolean //TODO VLCrudInputProp
   placeholder?: string //TODO VLCrudInputProp
-  side_effect?: (value: any, form: any) => void
+  side_effect?: (
+    value: VLCrudInputValueType,
+    fields: Ref<{
+      [key: string]: Omit<VLCrudFormFieldType, 'side_effect'>
+    }>
+  ) => void
 }
 
 export interface VLCrudFormProps {
