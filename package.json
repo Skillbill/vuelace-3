@@ -92,6 +92,6 @@
     "@shoelace-style/shoelace": "^2.13.0",
     "pinia": "^2.1.7",
     "primevue": "^3.51.0",
-    "vue": "^3.4.24"
+    "vue": "^3.4.25"
   }
 }

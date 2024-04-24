@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { VLCrudInput } from '../VLCrudInput'
+import { VLCrudInput, type VLCrudInputValueType } from '../VLCrudInput'
 import { VLButton } from '../VLButton'
 
 import type { VLCrudFormProps } from './types'
@@ -38,7 +38,7 @@ import { computed } from 'vue'
 
 const emit = defineEmits(['close', 'cancel', 'confirm', 'update:modelValue', 'error'])
 
-const model = ref<{ [key: string]: any }>({})
+const model = ref<{ [key: string]: VLCrudInputValueType }>({})
 
 const props = withDefaults(defineProps<VLCrudFormProps>(), {
   validateAll: false,

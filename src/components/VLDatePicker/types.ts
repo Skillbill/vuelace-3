@@ -14,4 +14,5 @@ export interface VLDatePickerProps {
   withTime?: boolean
   rules?: VLInputRuleType[]
   error?: string
+  modelValue?: Date | Date[]
 }

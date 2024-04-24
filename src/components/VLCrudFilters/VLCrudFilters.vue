@@ -42,7 +42,7 @@ import { ref, onMounted } from 'vue'
 
 import { VLButton } from '../VLButton'
 import { VLExpansionCard } from '../VLExpansionCard'
-import { VLCrudInput } from '../VLCrudInput'
+import { VLCrudInput, VLCrudInputValueType } from '../VLCrudInput'
 import type { VLCrudFiltersProps } from './types'
 
 const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show', 'error'])
@@ -51,7 +51,7 @@ const open = ref(false)
 
 let currentFiltersStatus: { [key: string]: any } = {}
 
-const model = ref<{ [key: string]: any }>({})
+const model = ref<{ [key: string]: VLCrudInputValueType }>({})
 
 const props = withDefaults(defineProps<VLCrudFiltersProps>(), {
   title: 'Filters',
