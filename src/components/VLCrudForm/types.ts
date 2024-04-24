@@ -9,6 +9,7 @@ export interface VLCrudFormFieldType {
   options?: VLSelectOptionType[]
   default_value?: VLCrudInputValueType
   class?: string
+  label: string
   rules?: VLInputRuleType[]
   required?: boolean //TODO VLCrudInputProp
   img_style?: string //TODO VLCrudInputProp
@@ -22,7 +23,7 @@ export interface VLCrudFormFieldType {
 
 export interface VLCrudFormProps {
   modelValue?: { [key: string]: VLCrudInputValueType }
-  fields: any[]
+  fields: VLCrudFormFieldType[]
   title: string
   cancelLabel?: string
   confirmLabel?: string

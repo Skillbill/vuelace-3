@@ -6,6 +6,7 @@
     :name="input_name"
     :label="label"
     :rules="rules"
+    :required="required"
     :model-value="cheatType(initialValue)"
   />
   <VLNumberInput
@@ -14,6 +15,8 @@
     :placeholder="placeholder"
     :name="input_name"
     :label="label"
+    :rules="rules"
+    :required="required"
     :model-value="cheatType(initialValue)"
   />
   <VLCheckbox
@@ -21,6 +24,8 @@
     ref="inputRef"
     :name="input_name"
     :label="label"
+    :rules="rules"
+    :required="required"
     :model-value="cheatType(initialValue)"
   />
   <VLSelect
@@ -28,6 +33,8 @@
     ref="inputRef"
     :name="input_name"
     :label="label"
+    :rules="rules"
+    :required="required"
     :options="options"
     :model-value="cheatType(initialValue)"
   />
@@ -36,11 +43,12 @@
     ref="inputRef"
     :name="input_name"
     :label="label"
+    :rules="rules"
+    :required="required"
     :model-value="cheatType(initialValue)"
   />
   <VLColorPicker
     v-else-if="type === 'color'"
-    ref="inputRef"
     :name="input_name"
     :label="label"
     :model-value="cheatType(initialValue)"
@@ -50,6 +58,8 @@
     ref="inputRef"
     :name="input_name"
     :label="label"
+    :rules="rules"
+    :required="required"
     :model-value="cheatType(initialValue)"
     @error="(evt) => emit('error', evt)"
   />
@@ -57,18 +67,25 @@
 
 <script setup lang="ts">
 import type { VLCrudInputProps, VLCrudInputValueType } from './types'
-import VLInput from '../VLInput/VLInput.vue'
-import VLCheckbox from '../VLCheckbox/VLCheckbox.vue'
-import VLSelect from '../VLSelect/VLSelect.vue'
-import VLNumberInput from '../VLNumberInput/VLNumberInput.vue'
-import VLDatePicker from '../VLDatePicker/VLDatePicker.vue'
-import VLColorPicker from '../VLColorPicker/VLColorPicker.vue'
-import VLImageUpload from '../VLImageUpload/VLImageUpload.vue'
+import { VLInput } from '../VLInput'
+import { VLCheckbox } from '../VLCheckbox'
+import { VLSelect } from '../VLSelect'
+import { VLNumberInput } from '../VLNumberInput'
+import { VLDatePicker } from '../VLDatePicker'
+import { VLColorPicker } from '../VLColorPicker'
+import { VLImageUpload } from '../VLImageUpload'
 import { ref } from 'vue'
 
 const emit = defineEmits(['error'])
 
-const inputRef = ref<InstanceType<typeof VLInput> | null>(null)
+const inputRef = ref<InstanceType<
+  | typeof VLInput
+  | typeof VLCheckbox
+  | typeof VLSelect
+  | typeof VLNumberInput
+  | typeof VLDatePicker
+  | typeof VLImageUpload
+> | null>(null)
 
 function cheatType<T>(value: VLCrudInputValueType): T {
   return value as T

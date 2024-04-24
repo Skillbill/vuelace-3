@@ -8,6 +8,7 @@
       ></div>
       <VLIcon class="text-2xl hover:opacity-40" name="delete" @click="clear"></VLIcon>
     </div>
+    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
   <VLFileInput
     v-else
@@ -29,6 +30,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 
+import ErrorMessage from '../utils/ErrorMessage.vue'
 import VLFileInput from '../VLFileInput/VLFileInput.vue'
 import VLIcon from '../VLIcon/VLIcon.vue'
 
@@ -48,6 +50,28 @@ const props = withDefaults(defineProps<VLImageUploadProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
+const validationError = ref<string | undefined>()
+
+const errorMessage = computed(() => {
+  if (props.error) {
+    return props.error
+  }
+  return validationError.value
+})
+
+const validateInput = () => {
+  if (props.rules.length) {
+    for (const rule of props.rules) {
+      if (!rule.validateFn(model.value)) {
+        validationError.value = rule.message
+        return false
+      }
+    }
+  }
+  validationError.value = undefined
+  return true
+}
+
 const fileModel = ref<File | null>(null)
 const model = defineModel<string | null>()
 
@@ -62,6 +86,11 @@ watch(fileModel, () => {
     reader.readAsDataURL(fileModel.value)
     return
   }
+})
+
+defineExpose({
+  isValid: () => errorMessage.value === undefined || errorMessage.value.length === 0,
+  validateInput
 })
 
 const clear = () => {

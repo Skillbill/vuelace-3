@@ -77,14 +77,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed } from 'vue'
+import { ref, reactive, watch, computed, type Ref } from 'vue'
 
 import { VLCrudAction } from '../VLCrudAction'
 import { VLPaginator } from '../VLPaginator'
 import { VLDialog } from '../VLDialog'
 import { VLDataTableCrud } from '../VLDataTableCrud'
 import { VLCrudFilters } from '../VLCrudFilters'
-import { VLCrudForm } from '../VLCrudForm'
+import { VLCrudForm, type VLCrudFormFieldType } from '../VLCrudForm'
 import { VLButton } from '../VLButton'
 import type { VLCrudActionType, VLCrudProps } from './types'
 
@@ -117,14 +117,10 @@ const columns = computed(() =>
   }))
 )
 
-const formFields = computed(() =>
+const formFields: Ref<VLCrudFormFieldType[]> = computed(() =>
   props.form_fields.map((field) => ({
-    label: props.translationFn(field.i18n_key),
-    value: field.value,
-    input_type: field.input_type,
-    options: field.options,
-    rules: field.rules,
-    props: field.componentProps
+    ...field,
+    label: props.translationFn(field.i18n_key)
   }))
 )
 

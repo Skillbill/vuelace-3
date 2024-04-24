@@ -11,8 +11,8 @@
       :type="field.input_type"
       :label="field.label"
       :options="field.options"
-      :rules="field.rules"
-      v-bind="field.props"
+      :rules="!field.required ? field.rules : (field.rules ?? []).concat([requiredRule])"
+      :required="field.required"
       v-model="model[field.value]"
       @error="(evt) => emit('error', evt)"
     />
@@ -32,6 +32,7 @@ import VLCrudInput from '../VLCrudInput/VLCrudInput.vue'
 import VLButton from '../VLButton/VLButton.vue'
 
 import type { VLCrudFormProps } from './types'
+import type { VLInputRuleType } from '../utils/types'
 
 const emit = defineEmits(['close', 'cancel', 'confirm', 'update:modelValue', 'error'])
 
@@ -68,6 +69,8 @@ const onConfirm = () => {
     closeDialog()
   }
 }
+
+const requiredRule: VLInputRuleType = { validateFn: (v: any) => !!v, message: 'Required' }
 
 const onCanceled = () => {
   emit('cancel')

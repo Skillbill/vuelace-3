@@ -3,6 +3,7 @@ import { Component } from 'vue'
 import { VLDialogProps } from '../VLDialog'
 import type { VLCrudFilterType } from '../VLCrudFilters/types'
 import { VLFileInputErrorEvent } from '../VLFileInput'
+import type { VLCrudFormFieldType } from '../VLCrudForm'
 
 export interface VLCrudHeaderType {
   i18n_key: string
@@ -33,7 +34,7 @@ export interface VLCrudProps {
   headers: VLCrudHeaderType[]
   filters: Omit<VLCrudFilterType, 'label'>[]
   filters_title?: string
-  form_fields: any[]
+  form_fields: Omit<VLCrudFormFieldType, 'label'>[]
   actions: VLCrudActionType[]
   editable?: boolean
   components?: { [key: string]: Component }
