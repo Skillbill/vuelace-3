@@ -24,7 +24,12 @@
       <!-- template for actions -->
       <template #actions="{ data }">
         <!-- base actions -->
-        <VLCrudAction v-if="editable" :tooltip="translationFn('tooltip.edit')" icon="pencil" />
+        <VLCrudAction
+          v-if="editable"
+          icon="pencil"
+          :tooltip="translationFn('tooltip.edit')"
+          @click="() => onClickAction(editAction)(data)"
+        />
         <!-- custom actions -->
         <slot name="actions" v-bind="{ data }">
           <VLCrudAction
@@ -51,9 +56,25 @@
         v-if="dialog === 'add'"
         :fields="formFields"
         :title="translationFn(`message.add_${singular_label}`)"
+        :requiredRuleMessage="translationFn(requiredI18nKey)"
+        :cancelLabel="translationFn(cancelI18nKey)"
+        :confirmLabel="translationFn(addI18nKey)"
         @close="closeDialog"
         @cancel="closeDialog"
         @confirm="onAdd"
+        @error="(evt) => emit('error', evt)"
+      />
+      <VLCrudForm
+        v-if="dialog === 'edit'"
+        :fields="formFields"
+        :title="translationFn(`message.edit_${singular_label}`)"
+        :requiredRuleMessage="translationFn(requiredI18nKey)"
+        :cancelLabel="translationFn(cancelI18nKey)"
+        :confirmLabel="translationFn(editI18nKey)"
+        :model-value="selectedItem"
+        @close="closeDialog"
+        @cancel="closeDialog"
+        @confirm="onEdit"
         @error="(evt) => emit('error', evt)"
       />
       <template v-for="action in actions.filter((action) => action.component)" :key="action.name">
@@ -94,6 +115,10 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   editable: true,
   actionHeaderI18nKey: 'header.actions',
   rowsPerPage: 10,
+  cancelI18nKey: 'button.cancel',
+  addI18nKey: 'button.add',
+  editI18nKey: 'button.edit',
+  requiredI18nKey: 'error.required',
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })
@@ -190,10 +215,26 @@ const onConfirm = (action: VLCrudActionType, data: any) => {
   //OPZIONALE: aggiungere side effect al conferma dell'azione
 }
 
-const onAdd = (data: any) => {
-  props.addItem?.(data)
+const onAdd = async (data: any) => {
+  await props.addItem?.(data)
 
-  fetchData()
+  await fetchData()
+}
+
+const editAction = {
+  name: 'edit',
+  onClick: (data: any) => {
+    selectedItem.value = data
+    dialog.value = 'edit'
+    dialogProps.value = {}
+    showDialog.value = true
+  }
+} as VLCrudActionType
+
+const onEdit = async (id: any, data: any) => {
+  await props.editItem?.(id, data)
+
+  await fetchData()
 }
 
 watch(() => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], fetchData)

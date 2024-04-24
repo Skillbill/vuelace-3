@@ -85,33 +85,33 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     }
   ],
   filters: [
-    // {
-    //   i18n_key: 'header.username',
-    //   value: 'username',
-    //   input_type: 'text'
-    // },
-    // {
-    //   i18n_key: 'header.firstname',
-    //   value: 'firstName',
-    //   input_type: 'text'
-    // },
-    // {
-    //   i18n_key: 'header.lastname',
-    //   value: 'lastName',
-    //   input_type: 'text'
-    // },
-    // {
-    //   i18n_key: 'header.role',
-    //   value: 'role',
-    //   input_type: 'select',
-    //   options: [
-    //     { value: '', text: '' },
-    //     { value: 'admin', text: 'admin' },
-    //     { value: 'user', text: 'user' },
-    //     { value: 'guest', text: 'guest' }
-    //   ],
-    //   default_value: ''
-    // },
+    {
+      i18n_key: 'header.username',
+      value: 'username',
+      input_type: 'text'
+    },
+    {
+      i18n_key: 'header.firstname',
+      value: 'firstName',
+      input_type: 'text'
+    },
+    {
+      i18n_key: 'header.lastname',
+      value: 'lastName',
+      input_type: 'text'
+    },
+    {
+      i18n_key: 'header.role',
+      value: 'role',
+      input_type: 'select',
+      options: [
+        { value: '', text: '' },
+        { value: 'admin', text: 'admin' },
+        { value: 'user', text: 'user' },
+        { value: 'guest', text: 'guest' }
+      ],
+      default_value: ''
+    },
     // {
     //   i18n_key: 'header.active',
     //   value: 'active',
@@ -124,12 +124,12 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     //   input_type: 'number',
     //   default_value: 30
     // },
-    // {
-    //   i18n_key: 'header.activation_date',
-    //   value: 'activation_date',
-    //   input_type: 'date',
-    //   default_value: '2021-01-01'
-    // },
+    {
+      i18n_key: 'header.activation_date',
+      value: 'activation_date',
+      input_type: 'date',
+      default_value: '2021-01-01'
+    }
     // {
     //   i18n_key: 'header.expiration_date',
     //   value: 'expiration_date',

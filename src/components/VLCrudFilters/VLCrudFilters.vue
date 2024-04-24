@@ -20,6 +20,7 @@
           :type="field.input_type"
           :label="field.label"
           :options="field.options"
+          :initialValue="field.default_value"
           v-model="model[field.value]"
           @error="(evt) => emit('error', evt)"
         />
@@ -42,7 +43,7 @@ import { ref, onMounted } from 'vue'
 import { VLButton } from '../VLButton'
 import { VLExpansionCard } from '../VLExpansionCard'
 import { VLCrudInput } from '../VLCrudInput'
-import type { VLCrudFilterType, VLCrudFiltersProps } from './types'
+import type { VLCrudFiltersProps } from './types'
 
 const emit = defineEmits(['apply', 'filtersApplied', 'hide', 'reset', 'show', 'error'])
 
@@ -58,19 +59,12 @@ const props = withDefaults(defineProps<VLCrudFiltersProps>(), {
   resetLabel: 'reset'
 })
 
-const parseDefaultValue = (field: VLCrudFilterType) => {
-  if (field.input_type === 'date' && typeof field.default_value === 'string') {
-    return new Date(field.default_value)
-  }
-  return field.default_value
-}
-
 const resetFields = () => {
   currentFiltersStatus =
     props.filters?.reduce(
       (acc, curr) => ({
         ...acc,
-        [curr.value]: parseDefaultValue(curr)
+        [curr.value]: curr.default_value
       }),
       {}
     ) ?? {}

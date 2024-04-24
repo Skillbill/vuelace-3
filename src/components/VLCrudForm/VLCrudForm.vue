@@ -13,6 +13,7 @@
       :options="field.options"
       :rules="!field.required ? field.rules : (field.rules ?? []).concat([requiredRule])"
       :required="field.required"
+      :initialValue="field.default_value"
       v-model="model[field.value]"
       @error="(evt) => emit('error', evt)"
     />
@@ -26,31 +27,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 
 import { VLCrudInput } from '../VLCrudInput'
 import { VLButton } from '../VLButton'
 
 import type { VLCrudFormProps } from './types'
 import type { VLInputRuleType } from '../utils/types'
+import { computed } from 'vue'
 
 const emit = defineEmits(['close', 'cancel', 'confirm', 'update:modelValue', 'error'])
 
 const model = ref<{ [key: string]: any }>({})
 
 const props = withDefaults(defineProps<VLCrudFormProps>(), {
-  cancelLabel: 'Cancel',
-  confirmLabel: 'Confirm',
   validateAll: false,
   modelValue: () => ({})
 })
 
-watch(
-  () => props.modelValue,
-  (value) => {
-    if (value) model.value = { ...value }
-  }
-)
+onMounted(() => {
+  model.value = { ...props.modelValue }
+})
 
 const fieldsRefs = ref<any>([])
 
@@ -70,7 +67,13 @@ const onConfirm = () => {
   }
 }
 
-const requiredRule: VLInputRuleType = { validateFn: (v: any) => !!v, message: 'Required' }
+const requiredRule = computed(
+  () =>
+    ({
+      validateFn: (v: any) => !!v,
+      message: props.requiredRuleMessage
+    }) as VLInputRuleType
+)
 
 const onCanceled = () => {
   emit('cancel')

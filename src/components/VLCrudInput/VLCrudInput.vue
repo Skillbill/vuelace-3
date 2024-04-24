@@ -7,7 +7,8 @@
     :label="label"
     :rules="rules"
     :required="required"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLNumberInput
     v-else-if="type === 'number'"
@@ -17,7 +18,8 @@
     :label="label"
     :rules="rules"
     :required="required"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLCheckbox
     v-else-if="type === 'checkbox'"
@@ -26,7 +28,8 @@
     :label="label"
     :rules="rules"
     :required="required"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLSelect
     v-else-if="type === 'select'"
@@ -36,7 +39,8 @@
     :rules="rules"
     :required="required"
     :options="options"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLDatePicker
     v-else-if="type === 'date'"
@@ -45,13 +49,15 @@
     :label="label"
     :rules="rules"
     :required="required"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLColorPicker
     v-else-if="type === 'color'"
     :name="input_name"
     :label="label"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
   />
   <VLImageUpload
     v-else-if="type === 'image'"
@@ -60,12 +66,15 @@
     :label="label"
     :rules="rules"
     :required="required"
-    :model-value="cheatType(initialValue)"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
     @error="(evt) => emit('error', evt)"
   />
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import type { VLCrudInputProps, VLCrudInputValueType } from './types'
 import { VLInput } from '../VLInput'
 import { VLCheckbox } from '../VLCheckbox'
@@ -74,9 +83,11 @@ import { VLNumberInput } from '../VLNumberInput'
 import { VLDatePicker } from '../VLDatePicker'
 import { VLColorPicker } from '../VLColorPicker'
 import { VLImageUpload } from '../VLImageUpload'
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 
-const emit = defineEmits(['error'])
+const emit = defineEmits(['error', 'update:modelValue'])
+
+const model = defineModel<VLCrudInputValueType>()
 
 const inputRef = ref<InstanceType<
   | typeof VLInput
@@ -87,13 +98,9 @@ const inputRef = ref<InstanceType<
   | typeof VLImageUpload
 > | null>(null)
 
-function cheatType<T>(value: VLCrudInputValueType): T {
-  return value as T
-}
-
 //TODO: gestire hidden
 
-withDefaults(defineProps<VLCrudInputProps>(), {
+const props = withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false
   // autofocus: false
   // img_style: '',
@@ -101,6 +108,24 @@ withDefaults(defineProps<VLCrudInputProps>(), {
   // hidden: false,
   // hide_details: false,
   // dense: false
+})
+
+function cheatType<T>(): T {
+  if (props.type === 'date' && typeof model.value === 'string') {
+    model.value = new Date(model.value)
+  }
+
+  return model.value as T
+}
+
+function cheatUpdateFunction<T>(value: T) {
+  emit('update:modelValue', value as T)
+}
+
+onMounted(() => {
+  if (props.initialValue !== undefined && model.value === undefined) {
+    model.value = props.initialValue
+  }
 })
 
 defineExpose({

@@ -41,6 +41,10 @@ export interface VLCrudProps {
   actionHeaderI18nKey?: string
   rowsPerPage?: number
   rowsPerPageOptions?: number[]
+  cancelI18nKey?: string
+  addI18nKey?: string
+  editI18nKey?: string
+  requiredI18nKey?: string
   getItems: (
     page: number,
     rowsPerPage: number,

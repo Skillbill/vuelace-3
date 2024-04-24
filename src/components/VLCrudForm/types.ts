@@ -25,7 +25,8 @@ export interface VLCrudFormProps {
   modelValue?: { [key: string]: VLCrudInputValueType }
   fields: VLCrudFormFieldType[]
   title: string
-  cancelLabel?: string
-  confirmLabel?: string
+  cancelLabel: string
+  confirmLabel: string
+  requiredRuleMessage: string
   validateAll?: boolean
 }
