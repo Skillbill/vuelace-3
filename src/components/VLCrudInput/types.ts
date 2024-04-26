@@ -24,8 +24,4 @@ export interface VLCrudInputProps {
   img_style?: string
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
-  //rules: (() => void)[],
-  // hidden: boolean,
-  // hide_details: boolean
-  // dense: boolean
 }

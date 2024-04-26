@@ -54,6 +54,7 @@
     <VLDialog v-bind="dialogProps" v-model="showDialog" @request-close="closeDialog">
       <VLCrudForm
         v-if="dialog === 'add'"
+        type="add"
         key="add"
         :fields="formFields"
         :title="translationFn(`message.add_${singular_label}`)"
@@ -67,6 +68,7 @@
       />
       <VLCrudForm
         v-if="dialog === 'edit'"
+        type="edit"
         key="edit"
         :fields="formFields"
         :title="translationFn(`message.edit_${singular_label}`)"

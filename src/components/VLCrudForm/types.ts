@@ -14,10 +14,10 @@ export interface VLCrudFormFieldType {
   disabled?: boolean
   required?: boolean
   img_style?: string
-  hidden_on_create?: boolean //TODO VLCrudInputProp
-  hidden?: boolean //TODO VLCrudInputProp
-  disabledEdit?: boolean //TODO VLCrudInputProp
-  placeholder?: string //TODO VLCrudInputProp
+  hidden?: boolean
+  hidden_on_create?: boolean
+  disabled_on_edit?: boolean
+  placeholder?: string
   side_effect?: (
     model: { [key: string]: VLCrudInputValueType },
     fields: {
@@ -28,6 +28,7 @@ export interface VLCrudFormFieldType {
 
 export interface VLCrudFormProps {
   modelValue?: { [key: string]: VLCrudInputValueType }
+  type: 'add' | 'edit'
   fields: VLCrudFormFieldType[]
   title: string
   cancelLabel: string

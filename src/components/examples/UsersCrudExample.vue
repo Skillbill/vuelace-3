@@ -139,6 +139,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     {
       i18n_key: 'header.username',
       value: 'username',
+      placeholder: 'Enter username',
       required: true,
       rules: [
         { validateFn: (v: string) => !!v, message: 'Username is required' },

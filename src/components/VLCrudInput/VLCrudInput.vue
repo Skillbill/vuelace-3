@@ -2,24 +2,24 @@
   <VLInput
     v-if="type === 'text'"
     ref="inputRef"
-    :placeholder="placeholder"
     :name="input_name"
     :label="label"
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :placeholder="placeholder"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
   <VLNumberInput
     v-else-if="type === 'number'"
     ref="inputRef"
-    :placeholder="placeholder"
     :name="input_name"
     :label="label"
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :placeholder="placeholder"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -42,6 +42,7 @@
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :placeholder="placeholder"
     :options="options"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
@@ -54,6 +55,7 @@
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :placeholder="placeholder"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -73,6 +75,7 @@
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :placeholder="placeholder"
     :img-style="img_style"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
@@ -110,13 +113,9 @@ const inputRef = ref<InstanceType<
 
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false,
-  required: false
+  required: false,
+  hidden: false
   // autofocus: false
-  // img_style: '',
-  // placeholder: '',
-  // hidden: false,
-  // hide_details: false,
-  // dense: false
 })
 
 function cheatType<T>(): T {

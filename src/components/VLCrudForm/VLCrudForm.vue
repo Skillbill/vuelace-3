@@ -1,8 +1,10 @@
 <template>
   <div slot="label">{{ title }}</div>
-  <div class="flex flex-col gap-8">
+
+  <form class="flex flex-col gap-8" @submit.prevent="onConfirm">
     <VLCrudInput
       v-for="field in Object.values(fields)"
+      v-show="isVisible(field)"
       ref="fieldsRefs"
       :key="field.value"
       class="w-full"
@@ -13,7 +15,8 @@
       :options="field.options"
       :rules="!field.required ? field.rules : (field.rules ?? []).concat([requiredRule])"
       :initialValue="field.default_value"
-      :disabled="field.disabled"
+      :disabled="isDisabled(field)"
+      :placeholder="field.placeholder"
       :required="field.required"
       :img_style="field.img_style"
       v-model="model[field.value]"
@@ -22,11 +25,11 @@
     />
     <div class="flex justify-end w-full gap-2">
       <VLButton @click="onCanceled">{{ cancelLabel }}</VLButton>
-      <VLButton @click="onConfirm"
+      <VLButton type="submit"
         ><span>{{ confirmLabel }}</span></VLButton
       >
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -63,6 +66,26 @@ const fields = ref(
 )
 
 const fieldsRefs = ref<any>([])
+
+const isVisible = (field: VLCrudFormFieldType) => {
+  if (field.hidden) {
+    return false
+  }
+  if (field.hidden_on_create && props.type === 'add') {
+    return false
+  }
+  return true
+}
+
+const isDisabled = (field: VLCrudFormFieldType) => {
+  if (field.disabled) {
+    return true
+  }
+  if (field.disabled_on_edit && props.type === 'edit') {
+    return true
+  }
+  return false
+}
 
 const onConfirm = () => {
   let valid = true
