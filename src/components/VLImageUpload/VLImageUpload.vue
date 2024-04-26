@@ -1,12 +1,20 @@
 <template>
   <div v-if="model" class="flex flex-col">
     <span>{{ label }}<span v-if="required">*</span></span>
-    <div class="flex items-center justify-between">
+    <div
+      class="flex items-center justify-between"
+      :class="[disabled && 'hover:cursor-not-allowed']"
+    >
       <div
         class="w-20 h-20 bg-center bg-no-repeat bg-contain"
         :style="{ backgroundImage: imageUrl }"
       ></div>
-      <VLIcon class="text-2xl hover:opacity-40" name="delete" @click="clear"></VLIcon>
+      <VLIcon
+        class="text-2xl hover:opacity-40"
+        :class="[disabled && 'opacity-40']"
+        name="delete"
+        @click="clear"
+      ></VLIcon>
     </div>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
@@ -94,6 +102,8 @@ defineExpose({
 })
 
 const clear = () => {
+  if (props.disabled) return
+
   model.value = null
   fileModel.value = null
 }

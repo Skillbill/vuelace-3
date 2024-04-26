@@ -19,6 +19,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -29,6 +30,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -39,6 +41,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :options="options"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
@@ -50,6 +53,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -57,6 +61,7 @@
     v-else-if="type === 'color'"
     :name="input_name"
     :label="label"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
@@ -67,6 +72,7 @@
     :label="label"
     :rules="rules"
     :required="required"
+    :disabled="disabled"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
     @error="(evt) => emit('error', evt)"

@@ -147,19 +147,26 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
           message: 'Username must be at least 4 characters long'
         }
       ],
-
-      input_type: 'text',
-      default_value: 'default_value'
+      side_effect: (model, fields) => {
+        const { username } = model
+        if (username === 'admin') {
+          fields.role.options = [{ value: 'admin', text: 'admin' }]
+          model.role = 'admin'
+        } else {
+          fields.role.options = [
+            { value: '', text: '' },
+            { value: 'admin', text: 'admin' },
+            { value: 'user', text: 'user' },
+            { value: 'guest', text: 'guest' }
+          ]
+        }
+      },
+      input_type: 'text'
     },
     {
       i18n_key: 'header.firstname',
       value: 'firstName',
-      input_type: 'text',
-      side_effect: (model, fields) => {
-        const { firstName } = model
-        fields.lastName.disabled = (firstName as string)?.length > 0
-        model.username = firstName
-      }
+      input_type: 'text'
     },
     {
       i18n_key: 'header.lastname',

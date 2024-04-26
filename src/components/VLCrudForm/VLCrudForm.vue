@@ -3,7 +3,7 @@
   <div class="flex flex-col gap-8">
     <VLCrudInput
       v-for="field in Object.values(fields)"
-      :ref="(el) => fieldsRefs.push(el)"
+      ref="fieldsRefs"
       :key="field.value"
       class="w-full"
       :class="field?.class"
@@ -50,7 +50,13 @@ onMounted(() => {
 })
 
 const fields = ref(
-  props.fields.reduce((acc, field) => ({ ...acc, [field.value]: field }), {}) as {
+  props.fields.reduce(
+    (acc, field) => ({
+      ...acc,
+      [field.value]: { ...field, ...(field.options ? { options: [...field.options] } : {}) }
+    }),
+    {}
+  ) as {
     [key: string]: VLCrudFormFieldType
   }
 )
