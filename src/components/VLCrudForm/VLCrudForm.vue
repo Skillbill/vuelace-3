@@ -16,7 +16,7 @@
       :initialValue="field.default_value"
       :disabled="field.disabled"
       v-model="model[field.value]"
-      @update:modelValue="(value) => field.side_effect && runSideEffect(field.side_effect, value)"
+      @update:modelValue="() => field.side_effect?.(model, fields)"
       @error="(evt) => emit('error', evt)"
     />
     <div class="flex justify-end w-full gap-2">
@@ -54,14 +54,6 @@ const fields = ref(
     [key: string]: VLCrudFormFieldType
   }
 )
-
-const runSideEffect = (sideEffectFn: any, value: any) => {
-  const newModel = sideEffectFn(value, fields)
-
-  if (newModel) {
-    model.value = { ...model.value, ...newModel }
-  }
-}
 
 const fieldsRefs = ref<any>([])
 

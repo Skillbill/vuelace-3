@@ -155,17 +155,19 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       i18n_key: 'header.firstname',
       value: 'firstName',
       input_type: 'text',
-      side_effect: (value, fields) => {
-        if (typeof value === 'string') fields.value.lastName.disabled = value?.length > 0
-        return { username: value }
+      side_effect: (model, fields) => {
+        const { firstName } = model
+        fields.lastName.disabled = (firstName as string)?.length > 0
+        model.username = firstName
       }
     },
     {
       i18n_key: 'header.lastname',
       value: 'lastName',
-      side_effect: (value, fields) => {
-        if (typeof value === 'string') fields.value.firstName.disabled = value?.length > 0
-        return { username: value }
+      side_effect: (model, fields) => {
+        const { lastName } = model
+        fields.firstName.disabled = (lastName as string)?.length > 0
+        model.username = lastName
       },
       input_type: 'text'
     },
