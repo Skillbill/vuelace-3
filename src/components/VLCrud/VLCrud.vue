@@ -27,6 +27,9 @@
         <VLCrudAction
           v-if="editable"
           icon="pencil"
+          :class="[
+            highlightLastEdited && lastEditedItem === data[primary_key] && hightlightLastEditedClass
+          ]"
           :tooltip="translationFn('tooltip.edit')"
           @click="() => onClickAction(editAction)(data)"
         />
@@ -43,7 +46,9 @@
       </template>
     </VLDataTableCrud>
     <div class="flex justify-between w-full">
-      <VLButton @click="addItem">{{ translationFn(`button.add_${singular_label}`) }}</VLButton>
+      <VLButton variant="primary" @click="addItem">{{
+        translationFn(`button.add_${singular_label}`)
+      }}</VLButton>
       <VLPaginator
         v-model:page="pagination.currentPage"
         v-model:rowsPerPage="pagination.rowsPerPage"
@@ -91,11 +96,8 @@
             ...(action.properties ?? {})
           }"
           @close="closeDialog"
-          @cancel="() => {}"
-          @confirm="() => onConfirm(action, selectedItem)"
+          @confirm="onConfirm"
         />
-        <!-- TODO: gestire cancel in base all'action -->
-        <!-- TODO: gestire confirm in base all'action -->
       </template>
     </VLDialog>
   </div>
@@ -123,6 +125,8 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   addI18nKey: 'button.add',
   editI18nKey: 'button.edit',
   requiredI18nKey: 'error.required',
+  highlightLastEdited: true,
+  hightlightLastEditedClass: 'text-primary-700',
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })
@@ -212,16 +216,16 @@ const onFiltersApplied = (filters: any) => {
   pagination.currentPage = 1
 }
 
-const onConfirm = (action: VLCrudActionType, data: any) => {
-  console.log(action, { ...data })
+const lastEditedItem = ref<any>(null)
+
+const onConfirm = () => {
+  lastEditedItem.value = selectedItem.value[props.primary_key]
   fetchData()
-  //TODO: aggiungere highlight riga
-  //OPZIONALE: aggiungere side effect al conferma dell'azione
 }
 
 const onAdd = async (data: any) => {
   await props.addItem?.(data)
-
+  onConfirm()
   await fetchData()
 }
 
@@ -237,7 +241,7 @@ const editAction = {
 
 const onEdit = async (id: any, data: any) => {
   await props.editItem?.(id, data)
-
+  onConfirm()
   await fetchData()
 }
 

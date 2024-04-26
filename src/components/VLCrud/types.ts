@@ -45,6 +45,8 @@ export interface VLCrudProps {
   addI18nKey?: string
   editI18nKey?: string
   requiredI18nKey?: string
+  highlightLastEdited?: boolean
+  hightlightLastEditedClass?: string
   getItems: (
     page: number,
     rowsPerPage: number,

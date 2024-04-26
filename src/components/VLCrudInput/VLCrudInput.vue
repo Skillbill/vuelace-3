@@ -109,13 +109,10 @@ const inputRef = ref<InstanceType<
   | typeof VLImageUpload
 > | null>(null)
 
-//TODO: gestire hidden
-
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false,
   required: false,
   hidden: false
-  // autofocus: false
 })
 
 function cheatType<T>(): T {

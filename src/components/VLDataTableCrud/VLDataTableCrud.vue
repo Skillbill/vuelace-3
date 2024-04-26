@@ -83,6 +83,10 @@ const selection = defineModel('selection', {
 </script>
 
 <style scoped>
+:deep(.p-datatable-tbody > tr) {
+  color: var(--sl-color-neutral-700);
+}
+
 :deep(.p-datatable-wrapper) {
   border: solid 1px var(--sl-color-neutral-200);
   border-radius: var(--sl-border-radius-medium);

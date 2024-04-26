@@ -25,7 +25,7 @@
     />
     <div class="flex justify-end w-full gap-2">
       <VLButton @click="onCanceled">{{ cancelLabel }}</VLButton>
-      <VLButton type="submit"
+      <VLButton variant="primary" type="submit"
         ><span>{{ confirmLabel }}</span></VLButton
       >
     </div>

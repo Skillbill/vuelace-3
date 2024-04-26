@@ -1,16 +1,11 @@
 <template>
   <VLTooltip :placement="placement" :content="tooltip" :distance="distance">
-    <VLButton class="w-10 hover:opacity-40" variant="text">
-      <div class="flex items-center h-full">
-        <VLIcon class="text-2xl text-black cursor-pointer" :name="icon" />
-      </div>
-    </VLButton>
+    <VLIcon class="text-2xl cursor-pointer hover:opacity-40" :name="icon" />
   </VLTooltip>
 </template>
 
 <script setup lang="ts">
 import { VLTooltip } from '../VLTooltip'
-import { VLButton } from '../VLButton'
 import { VLIcon } from '../VLIcon'
 import type { VLCrudActionProps } from './types'
 
