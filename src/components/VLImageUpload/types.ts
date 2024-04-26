@@ -10,6 +10,7 @@ export interface VLImageUploadProps {
   clearable?: boolean
   required?: boolean
   disabled?: boolean
+  imgStyle?: string
   rules?: VLInputRuleType[]
   onError?: (error: VLFileInputErrorEvent) => void
 }

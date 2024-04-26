@@ -11,9 +11,9 @@ export interface VLCrudFormFieldType {
   class?: string
   label: string
   rules?: VLInputRuleType[]
-  required?: boolean //TODO VLCrudInputProp
-  img_style?: string //TODO VLCrudInputProp
-  disabled?: boolean //TODO VLCrudInputProp
+  disabled?: boolean
+  required?: boolean
+  img_style?: string
   hidden_on_create?: boolean //TODO VLCrudInputProp
   hidden?: boolean //TODO VLCrudInputProp
   disabledEdit?: boolean //TODO VLCrudInputProp

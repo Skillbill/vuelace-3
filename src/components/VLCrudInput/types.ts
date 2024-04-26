@@ -15,16 +15,16 @@ export interface VLCrudInputProps {
   label: string
   type: VLCrudInputFieldType
   initialValue?: VLCrudInputValueType
-  disabled?: boolean
   placeholder?: string
   options?: VLSelectOptionType[]
   rules?: VLInputRuleType[]
-  required?: boolean
   modelValue: VLCrudInputValueType
+  disabled?: boolean
+  required?: boolean
+  img_style?: string
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
   //rules: (() => void)[],
-  // img_style: string,
   // hidden: boolean,
   // hide_details: boolean
   // dense: boolean

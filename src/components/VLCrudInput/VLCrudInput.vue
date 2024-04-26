@@ -73,6 +73,7 @@
     :rules="rules"
     :required="required"
     :disabled="disabled"
+    :img-style="img_style"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
     @error="(evt) => emit('error', evt)"
@@ -108,7 +109,8 @@ const inputRef = ref<InstanceType<
 //TODO: gestire hidden
 
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
-  disabled: false
+  disabled: false,
+  required: false
   // autofocus: false
   // img_style: '',
   // placeholder: '',

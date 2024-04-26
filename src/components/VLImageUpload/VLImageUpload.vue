@@ -5,10 +5,12 @@
       class="flex items-center justify-between"
       :class="[disabled && 'hover:cursor-not-allowed']"
     >
-      <div
-        class="w-20 h-20 bg-center bg-no-repeat bg-contain"
-        :style="{ backgroundImage: imageUrl }"
-      ></div>
+      <div :style="imgStyle" class="w-fit h-fit">
+        <div
+          class="w-20 h-20 bg-center bg-no-repeat bg-contain"
+          :style="{ backgroundImage: imageUrl }"
+        ></div>
+      </div>
       <VLIcon
         class="text-2xl hover:opacity-40"
         :class="[disabled && 'opacity-40']"
