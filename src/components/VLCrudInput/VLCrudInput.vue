@@ -134,6 +134,6 @@ onMounted(() => {
 })
 
 defineExpose({
-  validateInput: () => inputRef.value?.validateInput()
+  validateInput: () => (inputRef.value?.validateInput ? inputRef.value.validateInput() : true)
 })
 </script>

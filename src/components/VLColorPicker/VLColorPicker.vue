@@ -64,3 +64,8 @@ const atChange = (evt: any) => {
   model.value = evt.target.value
 }
 </script>
+<style scoped>
+sl-color-picker::part(eye-dropper-button) {
+  display: none;
+}
+</style>
