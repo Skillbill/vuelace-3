@@ -93,6 +93,7 @@
           :data="{
             id,
             item: selectedItem,
+            primary_key,
             ...(action.properties ?? {})
           }"
           @close="closeDialog"
