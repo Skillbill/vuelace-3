@@ -35,4 +35,5 @@ export interface VLCrudFormProps {
   confirmLabel: string
   requiredRuleMessage: string
   validateAll?: boolean
+  primaryKey: string
 }

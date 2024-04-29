@@ -81,7 +81,7 @@ const isDisabled = (field: VLCrudFormFieldType) => {
   if (field.disabled) {
     return true
   }
-  if (field.disabled_on_edit && props.type === 'edit') {
+  if (props.type === 'edit' && (field.disabled_on_edit || field.value === props.primaryKey)) {
     return true
   }
   return false
