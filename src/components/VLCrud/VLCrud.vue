@@ -4,6 +4,8 @@
       class="w-full"
       :title="filters_title && translationFn(filters_title)"
       :filters="filters"
+      :apply-label="translationFn(applyI18nKey)"
+      :reset-label="translationFn(resetI18nKey)"
       @filtersApplied="onFiltersApplied"
       @error="(evt) => emit('error', evt)"
     />
@@ -56,7 +58,12 @@
         :rowsPerPageOptions="pagination.rowsPerPageOptions"
       />
     </div>
-    <VLDialog v-bind="dialogProps" v-model="showDialog" @request-close="closeDialog">
+    <VLDialog
+      :noCloseOnOutsideClick="persistActionDialog"
+      v-bind="dialogProps"
+      v-model="showDialog"
+      @request-close="closeDialog"
+    >
       <VLCrudForm
         v-if="dialog === 'add'"
         type="add"
@@ -126,8 +133,11 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   addI18nKey: 'button.add',
   editI18nKey: 'button.edit',
   requiredI18nKey: 'error.required',
+  applyI18nKey: 'button.apply',
+  resetI18nKey: 'button.reset',
   highlightLastEdited: true,
   hightlightLastEditedClass: 'text-primary-700',
+  persistActionDialog: true,
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })

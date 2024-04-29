@@ -51,7 +51,7 @@ import type {
 } from '../utils/types'
 
 import type { VLNumberInputProps } from './types'
-import { SlInput } from '@shoelace-style/shoelace'
+import type { SlInput } from '@shoelace-style/shoelace'
 
 const emit = defineEmits(['focus', 'blur', 'change', 'clear', 'input', 'invalid'])
 
@@ -79,7 +79,7 @@ const props = withDefaults(defineProps<VLNumberInputProps>(), {
 })
 
 const model = defineModel<number | undefined>()
-const input = ref<HTMLInputElement>()
+const input = ref<SlInput | null>()
 
 const updateModel = (value: string) => {
   const validValue = checkMinMax(value)
@@ -92,6 +92,9 @@ const updateModel = (value: string) => {
 
 watch(model, () => {
   validateInput()
+  if (input.value && model.value === undefined) {
+    input.value.value = ''
+  }
 })
 
 const atChange = (evt: SlChangeEvent) => {
