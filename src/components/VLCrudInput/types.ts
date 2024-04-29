@@ -18,7 +18,7 @@ export interface VLCrudInputProps {
   placeholder?: string
   options?: VLSelectOptionType[]
   rules?: VLInputRuleType[]
-  modelValue: VLCrudInputValueType
+  modelValue?: VLCrudInputValueType
   disabled?: boolean
   required?: boolean
   img_style?: string

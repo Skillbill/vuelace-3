@@ -98,7 +98,9 @@ import { onMounted } from 'vue'
 
 const emit = defineEmits(['error', 'update:modelValue'])
 
-const model = defineModel<VLCrudInputValueType>()
+const model = defineModel<VLCrudInputValueType>('modelValue', {
+  default: undefined
+})
 
 const inputRef = ref<InstanceType<
   | typeof VLInput
