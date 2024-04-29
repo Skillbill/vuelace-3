@@ -29,7 +29,7 @@
     :clearable="props.clearable"
     :required="props.required"
     :disabled="props.disabled"
-    :error="props.error"
+    :error="errorMessage"
     :rules="props.rules"
     accept="image/*"
     :acceptedTypes="['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml']"
