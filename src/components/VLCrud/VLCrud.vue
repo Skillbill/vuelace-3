@@ -37,13 +37,14 @@
         />
         <!-- custom actions -->
         <slot name="actions" v-bind="{ data }">
-          <VLCrudAction
-            v-for="action in actions"
-            :key="action.name"
-            :tooltip="translationFn(action.i18n_key)"
-            :icon="action.icon_name"
-            @click="() => onClickAction(action)(data)"
-          />
+          <template v-for="action in actions"
+            ><VLCrudAction
+              v-if="action.isVisible?.(data) ?? true"
+              :key="action.name"
+              :tooltip="translationFn(action.i18n_key)"
+              :icon="action.icon_name"
+              @click="() => onClickAction(action)(data)"
+          /></template>
         </slot>
       </template>
     </VLDataTableCrud>

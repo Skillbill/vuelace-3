@@ -122,6 +122,10 @@ function cheatType<T>(): T {
     model.value = new Date(model.value)
   }
 
+  if (props.type === 'select' && typeof model.value === 'number') {
+    model.value = `${model.value}`
+  }
+
   return model.value as T
 }
 

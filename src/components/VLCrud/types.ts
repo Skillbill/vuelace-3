@@ -23,6 +23,7 @@ export interface VLCrudActionType {
   icon_name: string
   component?: Component
   onClick?: (data: any) => void
+  isVisible?: (data: any) => boolean
   properties?: Object
   dialogProperties?: Omit<VLDialogProps, 'modelValue' | 'onRequestClose'>
 }
