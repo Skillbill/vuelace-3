@@ -232,15 +232,14 @@ const onFiltersApplied = (filters: any) => {
 
 const lastEditedItem = ref<any>(null)
 
-const onConfirm = () => {
+const onConfirm = async () => {
   lastEditedItem.value = selectedItem.value[props.primary_key]
-  fetchData()
+  await fetchData()
 }
 
 const onAdd = async (data: any) => {
   await props.addItem?.(data)
-  onConfirm()
-  await fetchData()
+  await onConfirm()
 }
 
 const editAction = {
@@ -255,8 +254,7 @@ const editAction = {
 
 const onEdit = async (id: any, data: any) => {
   await props.editItem?.(id, data)
-  onConfirm()
-  await fetchData()
+  await onConfirm()
 }
 
 watch(() => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], fetchData)
