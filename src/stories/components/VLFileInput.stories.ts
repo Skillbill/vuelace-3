@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import FileInput from '../../components/VLFileInput.vue'
+import { VLFileInput } from '../../components'
 
 const meta = {
   title: 'Vuelace3/File input',
-  component: FileInput,
+  component: VLFileInput,
   tags: ['autodocs'],
   argTypes: {
     error: { control: 'text' }
   }
-} satisfies Meta<typeof FileInput>
+} satisfies Meta<typeof VLFileInput>
 
 export default meta
 type Story = StoryObj<typeof meta>

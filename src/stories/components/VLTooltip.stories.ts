@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Tooltip from '../../components/VLTooltip.vue'
+import { VLTooltip } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Tooltip',
-  component: Tooltip,
+  component: VLTooltip,
   tags: ['autodocs'],
   render: (args) => ({
-    components: { Tooltip },
+    components: { VLTooltip },
     setup() {
       return { args }
     },
@@ -40,7 +40,7 @@ const meta = {
     default: 'Hover me',
     hoist: true
   }
-} satisfies Meta<typeof Tooltip>
+} satisfies Meta<typeof VLTooltip>
 
 export default meta
 type Story = StoryObj<typeof meta>

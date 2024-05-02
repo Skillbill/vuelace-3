@@ -1,22 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import CheckboxInput from '../../components/VLCheckbox.vue'
+import { VLCheckbox } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Checkbox',
-  component: CheckboxInput,
+  component: VLCheckbox,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large', undefined] }
   },
   args: {}
-} satisfies Meta<typeof CheckboxInput>
+} satisfies Meta<typeof VLCheckbox>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
+    modelValue: true,
     label: 'I agree with the terms and conditions (VLCheckbox)',
     rules: [
       {

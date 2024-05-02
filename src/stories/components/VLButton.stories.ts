@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Button from '../../components/VLButton.vue'
+import { VLButton } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Button',
-  component: Button,
+  component: VLButton,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large', undefined] },
@@ -15,7 +15,7 @@ const meta = {
     target: { control: 'select', options: ['_blank', '_parent', '_self', '_top', undefined] }
   },
   args: { size: 'small', default: 'Click me' }
-} satisfies Meta<typeof Button>
+} satisfies Meta<typeof VLButton>
 
 export default meta
 type Story = StoryObj<typeof meta>

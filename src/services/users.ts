@@ -7,6 +7,8 @@ const users = [
     firstName: 'Admin',
     lastName: 'Admin',
     active: true,
+    role: 'admin',
+    age: 30,
     activation_date: new Date(),
     expiration_date: new Date()
   },
@@ -16,6 +18,8 @@ const users = [
     firstName: 'User',
     lastName: 'User',
     active: true,
+    role: 'user',
+    age: 25,
     activation_date: new Date(),
     expiration_date: new Date()
   },
@@ -24,24 +28,39 @@ const users = [
     username: 'guest',
     firstName: 'Guest',
     lastName: 'Guest',
-    active: true,
+    role: 'guest',
+    active: false,
+    age: 20,
     activation_date: new Date(),
     expiration_date: new Date()
   }
 ] as User[]
 
-export const getUsersAPI = async (filters?: any) => {
+export const getUsersAPI = async (page: number, rows: number, filters?: any) => {
   let result: any = [...users]
 
   if (filters && Object.keys(filters).length) {
     result = result.filter((user: any) => {
       return Object.keys(filters).every((key) => {
-        return user[key].includes(filters[key])
+        if (['', null, undefined].includes(filters[key])) return true
+
+        switch (typeof filters[key]) {
+          case 'boolean':
+            return user[key] === filters[key]
+          case 'number':
+            return user[key] === filters[key]
+          case 'object':
+            if (key === 'activation_date') return user[key] > filters[key]
+            if (key === 'expiration_date') return user[key] < filters[key]
+            return user[key] === filters[key]
+          default:
+            return user[key].includes(filters[key])
+        }
       })
     })
   }
 
-  return result
+  return { result, page: { totalRows: 3, currentPage: page, pageRows: rows, totalPages: 1 } }
 }
 
 export const getUserAPI = async (id: string) => {

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import SelectInput from '../../components/VLSelect.vue'
+import { VLSelect } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Select',
-  component: SelectInput,
+  component: VLSelect,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large', undefined] },
@@ -23,7 +23,7 @@ const meta = {
       { value: 'others', text: 'Others...' }
     ]
   }
-} satisfies Meta<typeof SelectInput>
+} satisfies Meta<typeof VLSelect>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import DateInput from '../../components/VLDatePicker.vue'
+import { VLDatePicker } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Date picker',
-  component: DateInput,
+  component: VLDatePicker,
   tags: ['autodocs'],
   argTypes: {
     selectionMode: { control: 'select', options: ['single', 'range', 'multiple', undefined] }
   },
   args: {}
-} satisfies Meta<typeof DateInput>
+} satisfies Meta<typeof VLDatePicker>
 
 export default meta
 type Story = StoryObj<typeof meta>

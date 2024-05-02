@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import DataTable from '../../components/VLDataTableCrud.vue'
+import { VLDataTableCrud } from '../../components'
 import ActiveComponent from '../../components/examples/cells/ActiveCell.vue'
 
-import ActionDelete from '../../components/examples/actions/ActionDelete.vue'
-import ActionEdit from '../../components/examples/actions/ActionEdit.vue'
+import { shallowRef } from 'vue'
 
 const getItems = () => {
   return new Array(40).fill(0).map((_, index) => {
@@ -20,13 +19,13 @@ const getItems = () => {
 
 const meta = {
   title: 'Vuelace3/Data Table',
-  component: DataTable,
+  component: VLDataTableCrud,
   tags: ['autodocs'],
   argTypes: {
     selectionMode: { control: 'select', options: [undefined, 'single', 'multiple'] }
   },
   args: {}
-} satisfies Meta<typeof DataTable>
+} satisfies Meta<typeof VLDataTableCrud>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -50,8 +49,8 @@ export const Simple: Story = {
       {
         name: 'header.active',
         value: 'active',
-        component: ActiveComponent,
-        props: {
+        component: shallowRef(ActiveComponent),
+        componentProps: {
           trueColor: 'text-yellow-500'
         }
       },
@@ -64,16 +63,7 @@ export const Simple: Story = {
         value: 'expiration_date'
       }
     ],
-    actions: [
-      {
-        component: ActionDelete,
-        onClick: (row: any) => {}
-      },
-      {
-        component: ActionEdit,
-        onClick: (row: any) => {}
-      }
-    ],
+    actions: [],
     items: getItems()
   }
 }

@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import VLIcon from '../VLIcon.vue'
+import VLIcon from '../VLIcon/VLIcon.vue'
 
 const emit = defineEmits(['remove'])
 </script>

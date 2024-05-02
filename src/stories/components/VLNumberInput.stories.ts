@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import NumberInput from '../../components/VLNumberInput.vue'
+import { VLNumberInput } from '../../components'
 
 const meta = {
   title: 'Vuelace3/Number input',
-  component: NumberInput,
+  component: VLNumberInput,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large', undefined] }
   },
   args: {}
-} satisfies Meta<typeof NumberInput>
+} satisfies Meta<typeof VLNumberInput>
 
 export default meta
 type Story = StoryObj<typeof meta>
