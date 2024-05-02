@@ -1,11 +1,17 @@
 <template>
   <div class="flex items-center gap-4">
+    <VLButton @click="firstPage" :disabled="page === 1">
+      <VLIcon name="pageFirst" />
+    </VLButton>
     <VLButton @click="prevPage" :disabled="page === 1">
       <VLIcon name="chevronLeft" />
     </VLButton>
     <slot :page="page" :totalPages="totalPages">{{ page }}/{{ totalPages }}</slot>
     <VLButton @click="nextPage" :disabled="page === totalPages">
       <VLIcon name="chevronRight" />
+    </VLButton>
+    <VLButton @click="lastPage" :disabled="page === totalPages">
+      <VLIcon name="pageLast" />
     </VLButton>
     <div class="w-24">
       <VLSelect
@@ -32,6 +38,12 @@ const rowsPerPageModel = ref<string>(`${props.rowsPerPage ?? props.rowsPerPageOp
 
 const totalPages = computed(() => Math.ceil(props.totalRows / parseInt(rowsPerPageModel.value)))
 
+const firstPage = () => {
+  if (page.value > 1) {
+    page.value = 1
+  }
+}
+
 const prevPage = () => {
   if (page.value > 1) {
     page.value--
@@ -41,6 +53,12 @@ const prevPage = () => {
 const nextPage = () => {
   if (page.value < totalPages.value) {
     page.value++
+  }
+}
+
+const lastPage = () => {
+  if (page.value < totalPages.value) {
+    page.value = totalPages.value
   }
 }
 

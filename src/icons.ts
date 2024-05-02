@@ -20,6 +20,8 @@ import calendar from '@mdi/svg/svg/calendar.svg'
 import cogs from '@mdi/svg/svg/cogs.svg'
 import pencil from '@mdi/svg/svg/pencil.svg'
 import deleteIcon from '@mdi/svg/svg/delete.svg'
+import pageFirst from '@mdi/svg/svg/page-first.svg'
+import pageLast from '@mdi/svg/svg/page-last.svg'
 
 export const icons = {
   paperclip,
@@ -43,7 +45,9 @@ export const icons = {
   windowClose,
   closeCircle,
   pencil,
-  delete: deleteIcon
+  delete: deleteIcon,
+  pageFirst,
+  pageLast
 }
 
 export const addIcon = (name: string, svg: string) => {

@@ -51,6 +51,11 @@ const props = withDefaults(defineProps<VLCrudFormProps>(), {
 
 onMounted(() => {
   if (props.modelValue) model.value = { ...props.modelValue }
+  Object.keys(fields.value).forEach((field) => {
+    if (model.value[field]) {
+      fields.value[field].side_effect?.(model.value, fields.value)
+    }
+  })
 })
 
 const fields = ref(
