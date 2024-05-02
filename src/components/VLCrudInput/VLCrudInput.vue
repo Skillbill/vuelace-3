@@ -113,8 +113,7 @@ const inputRef = ref<InstanceType<
 
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false,
-  required: false,
-  hidden: false
+  required: false
 })
 
 function cheatType<T>(): T {
