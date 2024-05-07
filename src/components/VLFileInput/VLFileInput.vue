@@ -1,12 +1,12 @@
 <template>
   <div class="relative">
-    <label :for="name" class="pb-4" :class="[error?.length && 'error']">
+    <label :for="name" class="pb-4" :class="[errorMessage?.length && 'error']">
       {{ label }} <span v-if="required">*</span>
     </label>
     <div
       class="input-like"
       tabindex="0"
-      :class="[disabled && 'disabled', error?.length && 'error']"
+      :class="[disabled && 'disabled', errorMessage?.length && 'error']"
       @keydown.enter.prevent="openFileSelection"
       @click="openFileSelection"
     >
@@ -36,7 +36,7 @@
       <slot name="suffix"></slot>
     </div>
     <span v-if="helpText" class="text-xs line-clamp-2 text-neutral-600">{{ helpText }}</span>
-    <ErrorMessage v-if="error?.length">{{ error }}</ErrorMessage>
+    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
     <input
       ref="hiddenInput"
       type="file"

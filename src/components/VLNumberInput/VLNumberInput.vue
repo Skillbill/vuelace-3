@@ -23,6 +23,7 @@
       :max="max"
       :step="step"
       :autofocus="autofocus"
+      :autocomplete="autocomplete"
       @sl-change="atChange"
       @sl-blur="(evt: SlBlurEvent) => emit('blur', evt)"
       @sl-focus="(evt: SlFocusEvent) => emit('focus', evt)"

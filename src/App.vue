@@ -113,6 +113,12 @@
           }
         ]"
       />
+      <VLAutocomplete
+        v-model="values['autocompleteInput' as keyof typeof values]"
+        optionValue="value"
+        :options="items"
+        emptySearchMessage="empty"
+      />
       <VLButton @click="atClick">
         <div class="flex items-center">
           Submit<VLIcon class="text-xl" library="system" name="chevronRight" />
@@ -135,6 +141,7 @@ import VLRadioGroup from './components/VLRadioGroup/VLRadioGroup.vue'
 import VLIcon from './components/VLIcon/VLIcon.vue'
 import VLImageUpload from './components/VLImageUpload/VLImageUpload.vue'
 import VLButton from './components/VLButton/VLButton.vue'
+import VLAutocomplete from './components/VLAutocomplete/VLAutocomplete.vue'
 
 const values = ref({})
 
@@ -143,6 +150,13 @@ const numberInput = ref<InstanceType<typeof VLNumberInput> | null>(null)
 const selectInput = ref<InstanceType<typeof VLSelect> | null>(null)
 const checkboxInput = ref<InstanceType<typeof VLCheckbox> | null>(null)
 const dateInput = ref<InstanceType<typeof VLDatePicker> | null>(null)
+
+const items = [
+  { value: 'station-levels', text: 'Stations Levels' },
+  { value: 'trains', text: 'Trains' },
+  { value: 'sections', text: 'Sections' },
+  { value: 'building-levels', text: 'Buildings Levels' }
+]
 
 const atClick = () => {
   textInput.value?.validateInput()

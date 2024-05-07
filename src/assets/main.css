@@ -35,15 +35,25 @@
   color: var(--sl-color-primary-500);
 }
 
+.p-autocomplete-item.p-highlight {
+  background: var(--sl-color-primary-600);
+  color: var(--sl-color-neutral-0);
+}
+
+.p-autocomplete-item.p-focus:not(.p-highlight) {
+  background-color: var(--sl-color-neutral-100);
+  color: var(--sl-color-neutral-1000);
+}
+
 body {
   width: 100%;
   height: 100%;
 }
 
 #app {
-  width: 100%;  
+  width: 100%;
   height: 100%;
-}  
+}
 
 @tailwind base;
 @tailwind components;
