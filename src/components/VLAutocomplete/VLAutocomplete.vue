@@ -6,7 +6,7 @@
     <AutoComplete
       :class="[errorMessage?.length && 'error']"
       v-model="inputModel"
-      :optionLabel="optionLabel"
+      optionLabel="text"
       :suggestions="suggestions"
       :emptySearchMessage="emptySearchMessage"
       :placeholder="placeholder"
@@ -25,13 +25,22 @@
       @before-hide="(evt) => emit('before-hide', evt)"
       @show="(evt) => emit('show', evt)"
       @hide="onHide"
-    />
+      ><template #option="{ option }">
+        <div class="flex items-center gap-2">
+          <span class="w-4">
+            <VLIcon v-if="model === option.value" class="pt-1" name="check"> </VLIcon>
+          </span>
+          <span>{{ option.text }}</span>
+        </div>
+      </template></AutoComplete
+    >
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
 </template>
 
 <script setup lang="ts">
 import AutoComplete from 'primevue/autocomplete'
+import { VLIcon } from '../VLIcon'
 import { type VLAutocompleteProps } from './types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import { ref } from 'vue'
@@ -59,10 +68,14 @@ const props = withDefaults(defineProps<VLAutocompleteProps>(), {
   disabled: false,
   dropdown: true,
   required: false,
-  optionLabel: 'text',
   forceSelection: true,
   options: () => [] as VLSelectOptionType[],
   rules: () => [] as VLInputRuleType[]
+})
+
+const suggestions = defineModel('suggestions', {
+  type: Array,
+  default: () => []
 })
 
 const inputModel = ref<string | object | undefined>()
@@ -75,7 +88,7 @@ watch(inputModel, () => {
 })
 
 watch(model, (value) => {
-  if (!value) inputModel.value = { value: undefined, [props.optionLabel]: '' }
+  if (!value) inputModel.value = { value: undefined, text: '' }
   inputModel.value = props.options.find((option) => value === option.value)
 })
 
@@ -85,13 +98,16 @@ const onItemSelect = (evt: any) => {
   emit('item-select', evt)
 }
 
-const suggestions = defineModel('suggestions', {
-  type: Array,
-  default: () => []
-})
+const onBlur = (evt: any) => {
+  if (inputModel.value === null && model.value) {
+    inputModel.value = props.options.find((option) => option.value === model.value)
+  }
+
+  emit('clear', evt)
+}
 
 const defaultOnComplete = (evt: any) =>
-  (suggestions.value = props.options.filter((item: { value: string; text: string }) =>
+  (suggestions.value = props.options.filter((item) =>
     item.text.toLowerCase().includes(evt.query.toLowerCase())
   ))
 
@@ -99,14 +115,6 @@ const onCompleteEvent = (evt: any) => {
   !props.onComplete && defaultOnComplete(evt)
 
   emit('complete', evt)
-}
-
-const onBlur = (evt: any) => {
-  if (inputModel.value === null && model.value) {
-    inputModel.value = props.options.find((option) => option.value === model.value)?.text
-  }
-
-  emit('clear', evt)
 }
 
 const validationError = ref<string | undefined>()
