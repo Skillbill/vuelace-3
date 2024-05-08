@@ -122,10 +122,6 @@
           {
             validateFn: (value: string | undefined) => value != undefined,
             message: 'The value is required'
-          },
-          {
-            validateFn: (value: string | undefined) => value === 'sections',
-            message: 'The value must be sections'
           }
         ]"
       />

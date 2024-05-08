@@ -4,6 +4,7 @@
       {{ label }} <span v-if="required">*</span>
     </label>
     <AutoComplete
+      ref="autocompleteInput"
       :class="[errorMessage?.length && 'error']"
       v-model="inputModel"
       optionLabel="text"
@@ -13,10 +14,11 @@
       :disabled="disabled"
       forceSelection
       dropdown
-      completeOnFocus
       @item-select="onItemSelect"
       @blur="onBlur"
       @complete="onCompleteEvent"
+      @click="() => autocompleteInput.show()"
+      @focus="onFocus"
       @change="(evt) => emit('change', evt)"
       @item-unselect="(evt) => emit('item-unselect', evt)"
       @dropdown-click="(evt) => emit('dropdown-click', evt)"
@@ -24,16 +26,17 @@
       @before-show="(evt) => emit('before-show', evt)"
       @before-hide="(evt) => emit('before-hide', evt)"
       @show="(evt) => emit('show', evt)"
-      @hide="onHide"
-      ><template #option="{ option }">
+      @hide="(evt) => emit('hide', evt)"
+    >
+      <template #option="{ option }">
         <div class="flex items-center gap-2">
           <span class="w-4">
             <VLIcon v-if="model === option.value" class="pt-1" name="check"> </VLIcon>
           </span>
           <span>{{ option.text }}</span>
         </div>
-      </template></AutoComplete
-    >
+      </template>
+    </AutoComplete>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
 </template>
@@ -76,6 +79,8 @@ const suggestions = defineModel('suggestions', {
   default: () => []
 })
 
+const autocompleteInput = ref<any>(null)
+
 const inputModel = ref<string | object | undefined>()
 const model = defineModel<string>()
 
@@ -99,8 +104,16 @@ watch(model, (value) => {
 
 const onItemSelect = (evt: any) => {
   model.value = evt.value.value
+  suggestions.value = []
 
   emit('item-select', evt)
+}
+
+const onFocus = (evt: any) => {
+  suggestions.value = props.options
+  autocompleteInput.value.show()
+
+  emit('focus', evt)
 }
 
 const onBlur = (evt: any) => {
@@ -108,7 +121,7 @@ const onBlur = (evt: any) => {
     inputModel.value = props.options.find((option) => option.value === model.value)
   }
 
-  emit('clear', evt)
+  emit('blur', evt)
 }
 
 const defaultOnComplete = (evt: any) =>
