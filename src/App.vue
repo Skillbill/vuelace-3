@@ -113,10 +113,21 @@
         ]"
       />
       <VLAutocomplete
+        ref="autocompleteInput"
         v-model="values['autocompleteInput' as keyof typeof values]"
         :options="items"
         emptySearchMessage="empty"
         label="Autocomplete"
+        :rules="[
+          {
+            validateFn: (value: string | undefined) => value != undefined,
+            message: 'The value is required'
+          },
+          {
+            validateFn: (value: string | undefined) => value === 'sections',
+            message: 'The value must be sections'
+          }
+        ]"
       />
       <VLButton @click="atClick">
         <div class="flex items-center">
@@ -149,6 +160,7 @@ const numberInput = ref<InstanceType<typeof VLNumberInput> | null>(null)
 const selectInput = ref<InstanceType<typeof VLSelect> | null>(null)
 const checkboxInput = ref<InstanceType<typeof VLCheckbox> | null>(null)
 const dateInput = ref<InstanceType<typeof VLDatePicker> | null>(null)
+const autocompleteInput = ref<InstanceType<typeof VLAutocomplete> | null>(null)
 
 const items = [
   { value: 'station-levels', text: 'Stations Levels' },
@@ -163,6 +175,7 @@ const atClick = () => {
   selectInput.value?.validateInput()
   checkboxInput.value?.validateInput()
   dateInput.value?.validateInput()
+  autocompleteInput.value?.validateInput()
 
   console.log('You clicked me!')
 }
