@@ -13,14 +13,14 @@
       :loading="loading"
       :disabled="disabled"
       :placeholder="placeholder"
-      optionLabel="text"
+      :optionLabel="optionLabel"
       @change="(evt) => emit('change', evt)"
       @blur="(evt) => emit('blur', evt)"
       @focus="(evt) => emit('focus', evt)"
-      @item-select="(evt) => emit('item-unselect', evt)"
+      @item-select="atItemSelect"
       @item-unselect="(evt) => emit('item-unselect', evt)"
       @dropdown-click="(evt) => emit('dropdown-click', evt)"
-      @clear="(evt) => emit('clear', evt)"
+      @clear="atClear"
       @complete="onCompleteEvent"
       @before-show="(evt) => emit('before-show', evt)"
       @before-hide="(evt) => emit('before-hide', evt)"
@@ -42,6 +42,7 @@ import { watch } from 'vue'
 import { ref } from 'vue'
 import { computed } from 'vue'
 import type { VLInputRuleType } from '../utils/types'
+import { onMounted } from 'vue'
 
 const emit = defineEmits([
   'change',
@@ -65,11 +66,18 @@ const props = withDefaults(defineProps<VLAutocompleteProps>(), {
   required: false,
   forceSelection: true,
   itemValue: 'value',
+  optionLabel: 'text',
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel()
-const inputModel = ref()
+const model = defineModel<string | object | undefined>()
+const inputModel = ref<string | object | undefined>()
+
+onMounted(() => {
+  if (model.value) {
+    inputModel.value = model.value
+  }
+})
 
 const suggestions = defineModel('suggestions', {
   type: Array,
@@ -82,16 +90,25 @@ const defaultOnComplete = (evt: any) =>
   ))
 
 const onCompleteEvent = (evt: any) => {
-  if (!props.onComplete) {
-    defaultOnComplete(evt)
-  }
+  !props.onComplete && defaultOnComplete(evt)
 
   emit('complete', evt)
 }
 
-watch(inputModel, () => {
+const atItemSelect = (evt: any) => {
+  if (props.optionValue) {
+    model.value = evt.value?.[props.optionValue]
+  } else {
+    model.value = evt.value
+  }
+  emit('item-select', evt)
+}
+
+const atClear = (evt: any) => {
   model.value = undefined
-})
+
+  emit('clear', evt)
+}
 
 const validationError = ref<string | undefined>()
 
