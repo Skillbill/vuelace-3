@@ -4,32 +4,28 @@
       {{ label }} <span v-if="required">*</span>
     </label>
     <AutoComplete
-      v-model="inputModel"
       :class="[errorMessage?.length && 'error']"
-      :suggestions="suggestions"
-      :dropdown="dropdown"
-      :forceSelection="forceSelection"
-      :emptySearchMessage="emptySearchMessage"
-      :loading="loading"
-      :disabled="disabled"
-      :placeholder="placeholder"
+      v-model="inputModel"
       :optionLabel="optionLabel"
+      :suggestions="suggestions"
+      :emptySearchMessage="emptySearchMessage"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      forceSelection
+      dropdown
+      completeOnFocus
+      @item-select="onItemSelect"
+      @blur="onBlur"
+      @complete="onCompleteEvent"
       @change="(evt) => emit('change', evt)"
-      @blur="(evt) => emit('blur', evt)"
-      @focus="(evt) => emit('focus', evt)"
-      @item-select="atItemSelect"
       @item-unselect="(evt) => emit('item-unselect', evt)"
       @dropdown-click="(evt) => emit('dropdown-click', evt)"
-      @clear="atClear"
-      @complete="onCompleteEvent"
+      @clear="(evt) => emit('clear', evt)"
       @before-show="(evt) => emit('before-show', evt)"
       @before-hide="(evt) => emit('before-hide', evt)"
       @show="(evt) => emit('show', evt)"
-      @hide="(evt) => emit('hide', evt)"
-      ><template v-slot:option="{ option }">
-        {{ option.text }}
-      </template>
-    </AutoComplete>
+      @hide="onHide"
+    />
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
 </template>
@@ -38,11 +34,10 @@
 import AutoComplete from 'primevue/autocomplete'
 import { type VLAutocompleteProps } from './types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
-import { watch } from 'vue'
 import { ref } from 'vue'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import type { VLInputRuleType } from '../utils/types'
-import { onMounted } from 'vue'
+import type { VLSelectOptionType } from '../VLSelect'
 
 const emit = defineEmits([
   'change',
@@ -64,20 +59,31 @@ const props = withDefaults(defineProps<VLAutocompleteProps>(), {
   disabled: false,
   dropdown: true,
   required: false,
-  forceSelection: true,
-  itemValue: 'value',
   optionLabel: 'text',
+  forceSelection: true,
+  options: () => [] as VLSelectOptionType[],
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel<string | object | undefined>()
 const inputModel = ref<string | object | undefined>()
+const model = defineModel<string>()
 
-onMounted(() => {
-  if (model.value) {
-    inputModel.value = model.value
+watch(inputModel, () => {
+  if (inputModel.value === null) {
+    model.value === null
   }
 })
+
+watch(model, (value) => {
+  if (!value) inputModel.value = { value: undefined, [props.optionLabel]: '' }
+  inputModel.value = props.options.find((option) => value === option.value)
+})
+
+const onItemSelect = (evt: any) => {
+  model.value = evt.value.value
+
+  emit('item-select', evt)
+}
 
 const suggestions = defineModel('suggestions', {
   type: Array,
@@ -95,17 +101,10 @@ const onCompleteEvent = (evt: any) => {
   emit('complete', evt)
 }
 
-const atItemSelect = (evt: any) => {
-  if (props.optionValue) {
-    model.value = evt.value?.[props.optionValue]
-  } else {
-    model.value = evt.value
+const onBlur = (evt: any) => {
+  if (inputModel.value === null && model.value) {
+    inputModel.value = props.options.find((option) => option.value === model.value)?.text
   }
-  emit('item-select', evt)
-}
-
-const atClear = (evt: any) => {
-  model.value = undefined
 
   emit('clear', evt)
 }

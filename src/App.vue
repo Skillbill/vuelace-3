@@ -67,7 +67,6 @@
           }
         ]"
       />
-
       <VLColorPicker
         v-model="values['colorPickerInput' as keyof typeof values]"
         name="colorPickerInput"
@@ -115,9 +114,9 @@
       />
       <VLAutocomplete
         v-model="values['autocompleteInput' as keyof typeof values]"
-        optionValue="value"
         :options="items"
         emptySearchMessage="empty"
+        label="Autocomplete"
       />
       <VLButton @click="atClick">
         <div class="flex items-center">

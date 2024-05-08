@@ -1,15 +1,12 @@
+import { VLSelectOptionType } from '../VLSelect'
 import type { VLInputRuleType } from '../utils/types'
 
 export interface VLAutocompleteProps {
-  options: { value: any; text: string }[]
-  dropdown?: boolean
+  options?: VLSelectOptionType[]
   placeholder?: string
   disabled?: boolean
-  forceSelection?: boolean
   emptySearchMessage?: string
   optionLabel?: string
-  optionValue?: string
-  loading?: boolean
   error?: string
   label?: string
   required?: boolean
