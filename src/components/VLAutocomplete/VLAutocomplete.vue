@@ -40,11 +40,11 @@
 
 <script setup lang="ts">
 import AutoComplete from 'primevue/autocomplete'
-import { VLIcon } from '../VLIcon'
-import { type VLAutocompleteProps } from './types'
+import { ref, onMounted, computed, watch } from 'vue'
+
 import ErrorMessage from '../utils/ErrorMessage.vue'
-import { ref } from 'vue'
-import { computed, watch } from 'vue'
+import { VLIcon } from '../VLIcon'
+import type { VLAutocompleteProps } from './types'
 import type { VLInputRuleType } from '../utils/types'
 import type { VLSelectOptionType } from '../VLSelect'
 
@@ -66,9 +66,7 @@ const emit = defineEmits([
 
 const props = withDefaults(defineProps<VLAutocompleteProps>(), {
   disabled: false,
-  dropdown: true,
   required: false,
-  forceSelection: true,
   options: () => [] as VLSelectOptionType[],
   rules: () => [] as VLInputRuleType[]
 })
@@ -87,9 +85,16 @@ watch(inputModel, () => {
   }
 })
 
+onMounted(() => {
+  inputModel.value = !model.value
+    ? { value: undefined, text: '' }
+    : props.options.find((option) => model.value === option.value)
+})
+
 watch(model, (value) => {
-  if (!value) inputModel.value = { value: undefined, text: '' }
-  inputModel.value = props.options.find((option) => value === option.value)
+  inputModel.value = !value
+    ? { value: undefined, text: '' }
+    : props.options.find((option) => value === option.value)
 })
 
 const onItemSelect = (evt: any) => {
