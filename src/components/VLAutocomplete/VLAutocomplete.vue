@@ -17,7 +17,7 @@
       @item-select="onItemSelect"
       @blur="onBlur"
       @complete="onCompleteEvent"
-      @click="() => autocompleteInput.show()"
+      @click="onClick"
       @focus="onFocus"
       @change="(evt) => emit('change', evt)"
       @item-unselect="(evt) => emit('item-unselect', evt)"
@@ -52,6 +52,7 @@ import type { VLInputRuleType } from '../utils/types'
 import type { VLSelectOptionType } from '../VLSelect'
 
 const emit = defineEmits([
+  'click',
   'change',
   'focus',
   'blur',
@@ -107,6 +108,13 @@ const onItemSelect = (evt: any) => {
   suggestions.value = []
 
   emit('item-select', evt)
+}
+
+const onClick = (evt: any) => {
+  suggestions.value = props.options
+  autocompleteInput.value.show()
+
+  emit('click', evt)
 }
 
 const onFocus = (evt: any) => {
