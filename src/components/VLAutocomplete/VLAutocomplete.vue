@@ -13,6 +13,7 @@
       :placeholder="placeholder"
       :disabled="disabled"
       forceSelection
+      input-class="px-4 py-1"
       dropdown
       @item-select="onItemSelect"
       @blur="onBlur"
@@ -92,15 +93,17 @@ watch(inputModel, () => {
 })
 
 onMounted(() => {
-  inputModel.value = !model.value
-    ? { value: undefined, text: '' }
-    : props.options.find((option) => model.value === option.value)
+  if (!model.value?.length) inputModel.value = { value: undefined, text: '' }
+  else {
+    inputModel.value = props.options.find((option) => model.value === option.value)
+  }
 })
 
 watch(model, (value) => {
-  inputModel.value = !value
-    ? { value: undefined, text: '' }
-    : props.options.find((option) => value === option.value)
+  if (!value?.length) inputModel.value = { value: undefined, text: '' }
+  else {
+    inputModel.value = props.options.find((option) => model.value === option.value)
+  }
 })
 
 const onItemSelect = (evt: any) => {
@@ -138,7 +141,11 @@ const defaultOnComplete = (evt: any) =>
   ))
 
 const onCompleteEvent = (evt: any) => {
-  !props.onComplete && defaultOnComplete(evt)
+  if (props.onComplete) {
+    props.onComplete(evt)
+  } else {
+    defaultOnComplete(evt)
+  }
 
   emit('complete', evt)
 }
@@ -181,7 +188,6 @@ defineExpose({
   align-items: center;
   width: 100%;
   min-height: var(--sl-input-height-medium);
-  padding: 0.25rem 1rem;
   background-color: var(--sl-input-background-color);
   border: solid var(--sl-input-border-width) var(--sl-input-border-color);
   border-radius: 0.25rem;

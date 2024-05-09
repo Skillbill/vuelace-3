@@ -22,6 +22,7 @@
 
   --sl-input-focus-ring-color: #fb6703;
   --sl-input-focus-ring-offset: 0;
+  --p-anchor-gutter: 0.25rem;
 }
 
 /* This should not be here :( 
@@ -31,6 +32,16 @@
 */
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background: var(--sl-color-primary-600);
+  color: var(--sl-color-neutral-0);
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-focus:not(.p-highlight) {
+  background-color: var(--sl-color-neutral-100);
+  color: var(--sl-color-neutral-1000);
+}
+
+.p-calendar > .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
   background: var(--sl-color-primary-100);
   color: var(--sl-color-primary-500);
 }
