@@ -28,6 +28,7 @@ export interface VLNumberInputProps {
   step?: number | 'any'
   autocomplete?: string
   autofocus?: boolean
+  title?: string
   error?: string
   rules?: VLInputRuleType[]
   onFocus?: (e: SlFocusEvent) => void
