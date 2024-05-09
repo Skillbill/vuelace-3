@@ -4,7 +4,7 @@
       class="min-w-full listbox"
       :class="[errorMessage?.length && 'error']"
       hoist
-      :value="model"
+      :value="templateModel"
       :name="name"
       :defaultValue="defaultValue"
       :size="size"
@@ -32,7 +32,11 @@
       @sl-after-hide.stop="(evt: SlAfterHideEvent) => emit('after-hide', evt)"
       @sl-invalid="(evt: SlInvalidEvent) => emit('invalid', evt)"
     >
-      <sl-option v-for="option in options" :key="option.value" :value="option.value">
+      <sl-option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value.replaceAll(' ', '_')"
+      >
         {{ option.text }}
       </sl-option>
     </sl-select>
@@ -41,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
 import type {
   VLInputRuleType,
   SlFocusEvent,
@@ -101,10 +105,16 @@ const props = withDefaults(defineProps<VLSelectProps>(), {
 })
 
 const model = defineModel<string | string[] | undefined | null>()
-// model.value = [] as string[]
+
+const options_dict = ref<{ [key: string]: string }>({})
 
 const atChange = (evt: SlChangeEvent) => {
-  model.value = (evt.target as SlSelect)?.value
+  const value = (evt.target as SlSelect)?.value
+  model.value = Array.isArray(value)
+    ? value.map((value) => options_dict.value[value])
+    : value
+      ? options_dict.value[value]
+      : undefined
   emit('change', evt)
 }
 
@@ -134,10 +144,33 @@ watch(model, () => {
   validateInput()
 })
 
+onMounted(() => {
+  options_dict.value = {}
+  props.options.forEach(({ value }) => {
+    options_dict.value[value.replaceAll(' ', '_')] = value
+  })
+})
+
+watch(
+  () => props.options,
+  () => {
+    options_dict.value = {}
+    props.options.forEach(({ value }) => {
+      options_dict.value[value.replaceAll(' ', '_')] = value
+    })
+  }
+)
+
 defineExpose({
   isValid: () => errorMessage.value === undefined || errorMessage.value.length === 0,
   validateInput
 })
+
+const templateModel = computed(() =>
+  Array.isArray(model.value)
+    ? model.value.map((s) => s.replaceAll(' ', '_'))
+    : model.value?.replaceAll(' ', '_')
+)
 </script>
 
 <style scoped>
