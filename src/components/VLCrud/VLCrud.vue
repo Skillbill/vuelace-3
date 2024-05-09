@@ -60,6 +60,7 @@
       />
     </div>
     <VLDialog
+      class="no-bottom-padding"
       :noCloseOnOutsideClick="persistActionDialog"
       v-bind="dialogProps"
       v-model="showDialog"
@@ -275,3 +276,9 @@ const closeDialog = () => {
   }, 300)
 }
 </script>
+
+<style scoped>
+.no-bottom-padding::part(body) {
+  padding-bottom: 0;
+}
+</style>

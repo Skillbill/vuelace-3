@@ -23,7 +23,7 @@
       @update:modelValue="() => field.side_effect?.(model, fields)"
       @error="(evt) => emit('error', evt)"
     />
-    <div class="flex justify-end w-full gap-2">
+    <div class="sticky bottom-0 flex justify-end w-full gap-2 pb-4 bg-white">
       <VLButton @click="onCanceled">{{ cancelLabel }}</VLButton>
       <VLButton variant="primary" type="submit"
         ><span>{{ confirmLabel }}</span></VLButton

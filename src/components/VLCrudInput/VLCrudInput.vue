@@ -81,10 +81,23 @@
     @update:model-value="cheatUpdateFunction"
     @error="(evt) => emit('error', evt)"
   />
+  <VLAutocomplete
+    v-else-if="type === 'autocomplete'"
+    ref="inputRef"
+    :name="input_name"
+    :label="label"
+    :rules="rules"
+    :required="required"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :options="options"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
+  />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 import type { VLCrudInputProps, VLCrudInputValueType } from './types'
 import { VLInput } from '../VLInput'
@@ -94,7 +107,7 @@ import { VLNumberInput } from '../VLNumberInput'
 import { VLDatePicker } from '../VLDatePicker'
 import { VLColorPicker } from '../VLColorPicker'
 import { VLImageUpload } from '../VLImageUpload'
-import { onMounted } from 'vue'
+import { VLAutocomplete } from '../VLAutocomplete'
 
 const emit = defineEmits(['error', 'update:modelValue'])
 
@@ -109,6 +122,7 @@ const inputRef = ref<InstanceType<
   | typeof VLNumberInput
   | typeof VLDatePicker
   | typeof VLImageUpload
+  | typeof VLAutocomplete
 > | null>(null)
 
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
@@ -122,6 +136,10 @@ function cheatType<T>(): T {
   }
 
   if (props.type === 'select' && typeof model.value === 'number') {
+    model.value = `${model.value}`
+  }
+
+  if (props.type === 'autocomplete' && typeof model.value === 'number') {
     model.value = `${model.value}`
   }
 

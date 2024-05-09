@@ -20,7 +20,7 @@
     >
       <span v-if="label.length" :class="[errorMessage?.length && 'text-error']">{{ label }}</span>
     </sl-checkbox>
-    <ErrorMessage class="left-6 top-6" v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
+    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
 </template>
 

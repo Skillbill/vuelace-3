@@ -25,12 +25,14 @@ export interface VLInputProps {
   form?: string
   required?: boolean
   autocapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'
+  autocomplete?: string
   autocorrect?: 'off' | 'on'
   autofocus?: boolean
   spellcheck?: boolean
   inputmode?: 'none' | 'text' | 'email'
   rules?: VLInputRuleType[]
   error?: string
+  title?: string
   onFocus?: (e: SlFocusEvent) => void
   onBlur?: (e: SlBlurEvent) => void
   onInput?: (e: SlInputEvent) => void
