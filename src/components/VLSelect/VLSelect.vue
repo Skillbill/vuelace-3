@@ -105,7 +105,6 @@ const props = withDefaults(defineProps<VLSelectProps>(), {
 })
 
 const model = defineModel<string | string[] | undefined | null>()
-// model.value = [] as string[]
 
 const options_dict = ref<{ [key: string]: string }>({})
 
