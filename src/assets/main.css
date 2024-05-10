@@ -25,37 +25,6 @@
   --p-anchor-gutter: 0.25rem;
 }
 
-/* This should not be here :( 
-  Needed to override the default styles of PrimeVue dropdown component 
-  of the paginator. For some reason, the dropdown is placed outside 
-  the component so the scoped style could not reach it.
-*/
-
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-  background: var(--sl-color-primary-600);
-  color: var(--sl-color-neutral-0);
-}
-
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-focus:not(.p-highlight) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--sl-color-neutral-1000);
-}
-
-.p-calendar > .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-  background: var(--sl-color-primary-100);
-  color: var(--sl-color-primary-500);
-}
-
-.p-autocomplete-item.p-highlight {
-  background: var(--sl-color-primary-600);
-  color: var(--sl-color-neutral-0);
-}
-
-.p-autocomplete-item.p-focus:not(.p-highlight) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--sl-color-neutral-1000);
-}
-
 body {
   width: 100%;
   height: 100%;

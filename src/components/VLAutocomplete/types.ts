@@ -10,6 +10,7 @@ export interface VLAutocompleteProps {
   error?: string
   label?: string
   required?: boolean
+  labelClass?: string
   rules?: VLInputRuleType[]
   onChange?: (evt: any) => void
   onBlur?: (evt: any) => void
