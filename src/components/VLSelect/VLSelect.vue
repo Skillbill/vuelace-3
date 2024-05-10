@@ -35,7 +35,7 @@
       <sl-option
         v-for="option in options"
         :key="option.value"
-        :value="option.value.replaceAll(' ', '_')"
+        :value="`${option.value}`.replaceAll(' ', '_')"
       >
         {{ option.text }}
       </sl-option>
@@ -147,7 +147,7 @@ watch(model, () => {
 onMounted(() => {
   options_dict.value = {}
   props.options.forEach(({ value }) => {
-    options_dict.value[value.replaceAll(' ', '_')] = value
+    options_dict.value[`${value}`.replaceAll(' ', '_')] = value
   })
 })
 
@@ -156,7 +156,7 @@ watch(
   () => {
     options_dict.value = {}
     props.options.forEach(({ value }) => {
-      options_dict.value[value.replaceAll(' ', '_')] = value
+      options_dict.value[`${value}`.replaceAll(' ', '_')] = value
     })
   }
 )
@@ -168,8 +168,8 @@ defineExpose({
 
 const templateModel = computed(() =>
   Array.isArray(model.value)
-    ? model.value.map((s) => s.replaceAll(' ', '_'))
-    : model.value?.replaceAll(' ', '_')
+    ? model.value.map((s) => `${s}`.replaceAll(' ', '_'))
+    : `${model.value}`?.replaceAll(' ', '_')
 )
 </script>
 
