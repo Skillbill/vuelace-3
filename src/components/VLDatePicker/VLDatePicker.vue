@@ -43,7 +43,6 @@
       :showTime="withTime"
       :date-select="atDateSelect"
       panelClass="min-w-min"
-      append-to="self"
     />
   </sl-dropdown>
 </template>
