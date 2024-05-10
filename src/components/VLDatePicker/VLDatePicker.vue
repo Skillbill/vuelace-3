@@ -43,6 +43,7 @@
       :showTime="withTime"
       :date-select="atDateSelect"
       panelClass="min-w-min"
+      append-to="self"
     />
   </sl-dropdown>
 </template>
@@ -165,6 +166,11 @@ defineExpose({
 
 :deep(span.p-calendar) {
   max-height: 50vh;
+}
+
+:deep(.p-calendar > .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight) {
+  background: var(--sl-color-primary-100);
+  color: var(--sl-color-primary-500);
 }
 
 .date-input::part(input) {

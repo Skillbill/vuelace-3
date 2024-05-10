@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <label class="pb-4" :class="[errorMessage?.length && 'error']">
+    <label class="block mb-[2px]" :class="[errorMessage?.length && 'error', labelClass]">
       {{ label }} <span v-if="required">*</span>
     </label>
     <AutoComplete
@@ -14,7 +14,9 @@
       :disabled="disabled"
       forceSelection
       input-class="px-4 py-1"
+      panel-class="py-2"
       dropdown
+      append-to="self"
       @item-select="onItemSelect"
       @blur="onBlur"
       @complete="onCompleteEvent"
@@ -36,6 +38,9 @@
           </span>
           <span>{{ option.text }}</span>
         </div>
+      </template>
+      <template #dropdownicon>
+        <VLIcon class="mr-2 dropdown" name="caret" library="system" />
       </template>
     </AutoComplete>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
@@ -191,6 +196,7 @@ defineExpose({
   background-color: var(--sl-input-background-color);
   border: solid var(--sl-input-border-width) var(--sl-input-border-color);
   border-radius: 0.25rem;
+  color: var(--sl-input-color);
 }
 
 .p-autocomplete:hover:not(.p-disabled, .error),
@@ -200,11 +206,26 @@ defineExpose({
   border-color: var(--sl-input-border-color-hover);
 }
 
+:deep(.p-autocomplete):focus-within {
+  box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-input-focus-ring-color);
+  border: solid var(--sl-input-border-width) var(--sl-input-border-color-focus);
+}
+
 :deep(.p-autocomplete-input):focus {
   border-color: none;
   background-color: var(--sl-input-background-color-focus);
   box-shadow: none;
   outline: none;
+}
+
+:deep(.p-autocomplete-item.p-highlight) {
+  background: var(--sl-color-primary-600);
+  color: var(--sl-color-neutral-0);
+}
+
+:deep(.p-autocomplete-item.p-focus:not(.p-highlight)) {
+  background-color: var(--sl-color-neutral-100);
+  color: var(--sl-color-neutral-1000);
 }
 
 div.p-autocomplete.p-disabled,
@@ -217,5 +238,14 @@ div.p-autocomplete.p-disabled,
 .error {
   border-color: var(--sl-color-danger-500);
   color: var(--sl-color-danger-500);
+}
+
+.dropdown {
+  color: var(--sl-color-neutral-1000);
+  transition: transform 0.1s linear;
+}
+
+.p-overlay-open .dropdown {
+  transform: rotate(-180deg);
 }
 </style>
