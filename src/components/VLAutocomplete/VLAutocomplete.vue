@@ -14,6 +14,7 @@
       :disabled="disabled"
       forceSelection
       input-class="px-4 py-1"
+      panel-class="py-2"
       dropdown
       append-to="self"
       @item-select="onItemSelect"
