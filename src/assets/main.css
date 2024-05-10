@@ -22,7 +22,17 @@
 
   --sl-input-focus-ring-color: #fb6703;
   --sl-input-focus-ring-offset: 0;
-  --p-anchor-gutter: 0.5rem;
+  --p-anchor-gutter: 0.25rem;
+}
+
+.p-autocomplete-item.p-highlight {
+  background: var(--sl-color-primary-600);
+  color: var(--sl-color-neutral-0);
+}
+
+.p-autocomplete-item.p-focus:not(.p-highlight) {
+  background-color: var(--sl-color-neutral-100);
+  color: var(--sl-color-neutral-1000);
 }
 
 body {

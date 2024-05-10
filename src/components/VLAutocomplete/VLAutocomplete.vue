@@ -16,7 +16,6 @@
       input-class="px-4 py-1"
       panel-class="py-2"
       dropdown
-      append-to="self"
       @item-select="onItemSelect"
       @blur="onBlur"
       @complete="onCompleteEvent"
@@ -40,7 +39,7 @@
         </div>
       </template>
       <template #dropdownicon>
-        <VLIcon class="mr-2 dropdown" name="caret" library="system" />
+        <VLIcon class="dropdown" name="caret" library="system" />
       </template>
     </AutoComplete>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
@@ -216,16 +215,6 @@ defineExpose({
   background-color: var(--sl-input-background-color-focus);
   box-shadow: none;
   outline: none;
-}
-
-:deep(.p-autocomplete-item.p-highlight) {
-  background: var(--sl-color-primary-600);
-  color: var(--sl-color-neutral-0);
-}
-
-:deep(.p-autocomplete-item.p-focus:not(.p-highlight)) {
-  background-color: var(--sl-color-neutral-100);
-  color: var(--sl-color-neutral-1000);
 }
 
 div.p-autocomplete.p-disabled,
