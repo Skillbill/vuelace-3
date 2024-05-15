@@ -96,8 +96,6 @@ By default, the library uses [Material Design Icons](https://pictogrammers.com/l
 However, not all icons are available to mantain a lightweight package size.
 It is possible to add/override current icons (icons must be svgs from any source) using the exposed functions:
 
-Example adding an icon using MDI svgs
-
 ```js
 import cat from '@mdi/svg/svg/cat.svg'
 import { addIcon } from '@skillbill/vuelace-3'
