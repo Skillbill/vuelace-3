@@ -10,11 +10,10 @@ const meta = {
     setup() {
       return { args }
     },
-
     template: `
-      <Tooltip v-bind="args">
+      <VLTooltip v-bind="args">
         <span>{{args.default}}</span>
-      </Tooltip>
+      </VLTooltip>
     `
   }),
   argTypes: {
