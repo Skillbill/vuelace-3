@@ -1,0 +1,52 @@
+name: Bug report
+description: Create a report to help Vuelace improve.
+title: 'Component Name: Issue Title'
+labels: 'bug'
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: What the bug is.
+    validations:
+      required: true
+  - type: input
+    id: vl-version
+    attributes:
+      label: Vuelace version
+      placeholder: x.x.x
+    validations:
+      required: true
+  - type: input
+    id: vue-version
+    attributes:
+      label: Vue version
+      placeholder: 3.x.x
+    validations:
+      required: true
+  - type: input
+    id: browsers
+    attributes:
+      label: Browser(s)
+      description: List specific browser(s) the problem occurs on or leave blank if ALL browsers
+      placeholder: >
+        e.g. Chrome 124, Firefox 125
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps to reproduce the bug
+      description: How to reproduce the issue.
+      placeholder: >
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: false
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen.
+    validations:
+      required: false
