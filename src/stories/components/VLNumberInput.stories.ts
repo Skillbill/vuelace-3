@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLNumberInput } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Number input',
+  title: 'Components/Number input',
   component: VLNumberInput,
   tags: ['autodocs'],
   argTypes: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import Dialog from '../../components/examples/Dialog.vue'
 
 const meta = {
-  title: 'Vuelace3/Dialog',
+  title: 'Components/Dialog',
   component: Dialog,
   tags: ['autodocs']
 } satisfies Meta<typeof Dialog>

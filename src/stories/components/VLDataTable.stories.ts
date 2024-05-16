@@ -18,7 +18,7 @@ const getItems = () => {
 }
 
 const meta = {
-  title: 'Vuelace3/Data Table',
+  title: 'Components/Data Table',
   component: VLDataTableCrud,
   tags: ['autodocs'],
   argTypes: {

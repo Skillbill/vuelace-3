@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLAutocomplete } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Autocomplete',
+  title: 'Components/Autocomplete',
   component: VLAutocomplete,
   tags: ['autodocs'],
   args: {

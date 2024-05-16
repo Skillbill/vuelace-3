@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import UsersCrudExample from '../../components/examples/UsersCrudExample.vue'
 
 const meta = {
-  title: 'Vuelace3/Examples/Users Crud',
+  title: 'Examples/Users Crud',
   component: UsersCrudExample,
   tags: ['autodocs'],
   args: {}

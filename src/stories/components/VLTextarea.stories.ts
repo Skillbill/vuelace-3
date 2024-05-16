@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLTextArea } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/TextArea',
+  title: 'Components/TextArea',
   component: VLTextArea,
   tags: ['autodocs'],
   argTypes: {

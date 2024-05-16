@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLRadioGroup } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Radio group',
+  title: 'Components/Radio group',
   component: VLRadioGroup,
   tags: ['autodocs'],
   argTypes: {
