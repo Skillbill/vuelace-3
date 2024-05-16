@@ -15,5 +15,6 @@ module.exports = {
   },
   rules: {
     'vue/no-deprecated-slot-attribute': 0
-  }
+  },
+  ignorePatterns: ['src/components/examples/']
 }
