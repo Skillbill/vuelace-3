@@ -3,16 +3,16 @@ import type { StorybookConfig } from '@storybook/vue3-vite'
 const config: StorybookConfig = {
   stories: [
     {
+      directory: '../src/stories/docs',
+      files: '*.mdx'
+    },
+    {
       directory: '../src/stories/components',
       files: '*.stories.@(js|jsx|mjs|ts|tsx)'
     },
     {
       directory: '../src/stories/examples',
       files: '*.stories.@(js|jsx|mjs|ts|tsx)'
-    },
-    {
-      directory: '../src/stories/docs',
-      files: '*.mdx'
     }
   ],
   addons: [
