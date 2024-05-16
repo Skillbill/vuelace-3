@@ -23,7 +23,6 @@
     </div>
     <slot></slot>
   </sl-details>
-  <testing-validation //>
 </template>
 
 <script setup lang="ts">
