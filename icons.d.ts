@@ -1,0 +1,31 @@
+export declare const icons: {
+    paperclip: string;
+    calendar: string;
+    cogs: string;
+    chevronDown: string;
+    check: string;
+    chevronLeft: string;
+    chevronRight: string;
+    contentCopy: string;
+    eyeOutline: string;
+    eyeOffOutline: string;
+    eyeDropper: string;
+    dragVertical: string;
+    minus: string;
+    account: string;
+    play: string;
+    pause: string;
+    circleMedium: string;
+    star: string;
+    windowClose: string;
+    closeCircle: string;
+    pencil: string;
+    delete: string;
+    pageFirst: string;
+    pageLast: string;
+};
+export declare const addIcon: (name: string, svg: string) => void;
+export declare const addIcons: (icons: {
+    name: string;
+    svg: string;
+}[]) => void;
