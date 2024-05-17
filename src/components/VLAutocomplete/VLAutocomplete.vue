@@ -24,11 +24,11 @@
       @change="(evt) => emit('change', evt)"
       @item-unselect="(evt) => emit('item-unselect', evt)"
       @dropdown-click="(evt) => emit('dropdown-click', evt)"
-      @clear="(evt) => emit('clear', evt)"
-      @before-show="(evt) => emit('before-show', evt)"
-      @before-hide="(evt) => emit('before-hide', evt)"
-      @show="(evt) => emit('show', evt)"
-      @hide="(evt) => emit('hide', evt)"
+      @clear="() => emit('clear')"
+      @before-show="() => emit('before-show')"
+      @before-hide="() => emit('before-hide')"
+      @show="() => emit('show')"
+      @hide="() => emit('hide')"
     >
       <template #option="{ option }">
         <div class="flex items-center gap-2">
