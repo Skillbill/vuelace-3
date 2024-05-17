@@ -1,4 +1,4 @@
-import{l as o}from"./VLCrud-CKYllaQO.js";import"./vue.esm-bundler-CM7cZQeb.js";import"./api.esm-C3jrVNCq.js";const m={title:"Vuelace3/Tooltip",component:o,tags:["autodocs"],render:a=>({components:{VLTooltip:o},setup(){return{args:a}},template:`
+import{l as o}from"./VLCrud-YwUZMWmj.js";import"./vue.esm-bundler-CM7cZQeb.js";import"./api.esm-C3jrVNCq.js";const m={title:"Vuelace3/Tooltip",component:o,tags:["autodocs"],render:a=>({components:{VLTooltip:o},setup(){return{args:a}},template:`
       <VLTooltip v-bind="args">
         <span>{{args.default}}</span>
       </VLTooltip>
