@@ -21,6 +21,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@chromatic-com/storybook'
   ],
+  staticDirs: ['../src/stories/docs/public'],
   framework: {
     name: '@storybook/vue3-vite',
     options: {}
