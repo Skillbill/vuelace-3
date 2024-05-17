@@ -11,3 +11,7 @@ export const installVuelace = (app: any) => {
   useIcons('mdi')
   return app.use(PrimeVue)
 }
+
+const x
+x = x + 1
+x
