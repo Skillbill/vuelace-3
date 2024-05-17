@@ -1,3 +1,10 @@
+import type {
+  AutoCompleteChangeEvent,
+  AutoCompleteCompleteEvent,
+  AutoCompleteDropdownClickEvent,
+  AutoCompleteItemSelectEvent,
+  AutoCompleteItemUnselectEvent
+} from 'primevue/autocomplete'
 import { VLSelectOptionType } from '../VLSelect'
 import type { VLInputRuleType } from '../utils/types'
 
@@ -12,16 +19,17 @@ export interface VLAutocompleteProps {
   required?: boolean
   labelClass?: string
   rules?: VLInputRuleType[]
-  onChange?: (evt: any) => void
-  onBlur?: (evt: any) => void
-  onFocus?: (evt: any) => void
-  onItemSelect?: (evt: any) => void
-  onItemUnselect?: (evt: any) => void
-  onDropdownClick?: (evt: any) => void
-  onClear?: (evt: any) => void
-  onComplete?: (evt: any) => void
-  onBeforeShow?: (evt: any) => void
-  onBeforeHide?: (evt: any) => void
-  onShow?: (evt: any) => void
-  onHide?: (evt: any) => void
+  onClick?: (evt: Event) => void
+  onBlur?: (evt: Event) => void
+  onFocus?: (evt: Event) => void
+  onChange?: (evt: AutoCompleteChangeEvent) => void
+  onItemSelect?: (evt: AutoCompleteItemSelectEvent) => void
+  onItemUnselect?: (evt: AutoCompleteItemUnselectEvent) => void
+  onDropdownClick?: (evt: AutoCompleteDropdownClickEvent) => void
+  onComplete?: (evt: AutoCompleteCompleteEvent) => void
+  onClear?: () => void
+  onBeforeShow?: () => void
+  onBeforeHide?: () => void
+  onShow?: () => void
+  onHide?: () => void
 }
