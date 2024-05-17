@@ -1,12 +1,13 @@
+import { VLSelectOptionType } from '../VLSelect'
+
 import type {
+  VLInputRuleType,
   AutoCompleteChangeEvent,
   AutoCompleteCompleteEvent,
   AutoCompleteDropdownClickEvent,
   AutoCompleteItemSelectEvent,
   AutoCompleteItemUnselectEvent
-} from 'primevue/autocomplete'
-import { VLSelectOptionType } from '../VLSelect'
-import type { VLInputRuleType } from '../utils/types'
+} from '../utils/types'
 
 export interface VLAutocompleteProps {
   options?: VLSelectOptionType[]
