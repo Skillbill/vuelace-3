@@ -18,6 +18,11 @@ setup((app) => {
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['Introduction', 'Contribuiting']
+      }
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
