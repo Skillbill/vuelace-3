@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLColorPicker } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Color picker',
+  title: 'Components/Color picker',
   component: VLColorPicker,
   tags: ['autodocs'],
   argTypes: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLImageUpload } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Image upload',
+  title: 'Components/Image upload',
   component: VLImageUpload,
   tags: ['autodocs']
   // argTypes: {

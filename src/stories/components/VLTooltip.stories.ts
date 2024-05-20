@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLTooltip } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Tooltip',
+  title: 'Components/Tooltip',
   component: VLTooltip,
   tags: ['autodocs'],
   render: (args) => ({

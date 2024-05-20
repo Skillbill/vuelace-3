@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLDatePicker } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Date picker',
+  title: 'Components/Date picker',
   component: VLDatePicker,
   tags: ['autodocs'],
   argTypes: {

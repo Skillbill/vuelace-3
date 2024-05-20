@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLInput } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/Input',
+  title: 'Components/Input',
   component: VLInput,
   tags: ['autodocs'],
   argTypes: {

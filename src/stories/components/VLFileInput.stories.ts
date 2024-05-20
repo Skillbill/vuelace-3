@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { VLFileInput } from '../../components'
 
 const meta = {
-  title: 'Vuelace3/File input',
+  title: 'Components/File input',
   component: VLFileInput,
   tags: ['autodocs'],
   argTypes: {
