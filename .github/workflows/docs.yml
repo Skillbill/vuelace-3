@@ -16,6 +16,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build-storybook
+      - name: No Jekyll
+        run: touch ./docs/.nojekyll
       - name: Build and deploy to storybook-static branch
         uses: JamesIves/github-pages-deploy-action@v4.6.0
         with:
