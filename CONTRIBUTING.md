@@ -1,13 +1,16 @@
 # Contributing to Vuelace-3
 
-1. [Getting Started](#getting-started)
-2. [How to Contribute](#how-to-contribute)
-   - [Suggesting features](#suggesting-features)
-   - [Reporting Bugs](#reporting-bugs)
-   - [Submitting Pull Requests](#submitting-pull-requests)
-3. [Development Guidelines](#development-guidelines)
-   - [Code Style](#code-style)
-   - [Commit Message Guidelines](#commit-message-guidelines)
+- [Contributing to Vuelace-3](#contributing-to-vuelace-3)
+  - [Getting Started](#getting-started)
+    - [Fork and Clone the Repository](#fork-and-clone-the-repository)
+    - [Storybook](#storybook)
+  - [How to Contribute](#how-to-contribute)
+    - [Suggesting Features](#suggesting-features)
+    - [Reporting Bugs](#reporting-bugs)
+    - [Submitting Pull Requests](#submitting-pull-requests)
+  - [Development Guidelines](#development-guidelines)
+    - [Code Style](#code-style)
+    - [Commit Message Guidelines](#commit-message-guidelines)
 
 ## Getting Started
 
@@ -61,6 +64,7 @@ Your pull request must respect the following guidelines:
 
 - Check that your code does not introduce linting issues.
 - Provide a detailed description of your changes in the pull request.
+- Link the related issue, if it exists.
 
 ## Development Guidelines
 
