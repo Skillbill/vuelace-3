@@ -42,7 +42,7 @@
       :maxDate="maxDate"
       :showTime="withTime"
       :date-select="atDateSelect"
-      panelClass="min-w-min"
+      panelClass="min-w-min !inline"
     />
   </sl-dropdown>
 </template>
