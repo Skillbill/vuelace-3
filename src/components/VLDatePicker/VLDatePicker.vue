@@ -145,7 +145,9 @@ defineExpose({
 </script>
 
 <style scoped>
-:deep(.p-datepicker table td > span.p-highlight) {
+:deep(.p-datepicker table td > span.p-highlight),
+:deep(.p-datepicker > .p-yearpicker .p-yearpicker-year.p-highlight),
+:deep(.p-datepicker > .p-monthpicker .p-monthpicker-month.p-highlight) {
   color: var(--sl-color-primary-500);
   background: var(--sl-color-primary-100);
 }
