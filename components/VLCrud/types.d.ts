@@ -57,7 +57,7 @@ export interface VLCrudProps {
         };
     } | undefined>;
     addItem?: (item: any) => any;
-    editItem?: (id: any, item: any) => any;
+    editItem?: (item: any) => any;
     translationFn?: (key: string, props?: {
         [key: string]: any;
     }) => string;
