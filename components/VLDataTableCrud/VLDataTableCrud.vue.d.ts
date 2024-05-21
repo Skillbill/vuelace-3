@@ -44,10 +44,10 @@ declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.es
         default: () => number[];
     };
     rowClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | undefined>;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     rowStyle: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | undefined>;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     totalRecords: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
@@ -124,10 +124,10 @@ declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.es
         default: () => number[];
     };
     rowClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | undefined>;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     rowStyle: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | undefined>;
+        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     totalRecords: {
         type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;

@@ -26,8 +26,8 @@ export interface VLDataTableCrudProps {
     lazy?: boolean;
     defaultRows?: number;
     rowsPerPageOptions?: number[];
-    rowClass?: (data: any) => object | undefined;
-    rowStyle?: (data: any) => object | undefined;
+    rowClass?: (data: any) => object | (string | object)[] | undefined;
+    rowStyle?: (data: any) => object | (string | object)[] | undefined;
     totalRecords?: number;
     paginator?: boolean;
     paginatorPosition?: 'both' | 'top' | 'bottom';
