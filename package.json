@@ -89,7 +89,7 @@
   },
   "peerDependencies": {
     "@mdi/svg": "^7.4.47",
-    "@shoelace-style/shoelace": "^2.13.0",
+    "@shoelace-style/shoelace": "^2.15.1",
     "pinia": "^2.1.7",
     "primevue": "^3.52.0",
     "vue": "^3.4.25"
