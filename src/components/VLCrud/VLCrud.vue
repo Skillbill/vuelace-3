@@ -253,8 +253,8 @@ const editAction = {
   }
 } as VLCrudActionType
 
-const onEdit = async (id: any, data: any) => {
-  await props.editItem?.(id, data)
+const onEdit = async (data: any) => {
+  await props.editItem?.(data)
   await onConfirm()
 }
 
