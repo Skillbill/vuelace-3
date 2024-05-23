@@ -1,6 +1,9 @@
-# Vuelace 3 🎨✨
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/@skillbill%2Fvuelace-3.svg)](https://badge.fury.io/js/@skillbill%2Fvuelace-3)
 
-Vuelace is a powerful UI component library built on top of Shoelace, designed to streamline the process of creating beautiful and responsive user interfaces for Vue.js applications leveraging the reliability of web components
+# Vuelace-3 🎨✨
+
+Vuelace-3 is a powerful UI component library built on top of Shoelace, designed to streamline the process of creating beautiful and responsive user interfaces for Vue.js applications leveraging the reliability of web components
 
 ## Recommended IDE Setup
 
@@ -51,7 +54,7 @@ npm run lint
 
 ### Using npm
 
-To install the library inside your project run:
+Vuelace-3 is available at [npm](https://www.npmjs.com/package/@skillbill/vuelace-3). To install the library inside your project run:
 
 ```sh
 npm i @skillbill/vuelace-3
@@ -85,9 +88,13 @@ import '@skillbill/vuelace-3/styles/vuelace.css'
 import '@skillbill/vuelace-3/styles/theme_primevue.css'
 import { installVuelace } from '@skillbill/vuelace-3'
 
+import App from './App.vue'
+
 const app = createApp(App)
 
 installVuelace(app)
+
+app.mount('#app')
 ```
 
 ### Add icons
