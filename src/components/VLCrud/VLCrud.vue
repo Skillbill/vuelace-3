@@ -32,7 +32,7 @@
           :class="[
             highlightLastEdited && lastEditedItem === data[primary_key] && hightlightLastEditedClass
           ]"
-          :tooltip="translationFn('tooltip.edit')"
+          :tooltip="translationFn(editTooltipI18nKey)"
           @click="() => onClickAction(editAction)(data)"
         />
         <!-- custom actions -->
@@ -50,7 +50,7 @@
     </VLDataTableCrud>
     <div class="flex justify-between w-full">
       <VLButton variant="primary" @click="addItem">{{
-        translationFn(`button.add_${singular_label}`)
+        translationFn(addButtonI18nKey ?? `button.add_${singular_label}`)
       }}</VLButton>
       <VLPaginator
         v-model:page="pagination.currentPage"
@@ -71,7 +71,7 @@
         type="add"
         key="add"
         :fields="formFields"
-        :title="translationFn(`message.add_${singular_label}`)"
+        :title="translationFn(addTitleI18nKey ?? `message.add_${singular_label}`)"
         :requiredRuleMessage="translationFn(requiredI18nKey)"
         :cancelLabel="translationFn(cancelI18nKey)"
         :confirmLabel="translationFn(addI18nKey)"
@@ -86,7 +86,7 @@
         type="edit"
         key="edit"
         :fields="formFields"
-        :title="translationFn(`message.edit_${singular_label}`)"
+        :title="translationFn(editTitleI18nKey ?? `message.edit_${singular_label}`)"
         :requiredRuleMessage="translationFn(requiredI18nKey)"
         :cancelLabel="translationFn(cancelI18nKey)"
         :confirmLabel="translationFn(editI18nKey)"
@@ -139,6 +139,7 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   requiredI18nKey: 'error.required',
   applyI18nKey: 'button.apply',
   resetI18nKey: 'button.reset',
+  editTooltipI18nKey: 'tooltip.edit',
   highlightLastEdited: true,
   hightlightLastEditedClass: 'text-primary-700',
   persistActionDialog: true,
