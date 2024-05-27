@@ -1,7 +1,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![npm version](https://badge.fury.io/js/@skillbill%2Fvuelace-3.svg)](https://badge.fury.io/js/@skillbill%2Fvuelace-3)
 
-# Vuelace-3 🎨✨
+![Vuelace-3](./src/stories/docs/public/assets/vuelace-logo.svg)
+
+# Vuelace-3
 
 Vuelace-3 is a powerful UI component library built on top of Shoelace, designed to streamline the process of creating beautiful and responsive user interfaces for Vue.js applications leveraging the reliability of web components
 
