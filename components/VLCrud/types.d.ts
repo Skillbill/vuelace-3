@@ -45,6 +45,10 @@ export interface VLCrudProps {
     requiredI18nKey?: string;
     applyI18nKey?: string;
     resetI18nKey?: string;
+    addButtonI18nKey?: string;
+    addTitleI18nKey?: string;
+    editTitleI18nKey?: string;
+    editTooltipI18nKey?: string;
     highlightLastEdited?: boolean;
     hightlightLastEditedClass?: string;
     persistActionDialog?: boolean;

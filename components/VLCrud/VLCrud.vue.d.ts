@@ -10,6 +10,7 @@ declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.es
     requiredI18nKey: string;
     applyI18nKey: string;
     resetI18nKey: string;
+    editTooltipI18nKey: string;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
@@ -28,6 +29,7 @@ declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.es
     requiredI18nKey: string;
     applyI18nKey: string;
     resetI18nKey: string;
+    editTooltipI18nKey: string;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
@@ -47,6 +49,7 @@ declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.es
     requiredI18nKey: string;
     applyI18nKey: string;
     resetI18nKey: string;
+    editTooltipI18nKey: string;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;

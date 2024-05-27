@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     
     <link
       rel="prefetch"
@@ -51,7 +51,36 @@
     <link href="./sb-addons/chromatic-com-storybook-10/manager-bundle.js" rel="modulepreload" />
     
     <link href="./sb-addons/storybook-11/manager-bundle.js" rel="modulepreload" />
-       
+      <html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      .sidebar-header > div:first-of-type::after {
+        content: 'Vuelace-3';
+        color: white;
+        font-size: 1.1rem;
+      }
+
+      .sidebar-header > div:first-of-type > a > img {
+        width: 64px;
+        object-fit: contain;
+      }
+
+      .sidebar-header > div:first-of-type > a {
+        box-sizing: content-box;
+        max-width: 72px;
+        background-color: white;
+        border-radius: 100%;
+        margin-right: 10px;
+        padding-left: 8px;
+        padding-right: 0;
+        padding-top: 10px;
+        padding-bottom: 0;
+      }
+    </style>
+  </head>
+</html>
+ 
 
     <style>
       #storybook-root[hidden] {
