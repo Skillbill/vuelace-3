@@ -13,6 +13,15 @@
       boolean: ActiveCell,
       date: DateCell
     }"
+    actionHeaderI18nKey="Actions"
+    addI18nKey="Add"
+    applyI18nKey="Apply"
+    resetI18nKey="Reset"
+    cancelI18nKey="Cancel"
+    addButtonI18nKey="Add user"
+    addTitleI18nKey="Add user"
+    editTitleI18nKey="Edit user"
+    editTooltipI18nKey="Edit"
   >
   </VLCrud>
 </template>
@@ -35,7 +44,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
   filters_title: 'filters',
   headers: [
     {
-      i18n_key: 'header.username',
+      i18n_key: 'Username',
       sortable: false,
       value: 'username',
       columnProps: {
@@ -43,27 +52,27 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       }
     },
     {
-      i18n_key: 'header.firstname',
+      i18n_key: 'First name',
       sortable: false,
       value: 'firstName'
     },
     {
-      i18n_key: 'header.lastname',
+      i18n_key: 'Last name',
       sortable: false,
       value: 'lastName'
     },
     {
-      i18n_key: 'header.role',
+      i18n_key: 'Role',
       sortable: false,
       value: 'role'
     },
     {
-      i18n_key: 'header.age',
+      i18n_key: 'Age',
       sortable: false,
       value: 'age'
     },
     {
-      i18n_key: 'header.active',
+      i18n_key: 'Active',
       sortable: false,
       value: 'active',
       type: 'boolean',
@@ -72,13 +81,13 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       }
     },
     {
-      i18n_key: 'header.activation_date',
+      i18n_key: 'Activation date',
       value: 'activation_date',
       sortable: false,
       type: 'date'
     },
     {
-      i18n_key: 'header.expiration_date',
+      i18n_key: 'Expiration date',
       value: 'expiration_date',
       sortable: false,
       type: 'date'
@@ -86,22 +95,22 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
   ],
   filters: [
     {
-      i18n_key: 'header.username',
+      i18n_key: 'Username',
       value: 'username',
       input_type: 'text'
     },
     {
-      i18n_key: 'header.firstname',
+      i18n_key: 'First name',
       value: 'firstName',
       input_type: 'text'
     },
     {
-      i18n_key: 'header.lastname',
+      i18n_key: 'Last name',
       value: 'lastName',
       input_type: 'text'
     },
     {
-      i18n_key: 'header.role',
+      i18n_key: 'Role',
       value: 'role',
       input_type: 'select',
       options: [
@@ -113,31 +122,31 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       default_value: ''
     },
     // {
-    //   i18n_key: 'header.active',
+    //   i18n_key: 'Active',
     //   value: 'active',
     //   input_type: 'checkbox',
     //   default_value: true
     // },
     // {
-    //   i18n_key: 'header.age',
+    //   i18n_key: 'Age',
     //   value: 'age',
     //   input_type: 'number',
     //   default_value: 30
     // },
     {
-      i18n_key: 'header.activation_date',
+      i18n_key: 'Activation date',
       value: 'activation_date',
       input_type: 'date'
     }
     // {
-    //   i18n_key: 'header.expiration_date',
+    //   i18n_key: 'Expiration date',
     //   value: 'expiration_date',
     //   input_type: 'date'
     // }
   ],
   form_fields: [
     {
-      i18n_key: 'header.username',
+      i18n_key: 'Username',
       value: 'username',
       placeholder: 'Enter username',
       required: true,
@@ -165,12 +174,12 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       input_type: 'text'
     },
     {
-      i18n_key: 'header.firstname',
+      i18n_key: 'First name',
       value: 'firstName',
       input_type: 'text'
     },
     {
-      i18n_key: 'header.lastname',
+      i18n_key: 'Last name',
       value: 'lastName',
       side_effect: (model, fields) => {
         const { lastName } = model
@@ -180,13 +189,13 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       input_type: 'text'
     },
     {
-      i18n_key: 'header.active',
+      i18n_key: 'Active',
       value: 'active',
       input_type: 'checkbox',
       default_value: true
     },
     {
-      i18n_key: 'header.role',
+      i18n_key: 'Role',
       value: 'role',
       input_type: 'select',
       options: [
@@ -197,17 +206,17 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       ]
     },
     {
-      i18n_key: 'header.age',
+      i18n_key: 'Age',
       value: 'age',
       input_type: 'number'
     },
     {
-      i18n_key: 'header.activation_date',
+      i18n_key: 'Activation date',
       value: 'activation_date',
       input_type: 'date'
     },
     {
-      i18n_key: 'header.expiration_date',
+      i18n_key: 'Expiration date',
       value: 'expiration_date',
       input_type: 'date'
     }
@@ -215,7 +224,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
   actions: [
     {
       name: 'Delete',
-      i18n_key: 'tooltip.delete',
+      i18n_key: 'Delete',
       icon_name: 'delete',
       onClick: (data: any) => {
         console.log('Delete side effect', { ...data })

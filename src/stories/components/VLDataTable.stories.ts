@@ -34,20 +34,20 @@ export const Simple: Story = {
   args: {
     columns: [
       {
-        name: 'header.username',
+        name: 'Username',
         value: 'username'
       },
       {
-        name: 'header.firstname',
+        name: 'First name',
         value: 'firstName',
         sortable: true
       },
       {
-        name: 'header.lastname',
+        name: 'Last name',
         value: 'lastName'
       },
       {
-        name: 'header.active',
+        name: 'Active',
         value: 'active',
         component: shallowRef(ActiveComponent),
         componentProps: {
@@ -55,11 +55,11 @@ export const Simple: Story = {
         }
       },
       {
-        name: 'header.activation_date',
+        name: 'Activation Date',
         value: 'activation_date'
       },
       {
-        name: 'header.expiration_date',
+        name: 'Expiration Date',
         value: 'expiration_date'
       }
     ],

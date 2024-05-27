@@ -3,6 +3,6 @@ import { create } from '@storybook/theming/create'
 export default create({
   base: 'dark',
   brandTitle: 'Vuelace',
-  brandUrl: 'https://skillbill.github.io/vuelace-3/',
+  brandImage: 'assets/vuelace-logo.svg',
   brandTarget: '_self'
 })
