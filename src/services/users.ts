@@ -49,8 +49,10 @@ export const getUsersAPI = async (page: number, rows: number, filters?: any) => 
           case 'number':
             return user[key] === filters[key]
           case 'object':
-            if (key === 'activation_date') return user[key] > filters[key]
-            if (key === 'expiration_date') return user[key] < filters[key]
+            if (key === 'activation_date')
+              return user[key]?.toLocaleDateString() == filters[key].toLocaleDateString()
+            if (key === 'expiration_date')
+              return user[key]?.toLocaleDateString() == filters[key].toLocaleDateString()
             return user[key] === filters[key]
           default:
             return user[key]?.toLowerCase()?.includes(filters[key].toLowerCase())
