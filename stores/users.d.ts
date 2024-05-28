@@ -142,11 +142,11 @@ export declare const useUsersStore: import('pinia').StoreDefinition<"users", imp
         result: any[];
         page: {
             currentPage: number;
-            totalRows: number;
+            totalRows: any;
             pageRows: number;
         };
     } | undefined>;
-    updateUser: (id: string, user: User) => Promise<void>;
+    updateUser: (user: User) => Promise<void>;
     deleteUser: (id: string) => Promise<void>;
 }, "users">>, Pick<{
     users: import('../../vue/dist/vue.esm-bundler.js').Ref<{
@@ -290,11 +290,11 @@ export declare const useUsersStore: import('pinia').StoreDefinition<"users", imp
         result: any[];
         page: {
             currentPage: number;
-            totalRows: number;
+            totalRows: any;
             pageRows: number;
         };
     } | undefined>;
-    updateUser: (id: string, user: User) => Promise<void>;
+    updateUser: (user: User) => Promise<void>;
     deleteUser: (id: string) => Promise<void>;
 }, never>, Pick<{
     users: import('../../vue/dist/vue.esm-bundler.js').Ref<{
@@ -438,10 +438,10 @@ export declare const useUsersStore: import('pinia').StoreDefinition<"users", imp
         result: any[];
         page: {
             currentPage: number;
-            totalRows: number;
+            totalRows: any;
             pageRows: number;
         };
     } | undefined>;
-    updateUser: (id: string, user: User) => Promise<void>;
+    updateUser: (user: User) => Promise<void>;
     deleteUser: (id: string) => Promise<void>;
 }, "createUser" | "getUser" | "getUsers" | "updateUser" | "deleteUser">>;

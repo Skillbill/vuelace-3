@@ -3,7 +3,7 @@ import { User } from '../components/examples/types/user';
 export declare const getUsersAPI: (page: number, rows: number, filters?: any) => Promise<{
     result: any;
     page: {
-        totalRows: number;
+        totalRows: any;
         currentPage: number;
         pageRows: number;
         totalPages: number;
