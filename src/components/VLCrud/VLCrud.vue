@@ -235,8 +235,9 @@ const onFiltersApplied = (filters: any) => {
 const lastEditedItem = ref<any>(null)
 
 const onConfirm = async () => {
-  lastEditedItem.value = selectedItem.value[props.primary_key]
+  lastEditedItem.value = selectedItem.value?.[props.primary_key]
   await fetchData()
+  selectedItem.value = null
 }
 
 const onAdd = async (data: any) => {
@@ -273,7 +274,6 @@ const closeDialog = () => {
 
   setTimeout(() => {
     dialog.value = null
-    selectedItem.value = null
   }, 300)
 }
 </script>
