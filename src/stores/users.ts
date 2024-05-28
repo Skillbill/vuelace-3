@@ -47,9 +47,9 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  const updateUser = async (id: string, user: User) => {
+  const updateUser = async (user: User) => {
     try {
-      await updateUserAPI(id, user)
+      await updateUserAPI(user.id, user)
     } catch (error) {
       console.log(error)
     }

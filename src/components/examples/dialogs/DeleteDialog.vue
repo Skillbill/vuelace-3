@@ -11,21 +11,24 @@
 
 <script setup lang="ts">
 import { VLButton } from '../..'
+import { useUsersStore } from '../../../stores/users'
 
 const emit = defineEmits(['close', 'cancel', 'confirm'])
+const usersStore = useUsersStore()
 
 interface Props {
   data: any
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const onCanceled = () => {
   emit('cancel')
   closeDialog()
 }
 
-const onConfirm = () => {
+const onConfirm = async () => {
+  await usersStore.deleteUser(props.data.item[props.data.primary_key])
   emit('confirm')
   closeDialog()
 }
