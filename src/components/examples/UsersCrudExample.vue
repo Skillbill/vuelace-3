@@ -9,6 +9,7 @@
     :actions="users_crud.actions"
     :getItems="usersStore.getUsers"
     :addItem="usersStore.createUser"
+    :editItem="usersStore.updateUser"
     :components="{
       boolean: ActiveCell,
       date: DateCell
@@ -40,7 +41,7 @@ const usersStore = useUsersStore()
 const users_crud: Omit<VLCrudProps, 'getItems'> = {
   id: 'users',
   singular_label: 'user',
-  primary_key: 'username',
+  primary_key: 'id',
   filters_title: 'filters',
   headers: [
     {
@@ -181,11 +182,6 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
     {
       i18n_key: 'Last name',
       value: 'lastName',
-      side_effect: (model, fields) => {
-        const { lastName } = model
-        fields.firstName.disabled = (lastName as string)?.length > 0
-        model.username = lastName
-      },
       input_type: 'text'
     },
     {
