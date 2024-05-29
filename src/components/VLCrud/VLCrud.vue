@@ -237,7 +237,6 @@ const lastEditedItem = ref<any>(null)
 const onConfirm = async () => {
   lastEditedItem.value = selectedItem.value?.[props.primary_key]
   await fetchData()
-  selectedItem.value = null
 }
 
 const onAdd = async (data: any) => {
