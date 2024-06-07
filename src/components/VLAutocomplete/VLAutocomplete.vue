@@ -31,7 +31,7 @@
       @hide="() => emit('hide')"
     >
       <template #option="{ option }">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 min-h-[1lh]">
           <span class="w-4">
             <VLIcon v-if="model === option.value" class="pt-1" name="check"> </VLIcon>
           </span>
