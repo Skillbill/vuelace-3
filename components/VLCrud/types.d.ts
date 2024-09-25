@@ -1,9 +1,9 @@
-import { VLCrudFormFieldType } from '../VLCrudForm';
-import { VLFileInputErrorEvent } from '../VLFileInput';
-import { VLCrudFilterType } from '../VLCrudFilters';
-import { VLDialogProps } from '../VLDialog';
-import { Component } from '../../../vue/dist/vue.esm-bundler.js';
 import { default as PrimeVueColumn } from 'primevue/column';
+import { Component } from 'vue';
+import { VLDialogProps } from '../VLDialog';
+import { VLCrudFilterType } from '../VLCrudFilters';
+import { VLFileInputErrorEvent } from '../VLFileInput';
+import { VLCrudFormFieldType } from '../VLCrudForm';
 
 export interface VLCrudHeaderType {
     i18n_key: string;

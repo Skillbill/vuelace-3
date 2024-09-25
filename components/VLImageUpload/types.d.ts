@@ -1,5 +1,5 @@
-import { VLInputRuleType } from '../utils/types';
 import { VLFileInputErrorEvent } from '../VLFileInput';
+import { VLInputRuleType } from '../utils/types';
 
 export interface VLImageUploadProps {
     class?: string;

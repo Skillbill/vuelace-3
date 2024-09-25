@@ -1,86 +1,86 @@
-import { VLSelectOptionType } from '../VLSelect';
 import { VLInputRuleType } from '../utils/types';
+import { VLSelectOptionType } from '../VLSelect';
 
-declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    suggestions: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+declare const _default: import('vue').DefineComponent<{
+    suggestions: import('vue').PropType<any>;
+    modelValue: import('vue').PropType<string>;
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     onFocus: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     onBlur: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteChangeEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteChangeEvent) => void>;
     };
     onClick: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     onClear: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLSelectOptionType[]>;
+        type: import('vue').PropType<VLSelectOptionType[]>;
         default: () => VLSelectOptionType[];
     };
     onShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     onHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     emptySearchMessage: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     optionLabel: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     labelClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     onItemSelect: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemSelectEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemSelectEvent) => void>;
     };
     onItemUnselect: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemUnselectEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemUnselectEvent) => void>;
     };
     onDropdownClick: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteDropdownClickEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteDropdownClickEvent) => void>;
     };
     onComplete: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteCompleteEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteCompleteEvent) => void>;
     };
     onBeforeShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     onBeforeHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
 }, {
     isValid: () => boolean;
     validateInput: () => boolean;
-}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     focus: (...args: any[]) => void;
     blur: (...args: any[]) => void;
     change: (...args: any[]) => void;
@@ -95,81 +95,81 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     complete: (...args: any[]) => void;
     "before-show": (...args: any[]) => void;
     "before-hide": (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    suggestions: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    suggestions: import('vue').PropType<any>;
+    modelValue: import('vue').PropType<string>;
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     onFocus: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     onBlur: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteChangeEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteChangeEvent) => void>;
     };
     onClick: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: Event) => void>;
+        type: import('vue').PropType<(evt: Event) => void>;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     onClear: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLSelectOptionType[]>;
+        type: import('vue').PropType<VLSelectOptionType[]>;
         default: () => VLSelectOptionType[];
     };
     onShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     onHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     emptySearchMessage: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     optionLabel: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     labelClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     onItemSelect: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemSelectEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemSelectEvent) => void>;
     };
     onItemUnselect: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemUnselectEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteItemUnselectEvent) => void>;
     };
     onDropdownClick: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteDropdownClickEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteDropdownClickEvent) => void>;
     };
     onComplete: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(evt: import('primevue/autocomplete').AutoCompleteCompleteEvent) => void>;
+        type: import('vue').PropType<(evt: import('primevue/autocomplete').AutoCompleteCompleteEvent) => void>;
     };
     onBeforeShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
     onBeforeHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<() => void>;
+        type: import('vue').PropType<() => void>;
     };
 }>> & {
     onFocus?: ((...args: any[]) => any) | undefined;

@@ -1,160 +1,160 @@
-declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    selection: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
+    selection: import('vue').PropType<any>;
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "large">;
+        type: import('vue').PropType<"small" | "large">;
         default: undefined;
     };
     selectionMode: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"multiple" | "single">;
+        type: import('vue').PropType<"multiple" | "single">;
     };
     loading: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     items: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<any[]>;
+        type: import('vue').PropType<any[]>;
         required: true;
     };
     columns: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Column[]>;
+        type: import('vue').PropType<import('./types').Column[]>;
         required: true;
     };
     actions: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Action[]>;
+        type: import('vue').PropType<import('./types').Action[]>;
         required: true;
     };
     stripedRows: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     removableSort: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     lazy: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     defaultRows: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: number;
     };
     rowsPerPageOptions: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number[]>;
+        type: import('vue').PropType<number[]>;
         default: () => number[];
     };
     rowClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
+        type: import('vue').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     rowStyle: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
+        type: import('vue').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     totalRecords: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: undefined;
     };
     paginator: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     paginatorPosition: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"top" | "bottom" | "both">;
+        type: import('vue').PropType<"top" | "bottom" | "both">;
     };
     paginatorTemplate: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     currentPageReportTemplate: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     actionHeaderLabel: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     selectionColumnProps: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<object>;
+        type: import('vue').PropType<object>;
     };
     onPage: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
+        type: import('vue').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
     };
-}, {}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+}, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     page: (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    selection: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    selection: import('vue').PropType<any>;
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "large">;
+        type: import('vue').PropType<"small" | "large">;
         default: undefined;
     };
     selectionMode: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"multiple" | "single">;
+        type: import('vue').PropType<"multiple" | "single">;
     };
     loading: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     items: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<any[]>;
+        type: import('vue').PropType<any[]>;
         required: true;
     };
     columns: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Column[]>;
+        type: import('vue').PropType<import('./types').Column[]>;
         required: true;
     };
     actions: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Action[]>;
+        type: import('vue').PropType<import('./types').Action[]>;
         required: true;
     };
     stripedRows: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     removableSort: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     lazy: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     defaultRows: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: number;
     };
     rowsPerPageOptions: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number[]>;
+        type: import('vue').PropType<number[]>;
         default: () => number[];
     };
     rowClass: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
+        type: import('vue').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     rowStyle: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(data: any) => object | (string | object)[] | undefined>;
+        type: import('vue').PropType<(data: any) => object | (string | object)[] | undefined>;
     };
     totalRecords: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: undefined;
     };
     paginator: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     paginatorPosition: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"top" | "bottom" | "both">;
+        type: import('vue').PropType<"top" | "bottom" | "both">;
     };
     paginatorTemplate: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     currentPageReportTemplate: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     actionHeaderLabel: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     selectionColumnProps: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<object>;
+        type: import('vue').PropType<object>;
     };
     onPage: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
+        type: import('vue').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
     };
 }>> & {
     onPage?: ((...args: any[]) => any) | undefined;

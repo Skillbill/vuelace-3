@@ -1,6 +1,6 @@
-import { VLSelectOptionType } from '../VLSelect';
-import { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput';
 import { VLFileInputErrorEvent } from '../VLFileInput';
+import { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput';
+import { VLSelectOptionType } from '../VLSelect';
 
 export interface VLCrudFilterType {
     value: string;

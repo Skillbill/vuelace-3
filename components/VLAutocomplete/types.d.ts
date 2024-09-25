@@ -1,5 +1,5 @@
-import { VLInputRuleType, AutoCompleteChangeEvent, AutoCompleteCompleteEvent, AutoCompleteDropdownClickEvent, AutoCompleteItemSelectEvent, AutoCompleteItemUnselectEvent } from '../utils/types';
 import { VLSelectOptionType } from '../VLSelect';
+import { VLInputRuleType, AutoCompleteChangeEvent, AutoCompleteCompleteEvent, AutoCompleteDropdownClickEvent, AutoCompleteItemSelectEvent, AutoCompleteItemUnselectEvent } from '../utils/types';
 
 export interface VLAutocompleteProps {
     options?: VLSelectOptionType[];

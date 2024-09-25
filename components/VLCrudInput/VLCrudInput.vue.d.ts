@@ -1,89 +1,89 @@
 import { VLCrudInputValueType } from './types';
 
-declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLCrudInputValueType>;
+declare const _default: import('vue').DefineComponent<{
+    modelValue: import('vue').PropType<VLCrudInputValueType>;
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         required: true;
     };
     onError: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(error: import('..').VLFileInputErrorEvent) => void>;
+        type: import('vue').PropType<(error: import('..').VLFileInputErrorEvent) => void>;
     };
     type: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').VLCrudInputFieldType>;
+        type: import('vue').PropType<import('./types').VLCrudInputFieldType>;
         required: true;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('..').VLInputRuleType[]>;
+        type: import('vue').PropType<import('..').VLInputRuleType[]>;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('../VLSelect').VLSelectOptionType[]>;
+        type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
     };
     input_name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         required: true;
     };
     initialValue: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | number | boolean | Date>;
+        type: import('vue').PropType<string | number | boolean | Date>;
     };
     img_style: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
 }, {
     validateInput: () => boolean;
-}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     error: (...args: any[]) => void;
     "update:modelValue": (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLCrudInputValueType>;
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    modelValue: import('vue').PropType<VLCrudInputValueType>;
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         required: true;
     };
     onError: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(error: import('..').VLFileInputErrorEvent) => void>;
+        type: import('vue').PropType<(error: import('..').VLFileInputErrorEvent) => void>;
     };
     type: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').VLCrudInputFieldType>;
+        type: import('vue').PropType<import('./types').VLCrudInputFieldType>;
         required: true;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('..').VLInputRuleType[]>;
+        type: import('vue').PropType<import('..').VLInputRuleType[]>;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('../VLSelect').VLSelectOptionType[]>;
+        type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
     };
     input_name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         required: true;
     };
     initialValue: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | number | boolean | Date>;
+        type: import('vue').PropType<string | number | boolean | Date>;
     };
     img_style: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
 }>> & {
     onError?: ((...args: any[]) => any) | undefined;

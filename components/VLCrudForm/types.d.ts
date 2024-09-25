@@ -1,6 +1,6 @@
-import { VLInputRuleType } from '../utils/types';
-import { VLSelectOptionType } from '../VLSelect';
 import { VLCrudInputFieldType, VLCrudInputValueType } from '../VLCrudInput';
+import { VLSelectOptionType } from '../VLSelect';
+import { VLInputRuleType } from '../utils/types';
 
 export interface VLCrudFormFieldType {
     i18n_key: string;

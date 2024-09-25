@@ -1,104 +1,104 @@
 import { VLInputRuleType, SlInputEvent, SlInvalidEvent } from '../utils/types';
 
-declare const _default: __VLS_WithTemplateSlots<import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
+declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
+    modelValue: import('vue').PropType<any>;
     name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     form: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: import('../utils/types').SlChangeEvent) => void>;
+        type: import('vue').PropType<(e: import('../utils/types').SlChangeEvent) => void>;
     };
     onInput: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInputEvent) => void>;
+        type: import('vue').PropType<(e: SlInputEvent) => void>;
     };
     onInvalid: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInvalidEvent) => void>;
+        type: import('vue').PropType<(e: SlInvalidEvent) => void>;
     };
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "medium" | "large">;
+        type: import('vue').PropType<"small" | "medium" | "large">;
         default: string;
     };
     helpText: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Radio[]>;
+        type: import('vue').PropType<import('./types').Radio[]>;
         required: true;
     };
 }, {
     isValid: () => boolean;
     validateInput: () => boolean;
-}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     input: (...args: any[]) => void;
     change: (...args: any[]) => void;
     invalid: (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<any>;
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    modelValue: import('vue').PropType<any>;
     name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     form: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: import('../utils/types').SlChangeEvent) => void>;
+        type: import('vue').PropType<(e: import('../utils/types').SlChangeEvent) => void>;
     };
     onInput: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInputEvent) => void>;
+        type: import('vue').PropType<(e: SlInputEvent) => void>;
     };
     onInvalid: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInvalidEvent) => void>;
+        type: import('vue').PropType<(e: SlInvalidEvent) => void>;
     };
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "medium" | "large">;
+        type: import('vue').PropType<"small" | "medium" | "large">;
         default: string;
     };
     helpText: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<import('./types').Radio[]>;
+        type: import('vue').PropType<import('./types').Radio[]>;
         required: true;
     };
 }>> & {

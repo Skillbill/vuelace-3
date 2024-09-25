@@ -1,5 +1,5 @@
-import { VLSelectOptionType } from '../VLSelect';
 import { VLFileInputErrorEvent, VLInputRuleType } from '..';
+import { VLSelectOptionType } from '../VLSelect';
 
 export type VLCrudInputValueType = string | boolean | Date | number | undefined;
 export type VLCrudInputFieldType = 'text' | 'checkbox' | 'select' | 'number' | 'date' | 'color' | 'image' | 'autocomplete';

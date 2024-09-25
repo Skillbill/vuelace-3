@@ -1,5 +1,5 @@
-import { DataTablePageEvent } from 'primevue/datatable';
 import { default as PrimeVueColumn } from 'primevue/column';
+import { DataTablePageEvent } from 'primevue/datatable';
 
 export interface Column {
     name: string;

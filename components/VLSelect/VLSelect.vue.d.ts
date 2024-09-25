@@ -1,118 +1,118 @@
-import { VLSelectOptionType } from './types';
 import { VLInputRuleType, SlFocusEvent, SlBlurEvent, SlAfterHideEvent, SlInputEvent, SlShowEvent, SlHideEvent, SlInvalidEvent, SlClearEvent, SlAfterShowEvent, SlChangeEvent } from '../utils/types';
+import { VLSelectOptionType } from './types';
 
-declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineComponent<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | string[] | null | undefined>;
+declare const _default: import('vue').DefineComponent<{
+    modelValue: import('vue').PropType<string | string[] | null | undefined>;
     name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     form: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: undefined;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     onFocus: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlFocusEvent) => void>;
+        type: import('vue').PropType<(e: SlFocusEvent) => void>;
     };
     onBlur: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlBlurEvent) => void>;
+        type: import('vue').PropType<(e: SlBlurEvent) => void>;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlChangeEvent) => void>;
+        type: import('vue').PropType<(e: SlChangeEvent) => void>;
     };
     onInput: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInputEvent) => void>;
+        type: import('vue').PropType<(e: SlInputEvent) => void>;
     };
     onInvalid: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInvalidEvent) => void>;
+        type: import('vue').PropType<(e: SlInvalidEvent) => void>;
     };
     defaultValue: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | string[]>;
+        type: import('vue').PropType<string | string[]>;
         default: string;
     };
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "medium" | "large">;
+        type: import('vue').PropType<"small" | "medium" | "large">;
         default: string;
     };
     filled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     pill: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     helpText: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     clearable: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     onClear: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlClearEvent) => void>;
+        type: import('vue').PropType<(e: SlClearEvent) => void>;
     };
     multiple: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     maxOptionsVisible: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: number;
     };
     placement: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"top" | "bottom">;
+        type: import('vue').PropType<"top" | "bottom">;
         default: string;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLSelectOptionType[]>;
+        type: import('vue').PropType<VLSelectOptionType[]>;
         required: true;
         default: () => VLSelectOptionType[];
     };
     getTag: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<Function>;
+        type: import('vue').PropType<Function>;
         default: (option: any) => string;
     };
     onShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlShowEvent) => void>;
+        type: import('vue').PropType<(e: SlShowEvent) => void>;
     };
     onHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlHideEvent) => void>;
+        type: import('vue').PropType<(e: SlHideEvent) => void>;
     };
     onAfterShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlAfterShowEvent) => void>;
+        type: import('vue').PropType<(e: SlAfterShowEvent) => void>;
     };
     onAfterHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlAfterHideEvent) => void>;
+        type: import('vue').PropType<(e: SlAfterHideEvent) => void>;
     };
 }, {
     isValid: () => boolean;
     validateInput: () => boolean;
-}, unknown, {}, {}, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, import('../../../vue/dist/vue.esm-bundler.js').ComponentOptionsMixin, {
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     input: (...args: any[]) => void;
     focus: (...args: any[]) => void;
     blur: (...args: any[]) => void;
@@ -123,113 +123,113 @@ declare const _default: import('../../../vue/dist/vue.esm-bundler.js').DefineCom
     "after-show": (...args: any[]) => void;
     hide: (...args: any[]) => void;
     "after-hide": (...args: any[]) => void;
-}, string, import('../../../vue/dist/vue.esm-bundler.js').PublicProps, Readonly<import('../../../vue/dist/vue.esm-bundler.js').ExtractPropTypes<{
-    modelValue: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | string[] | null | undefined>;
+}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    modelValue: import('vue').PropType<string | string[] | null | undefined>;
     name: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     error: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
     };
     form: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: undefined;
     };
     label: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     onFocus: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlFocusEvent) => void>;
+        type: import('vue').PropType<(e: SlFocusEvent) => void>;
     };
     onBlur: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlBlurEvent) => void>;
+        type: import('vue').PropType<(e: SlBlurEvent) => void>;
     };
     onChange: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlChangeEvent) => void>;
+        type: import('vue').PropType<(e: SlChangeEvent) => void>;
     };
     onInput: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInputEvent) => void>;
+        type: import('vue').PropType<(e: SlInputEvent) => void>;
     };
     onInvalid: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlInvalidEvent) => void>;
+        type: import('vue').PropType<(e: SlInvalidEvent) => void>;
     };
     defaultValue: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string | string[]>;
+        type: import('vue').PropType<string | string[]>;
         default: string;
     };
     size: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"small" | "medium" | "large">;
+        type: import('vue').PropType<"small" | "medium" | "large">;
         default: string;
     };
     filled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     pill: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     helpText: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     clearable: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     disabled: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     placeholder: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<string>;
+        type: import('vue').PropType<string>;
         default: string;
     };
     required: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     rules: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLInputRuleType[]>;
+        type: import('vue').PropType<VLInputRuleType[]>;
         default: () => VLInputRuleType[];
     };
     onClear: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlClearEvent) => void>;
+        type: import('vue').PropType<(e: SlClearEvent) => void>;
     };
     multiple: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<boolean>;
+        type: import('vue').PropType<boolean>;
         default: boolean;
     };
     maxOptionsVisible: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<number>;
+        type: import('vue').PropType<number>;
         default: number;
     };
     placement: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<"top" | "bottom">;
+        type: import('vue').PropType<"top" | "bottom">;
         default: string;
     };
     options: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<VLSelectOptionType[]>;
+        type: import('vue').PropType<VLSelectOptionType[]>;
         required: true;
         default: () => VLSelectOptionType[];
     };
     getTag: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<Function>;
+        type: import('vue').PropType<Function>;
         default: (option: any) => string;
     };
     onShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlShowEvent) => void>;
+        type: import('vue').PropType<(e: SlShowEvent) => void>;
     };
     onHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlHideEvent) => void>;
+        type: import('vue').PropType<(e: SlHideEvent) => void>;
     };
     onAfterShow: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlAfterShowEvent) => void>;
+        type: import('vue').PropType<(e: SlAfterShowEvent) => void>;
     };
     onAfterHide: {
-        type: import('../../../vue/dist/vue.esm-bundler.js').PropType<(e: SlAfterHideEvent) => void>;
+        type: import('vue').PropType<(e: SlAfterHideEvent) => void>;
     };
 }>> & {
     onFocus?: ((...args: any[]) => any) | undefined;

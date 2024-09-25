@@ -1,7 +1,7 @@
 import { User } from '../components/examples/types/user';
 
 export declare const useUsersStore: import('pinia').StoreDefinition<"users", import('pinia')._UnwrapAll<Pick<{
-    users: import('../../vue/dist/vue.esm-bundler.js').Ref<{
+    users: import('vue').Ref<{
         id: string;
         username: string;
         firstName: string;
@@ -149,7 +149,7 @@ export declare const useUsersStore: import('pinia').StoreDefinition<"users", imp
     updateUser: (user: User) => Promise<void>;
     deleteUser: (id: string) => Promise<void>;
 }, "users">>, Pick<{
-    users: import('../../vue/dist/vue.esm-bundler.js').Ref<{
+    users: import('vue').Ref<{
         id: string;
         username: string;
         firstName: string;
@@ -297,7 +297,7 @@ export declare const useUsersStore: import('pinia').StoreDefinition<"users", imp
     updateUser: (user: User) => Promise<void>;
     deleteUser: (id: string) => Promise<void>;
 }, never>, Pick<{
-    users: import('../../vue/dist/vue.esm-bundler.js').Ref<{
+    users: import('vue').Ref<{
         id: string;
         username: string;
         firstName: string;
