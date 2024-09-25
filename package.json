@@ -1,6 +1,6 @@
 {
   "name": "@skillbill/vuelace-3",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "private": false,
   "author": "skillbill",
   "license": "MIT",
@@ -89,7 +89,7 @@
   },
   "peerDependencies": {
     "@mdi/svg": "^7.4.47",
-    "@shoelace-style/shoelace": "^2.15.1",
+    "@shoelace-style/shoelace": "^2.17.1",
     "pinia": "^2.1.7",
     "primevue": "^3.52.0",
     "vue": "^3.4.25"

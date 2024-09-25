@@ -26,7 +26,7 @@
             v-show="clearable && !!model"
             library="system"
             name="windowClose"
-            @click.stop="model = undefined"
+            @click.stop="model = null"
           ></sl-icon-button>
           <sl-icon name="calendar"></sl-icon>
         </div>
@@ -72,7 +72,7 @@ const props = withDefaults(defineProps<VLDatePickerProps>(), {
 
 const isDropdownOpen = ref<boolean>(false)
 
-const model = defineModel<Date | Date[] | undefined>()
+const model = defineModel<Date | Date[] | null | undefined>()
 
 const formattedValue = computed<string | undefined>(() => {
   if (!model.value) return undefined
