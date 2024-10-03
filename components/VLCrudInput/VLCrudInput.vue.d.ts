@@ -27,6 +27,9 @@ declare const _default: import('vue').DefineComponent<{
     rules: {
         type: import('vue').PropType<import('..').VLInputRuleType[]>;
     };
+    multiple: {
+        type: import('vue').PropType<boolean>;
+    };
     options: {
         type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
     };
@@ -71,6 +74,9 @@ declare const _default: import('vue').DefineComponent<{
     };
     rules: {
         type: import('vue').PropType<import('..').VLInputRuleType[]>;
+    };
+    multiple: {
+        type: import('vue').PropType<boolean>;
     };
     options: {
         type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
