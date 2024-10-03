@@ -23,6 +23,7 @@ export interface VLCrudInputProps {
   disabled?: boolean
   required?: boolean
   img_style?: string
+  multiple?: boolean
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
 }

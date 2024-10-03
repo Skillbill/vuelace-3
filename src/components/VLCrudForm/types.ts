@@ -18,6 +18,7 @@ export interface VLCrudFormFieldType {
   hidden_on_create?: boolean
   disabled_on_edit?: boolean
   placeholder?: string
+  multiple?: boolean
   side_effect?: (
     model: { [key: string]: VLCrudInputValueType },
     fields: {

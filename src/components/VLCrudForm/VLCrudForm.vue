@@ -18,6 +18,7 @@
       :disabled="isDisabled(field)"
       :placeholder="field.placeholder"
       :required="field.required"
+      :multiple="field.multiple"
       :img_style="field.img_style"
       v-model="model[field.value]"
       @update:modelValue="() => field.side_effect?.(model, fields)"

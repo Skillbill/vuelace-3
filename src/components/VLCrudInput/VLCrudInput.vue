@@ -44,6 +44,7 @@
     :disabled="disabled"
     :placeholder="placeholder"
     :options="options"
+    :multiple="multiple"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
