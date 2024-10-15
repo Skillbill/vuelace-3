@@ -80,7 +80,7 @@ const props = withDefaults(defineProps<VLNumberInputProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel<number | undefined>()
+const model = defineModel<number | undefined | null>()
 const input = ref<SlInput | null>()
 
 const updateModel = (value: string) => {
@@ -108,7 +108,7 @@ const checkMinMax = (value: string) => {
   const parsedValue = parseFloat(value)
 
   if (Number.isNaN(parsedValue)) {
-    return undefined
+    return null
   }
 
   if (props.min != undefined && parsedValue < props.min) {
