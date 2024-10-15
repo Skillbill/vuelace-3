@@ -1,7 +1,7 @@
 import { VLFileInputErrorEvent, VLInputRuleType } from '..'
 import { VLSelectOptionType } from '../VLSelect'
 
-export type VLCrudInputValueType = string | string[] | boolean | Date | number | undefined
+export type VLCrudInputValueType = string | string[] | boolean | Date | number | null | undefined
 export type VLCrudInputFieldType =
   | 'text'
   | 'checkbox'
