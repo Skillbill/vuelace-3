@@ -1,7 +1,7 @@
 import { VLInputRuleType, SlFocusEvent, SlBlurEvent, SlInputEvent, SlInvalidEvent, SlClearEvent, SlChangeEvent } from '../utils/types';
 
 declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
-    modelValue: import('vue').PropType<number | undefined>;
+    modelValue: import('vue').PropType<number | null | undefined>;
     name: {
         type: import('vue').PropType<string>;
         default: string;
@@ -117,7 +117,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     clear: (...args: any[]) => void;
     invalid: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    modelValue: import('vue').PropType<number | undefined>;
+    modelValue: import('vue').PropType<number | null | undefined>;
     name: {
         type: import('vue').PropType<string>;
         default: string;

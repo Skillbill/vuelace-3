@@ -38,7 +38,7 @@ declare const _default: import('vue').DefineComponent<{
         required: true;
     };
     initialValue: {
-        type: import('vue').PropType<string | number | boolean | string[] | Date>;
+        type: import('vue').PropType<string | number | boolean | string[] | Date | null>;
     };
     img_style: {
         type: import('vue').PropType<string>;
@@ -86,7 +86,7 @@ declare const _default: import('vue').DefineComponent<{
         required: true;
     };
     initialValue: {
-        type: import('vue').PropType<string | number | boolean | string[] | Date>;
+        type: import('vue').PropType<string | number | boolean | string[] | Date | null>;
     };
     img_style: {
         type: import('vue').PropType<string>;
