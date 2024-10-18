@@ -110,11 +110,13 @@ const options_dict = ref<{ [key: string]: string }>({})
 
 const atChange = (evt: SlChangeEvent) => {
   const value = (evt.target as SlSelect)?.value
-  model.value = Array.isArray(value)
-    ? value.map((value) => options_dict.value[value])
-    : value
-      ? options_dict.value[value]
-      : undefined
+  if (Array.isArray(value)) {
+    model.value = value.map((value) => options_dict.value[value])
+  } else if (value) {
+    model.value = options_dict.value[value]
+  } else {
+    model.value = null
+  }
   emit('change', evt)
 }
 
