@@ -252,7 +252,7 @@ const rowClass = (row: any) => {
 
 const onAdd = async (data: any) => {
   const response = await props.addItem?.(data) 
-  const newId = response?.result?.[props.primary_key] || response?.[props.primary_key]
+  const newId = response?.result?.[props.primary_key] ?? response?.[props.primary_key]
   lastSelectedItem.value = newId
   if (props.goToInsertedRow) {
     skipWatchers.value = true
