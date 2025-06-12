@@ -2,6 +2,7 @@
   <div>
     <VLCrudFilters
       class="w-full"
+      ref="filtersRef"
       :title="filters_title && translationFn(filters_title)"
       :filters="filters"
       :apply-label="translationFn(applyI18nKey)"
@@ -17,6 +18,7 @@
       :actions="[]"
       :paginator="false"
       :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
+      :rowClass="rowClass"
     >
       <!-- template for empty table state -->
       <template #empty>
@@ -29,9 +31,6 @@
         <VLCrudAction
           v-if="editable"
           icon="pencil"
-          :class="[
-            highlightLastEdited && lastEditedItem === data[primary_key] && hightlightLastEditedClass
-          ]"
           :tooltip="translationFn(editTooltipI18nKey)"
           @click="() => onClickAction(editAction)(data)"
         />
@@ -116,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed } from 'vue'
+import { ref, reactive, watch, computed, nextTick } from 'vue'
 
 import { VLCrudAction } from '../VLCrudAction'
 import { VLPaginator } from '../VLPaginator'
@@ -140,12 +139,17 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   applyI18nKey: 'button.apply',
   resetI18nKey: 'button.reset',
   editTooltipI18nKey: 'tooltip.edit',
-  highlightLastEdited: true,
-  hightlightLastEditedClass: 'text-primary-700',
+  goToInsertedRow: false,
+  highlightLastSelected: true,
+  highlightLastSelectedClass: 'bg-row-selected',
   persistActionDialog: true,
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })
+
+const filtersRef = ref<InstanceType<typeof VLCrudFilters>>()
+
+const skipWatchers = ref(false)
 
 const filters = computed(() =>
   props.filters.map((filter) => ({
@@ -210,6 +214,8 @@ const onClickAction = (action: VLCrudActionType) => (data: any) => {
   if (action.onClick) {
     action.onClick(data)
   }
+
+  lastSelectedItem.value = data?.[props.primary_key]
   if (action.component) {
     selectedItem.value = data
     dialog.value = action.name
@@ -232,15 +238,38 @@ const onFiltersApplied = (filters: any) => {
   pagination.currentPage = 1
 }
 
-const lastEditedItem = ref<any>(null)
+const lastSelectedItem = ref<any>(null)
 
 const onConfirm = async () => {
-  lastEditedItem.value = selectedItem.value?.[props.primary_key]
   await fetchData()
 }
 
+const rowClass = (row: any) => {
+  if (row[props.primary_key] === lastSelectedItem.value && props.highlightLastSelected) {
+    return [props.highlightLastSelectedClass]
+  }
+}
+
 const onAdd = async (data: any) => {
-  await props.addItem?.(data)
+  const response = await props.addItem?.(data) 
+  const newId = response?.result?.[props.primary_key] || response?.[props.primary_key]
+  lastSelectedItem.value = newId
+  if (props.goToInsertedRow) {
+    skipWatchers.value = true
+    filtersApplied.value = {
+      [props.primary_key]: newId
+    }
+    filtersRef.value?.setFilterModel({
+      [props.primary_key]: newId
+    })
+
+    if (filtersRef.value) {
+      filtersRef.value.setOpen(true)
+    }
+    pagination.currentPage = 1
+    await nextTick()
+    skipWatchers.value = false
+  }
   await onConfirm()
 }
 
@@ -259,7 +288,13 @@ const onEdit = async (data: any) => {
   await onConfirm()
 }
 
-watch(() => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], fetchData)
+watch(
+  () => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], 
+  ()=> {
+    if (!skipWatchers.value){
+      fetchData()
+    }
+  })
 
 const selectedItem = ref<any>(null)
 

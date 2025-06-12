@@ -72,6 +72,17 @@ const resetFields = () => {
   model.value = { ...currentFiltersStatus }
 }
 
+const setFilterModel = (newFilters: { [key: string]: VLCrudInputValueType }) => {
+  currentFiltersStatus = { ...newFilters }
+  model.value = { ...newFilters }
+}
+
+const setOpen = (openStatus: boolean) => {
+  open.value = openStatus
+}
+
+defineExpose({ setFilterModel, setOpen })
+
 onMounted(() => {
   resetFields()
   emit('filtersApplied', currentFiltersStatus)
