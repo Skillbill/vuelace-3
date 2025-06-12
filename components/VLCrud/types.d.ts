@@ -49,6 +49,7 @@ export interface VLCrudProps {
     addTitleI18nKey?: string;
     editTitleI18nKey?: string;
     editTooltipI18nKey?: string;
+    goToInsertedRow?: boolean;
     highlightLastEdited?: boolean;
     hightlightLastEditedClass?: string;
     persistActionDialog?: boolean;

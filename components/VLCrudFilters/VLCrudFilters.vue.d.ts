@@ -1,10 +1,16 @@
+import { VLCrudInputValueType } from '../VLCrudInput';
 import { VLCrudFiltersProps } from './types';
 
 declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<VLCrudFiltersProps>, {
     title: string;
     applyLabel: string;
     resetLabel: string;
-}>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+}>, {
+    setFilterModel: (newFilters: {
+        [key: string]: VLCrudInputValueType;
+    }) => void;
+    setOpen: (openStatus: boolean) => void;
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     error: (...args: any[]) => void;
     show: (...args: any[]) => void;
     hide: (...args: any[]) => void;

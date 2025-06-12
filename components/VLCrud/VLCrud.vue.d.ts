@@ -11,6 +11,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     applyI18nKey: string;
     resetI18nKey: string;
     editTooltipI18nKey: string;
+    goToInsertedRow: boolean;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
@@ -30,6 +31,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     applyI18nKey: string;
     resetI18nKey: string;
     editTooltipI18nKey: string;
+    goToInsertedRow: boolean;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
@@ -50,6 +52,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     applyI18nKey: string;
     resetI18nKey: string;
     editTooltipI18nKey: string;
+    goToInsertedRow: boolean;
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
