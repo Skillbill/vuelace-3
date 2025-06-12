@@ -140,8 +140,8 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   resetI18nKey: 'button.reset',
   editTooltipI18nKey: 'tooltip.edit',
   goToInsertedRow: false,
-  highlightLastSelected: true,
-  highlightLastSelectedClass: 'bg-row-selected',
+  highlightLastEdited: true,
+  hightlightLastEditedClass: 'bg-row-selected',
   persistActionDialog: true,
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
@@ -245,8 +245,8 @@ const onConfirm = async () => {
 }
 
 const rowClass = (row: any) => {
-  if (row[props.primary_key] === lastSelectedItem.value && props.highlightLastSelected) {
-    return [props.highlightLastSelectedClass]
+  if (row[props.primary_key] === lastSelectedItem.value && props.highlightLastEdited) {
+    return [props.hightlightLastEditedClass]
   }
 }
 
