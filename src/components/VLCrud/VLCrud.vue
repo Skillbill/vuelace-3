@@ -48,7 +48,7 @@
       </template>
     </VLDataTableCrud>
     <div class="flex justify-between w-full">
-      <VLButton variant="primary" @click="addItem">{{
+      <VLButton v-if="showAddButton" variant="primary" @click="addItem">{{
         translationFn(addButtonI18nKey ?? `button.add_${singular_label}`)
       }}</VLButton>
       <VLPaginator
@@ -130,6 +130,7 @@ const emit = defineEmits(['fetchError', 'error'])
 
 const props = withDefaults(defineProps<VLCrudProps>(), {
   editable: true,
+  showAddButton: true,
   actionHeaderI18nKey: 'header.actions',
   rowsPerPage: 10,
   cancelI18nKey: 'button.cancel',
