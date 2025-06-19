@@ -33,6 +33,7 @@ export interface VLCrudProps {
     form_fields: Omit<VLCrudFormFieldType, 'label'>[];
     actions: VLCrudActionType[];
     editable?: boolean;
+    showAddButton?: boolean;
     components?: {
         [key: string]: Component;
     };

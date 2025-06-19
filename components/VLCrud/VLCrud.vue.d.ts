@@ -2,6 +2,7 @@ import { VLCrudProps } from './types';
 
 declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<VLCrudProps>, {
     editable: boolean;
+    showAddButton: boolean;
     actionHeaderI18nKey: string;
     rowsPerPage: number;
     cancelI18nKey: string;
@@ -22,6 +23,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     fetchError: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<VLCrudProps>, {
     editable: boolean;
+    showAddButton: boolean;
     actionHeaderI18nKey: string;
     rowsPerPage: number;
     cancelI18nKey: string;
@@ -41,6 +43,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     onError?: ((...args: any[]) => any) | undefined;
     onFetchError?: ((...args: any[]) => any) | undefined;
 }, {
+    showAddButton: boolean;
     rowsPerPageOptions: number[];
     rowsPerPage: number;
     editable: boolean;
