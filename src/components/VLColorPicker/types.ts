@@ -11,6 +11,6 @@ export interface VLColorPickerProps {
   required?: boolean
   disabled?: boolean
   // noFormatToggle?: boolean
-  // opacity?: boolean
+  opacity?: boolean
   // format?: string
 }
