@@ -36,14 +36,15 @@
         />
         <!-- custom actions -->
         <slot name="actions" v-bind="{ data }">
-          <template v-for="action in actions"
-            ><VLCrudAction
+          <template v-for="action in actions">
+            <VLCrudAction
               v-if="action.isVisible?.(data) ?? true"
               :key="action.name"
               :tooltip="translationFn(action.i18n_key)"
               :icon="action.icon_name"
               @click="() => onClickAction(action)(data)"
-          /></template>
+            />
+          </template>
         </slot>
       </template>
     </VLDataTableCrud>
@@ -213,7 +214,14 @@ const fetchData = async () => {
 
 const onClickAction = (action: VLCrudActionType) => (data: any) => {
   if (action.onClick) {
-    action.onClick(data)
+    const result = action.onClick(data)
+    if (result instanceof Promise) {
+      result.then((res) => {
+        if (res === true) {
+          fetchData()
+        }
+      })
+    }
   }
 
   lastSelectedItem.value = data?.[props.primary_key]
@@ -252,7 +260,7 @@ const rowClass = (row: any) => {
 }
 
 const onAdd = async (data: any) => {
-  const response = await props.addItem?.(data) 
+  const response = await props.addItem?.(data)
   const newId = response?.result?.[props.primary_key] ?? response?.[props.primary_key]
   lastSelectedItem.value = newId
   if (props.goToInsertedRow) {
@@ -290,12 +298,13 @@ const onEdit = async (data: any) => {
 }
 
 watch(
-  () => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value], 
-  ()=> {
-    if (!skipWatchers.value){
+  () => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value],
+  () => {
+    if (!skipWatchers.value) {
       fetchData()
     }
-  })
+  }
+)
 
 const selectedItem = ref<any>(null)
 
