@@ -44,6 +44,10 @@ declare const _default: import('vue').DefineComponent<{
         type: import('vue').PropType<string | string[]>;
         default: string;
     };
+    opacity: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
 }, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     modelValue: import('vue').PropType<string | undefined>;
     name: {
@@ -90,6 +94,10 @@ declare const _default: import('vue').DefineComponent<{
         type: import('vue').PropType<string | string[]>;
         default: string;
     };
+    opacity: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
 }>>, {
     name: string;
     form: string;
@@ -101,5 +109,6 @@ declare const _default: import('vue').DefineComponent<{
     hoist: boolean;
     uppercase: boolean;
     swatches: string | string[];
+    opacity: boolean;
 }, {}>;
 export default _default;

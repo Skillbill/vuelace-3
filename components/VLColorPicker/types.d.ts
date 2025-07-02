@@ -10,4 +10,5 @@ export interface VLColorPickerProps {
     form?: string;
     required?: boolean;
     disabled?: boolean;
+    opacity?: boolean;
 }
