@@ -15,6 +15,7 @@
       hoist
       inline
       noFormatToggle
+      :opacity="opacity"
       :value="model"
       :name="name"
       :defaultValue="defaultValue"
@@ -42,7 +43,8 @@ const props = withDefaults(defineProps<VLColorPickerProps>(), {
   swatches: '',
   form: '',
   required: false,
-  disabled: false
+  disabled: false,
+  opacity: false
 })
 
 const colorPreview = ref<HTMLElement | null>(null)
