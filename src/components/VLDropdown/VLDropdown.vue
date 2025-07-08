@@ -9,7 +9,7 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :class="[
-          'w-full p-2 rounded input-like',
+          'w-full rounded input-like',
           disabled && 'disabled',
           errorMessage?.length && 'error'
         ]"
@@ -20,6 +20,7 @@
         @keydown.tab="closeDropdown"
         @keydown.arrow-down.prevent="onArrowDown"
         @keydown.arrow-up.prevent="onArrowUp"
+        @click="() => dropdown && openDropdown()"
       />
       <VLIcon
         v-if="dropdown"
@@ -49,7 +50,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="selectedOptions.length" class="flex flex-wrap max-w-full gap-2 mt-2 break-words">
+    <div v-if="selectedOptions.length" class="flex flex-wrap max-w-full gap-2 mt-2 overflow-hidden">
       <div
         v-for="(option, index) in selectedOptions"
         :key="index"
@@ -57,7 +58,7 @@
       >
         {{ option.text }}
         <VLIcon
-          class="ml-2 text-red-500 cursor-pointer bg-none"
+          class="ml-2 text-[--sl-color-danger-600] cursor-pointer bg-none"
           name="closeCircle"
           library="system"
           @click.prevent="removeOption(index)"
@@ -78,7 +79,6 @@ import ErrorMessage from '../utils/ErrorMessage.vue'
 const props = withDefaults(defineProps<VLDropdownProps>(), {
   placeholder: '',
   options: () => [],
-  modelValue: null,
   disabled: false,
   required: false,
   multiple: false,
@@ -86,7 +86,7 @@ const props = withDefaults(defineProps<VLDropdownProps>(), {
   dropdown: false
 })
 
-const emit = defineEmits(['update:modelValue'])
+const model = defineModel<string | string[] | VLSelectOptionType | VLSelectOptionType[] | null>()
 
 const inputValue = ref('')
 const dropdownVisible = ref(false)
@@ -108,10 +108,7 @@ const filteredOptions = computed(() => {
 })
 
 const onInput = () => {
-  dropdownVisible.value = true
-  debounce(() => {
-    dropdownVisible.value = !!filteredOptions.value.length
-  }, 300)()
+  openDropdown()
   highlightedIndex.value = -1
 }
 
@@ -120,18 +117,18 @@ const selectOption = (option: VLSelectOptionType) => {
     if (!selectedOptions.value.some((o) => o.value === option.value)) {
       selectedOptions.value.push(option)
     }
+    model.value = selectedOptions.value
   } else {
     selectedOptions.value = [option]
+    model.value = option
   }
-  emit('update:modelValue', props.multiple ? selectedOptions.value : option)
   inputValue.value = ''
-  dropdownVisible.value = false
-  highlightedIndex.value = -1
+  closeDropdown()
 }
 
 const removeOption = (index: number) => {
   selectedOptions.value.splice(index, 1)
-  emit('update:modelValue', props.multiple ? selectedOptions.value : null)
+  model.value = props.multiple ? selectedOptions.value : null
 }
 
 const onEnter = () => {
@@ -141,7 +138,9 @@ const onEnter = () => {
     const newOption = { value: inputValue.value, text: inputValue.value }
     selectOption(newOption)
   }
+  closeDropdown()
 }
+
 const onArrowDown = () => {
   if (!dropdownVisible.value) return
   highlightedIndex.value = (highlightedIndex.value + 1) % filteredOptions.value.length
@@ -157,6 +156,11 @@ const closeDropdown = () => {
   dropdownVisible.value = false
 }
 
+const openDropdown = () => {
+  dropdownVisible.value = true
+  highlightedIndex.value = -1
+}
+
 const toggleDropdown = () => {
   if (!props.disabled) {
     dropdownVisible.value = !dropdownVisible.value
@@ -164,7 +168,7 @@ const toggleDropdown = () => {
 }
 
 watch(
-  () => props.modelValue,
+  model,
   (newValue) => {
     if (Array.isArray(newValue)) {
       selectedOptions.value = newValue as VLSelectOptionType[]
@@ -176,26 +180,16 @@ watch(
   },
   { immediate: true }
 )
-
-function debounce(func: Function, wait: number) {
-  let timeout: NodeJS.Timeout | null = null
-  return function (...args: any[]) {
-    if (timeout) clearTimeout(timeout)
-    timeout = setTimeout(() => func(...args), wait)
-  }
-}
 </script>
 
 <style scoped>
 .input-like {
   display: flex;
   align-items: center;
-  width: 100%;
   min-height: var(--sl-input-height-medium);
   padding: 0.25rem 1rem;
   background-color: var(--sl-input-background-color);
   border: solid var(--sl-input-border-width) var(--sl-input-border-color);
-  border-radius: 0.25rem;
 }
 
 .input-like:hover:not(.disabled) {

@@ -5,7 +5,6 @@ export interface VLDropdownProps {
   label: string
   placeholder?: string
   options?: VLSelectOptionType[]
-  modelValue?: string | string[] | VLSelectOptionType | VLSelectOptionType[] | null
   disabled?: boolean
   required?: boolean
   multiple?: boolean
