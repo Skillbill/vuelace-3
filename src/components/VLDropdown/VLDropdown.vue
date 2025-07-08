@@ -1,0 +1,226 @@
+<template>
+  <div class="relative">
+    <label v-if="label" :for="name" class="pb-4" :class="[errorMessage?.length && 'error']">
+      {{ label }} <span v-if="required">*</span>
+    </label>
+    <div class="relative">
+      <input
+        :name="name"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :class="[
+          'w-full p-2 rounded input-like',
+          disabled && 'disabled',
+          errorMessage?.length && 'error'
+        ]"
+        v-model="inputValue"
+        @input="onInput"
+        @keydown.enter.prevent="onEnter"
+        @keydown.esc.prevent="closeDropdown"
+        @keydown.tab="closeDropdown"
+        @keydown.arrow-down.prevent="onArrowDown"
+        @keydown.arrow-up.prevent="onArrowUp"
+      />
+      <VLIcon
+        v-if="dropdown"
+        class="absolute text-lg text-gray-500 transform -translate-y-1/2 cursor-pointer top-1/2 right-2"
+        library="system"
+        :name="dropdownVisible ? 'chevronUp' : 'chevronDown'"
+        @click.prevent="toggleDropdown"
+      />
+      <ul
+        v-if="filteredOptions.length && dropdownVisible"
+        class="absolute left-0 right-0 z-10 overflow-y-auto bg-white border border-gray-300 rounded top-full max-h-48"
+        @keydown.arrow-down.prevent="onArrowDown"
+        @keydown.arrow-up.prevent="onArrowUp"
+      >
+        <li
+          v-for="(option, index) in filteredOptions"
+          :key="option.value"
+          :class="[
+            'p-2 cursor-pointer',
+            index === highlightedIndex &&
+              'bg-[--sl-color-primary-700] text-[--sl-color-neutral-0] font-bold'
+          ]"
+          @click="selectOption(option)"
+          @mouseover="() => (highlightedIndex = index)"
+        >
+          {{ option.text }}
+        </li>
+      </ul>
+    </div>
+    <div v-if="selectedOptions.length" class="flex flex-wrap max-w-full gap-2 mt-2 break-words">
+      <div
+        v-for="(option, index) in selectedOptions"
+        :key="index"
+        class="flex items-center px-2 py-1 bg-gray-200 rounded"
+      >
+        {{ option.text }}
+        <VLIcon
+          class="ml-2 text-red-500 cursor-pointer bg-none"
+          name="closeCircle"
+          library="system"
+          @click.prevent="removeOption(index)"
+        />
+      </div>
+    </div>
+    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import VLIcon from '../VLIcon/VLIcon.vue'
+import type { VLSelectOptionType } from '../VLSelect'
+import type { VLDropdownProps } from './types'
+import ErrorMessage from '../utils/ErrorMessage.vue'
+
+const props = withDefaults(defineProps<VLDropdownProps>(), {
+  placeholder: '',
+  options: () => [],
+  modelValue: null,
+  disabled: false,
+  required: false,
+  multiple: false,
+  manual: false,
+  dropdown: false
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const inputValue = ref('')
+const dropdownVisible = ref(false)
+const selectedOptions = ref<VLSelectOptionType[]>([])
+const highlightedIndex = ref(-1)
+
+const errorMessage = computed(() => {
+  if (props.error) {
+    return props.error
+  }
+  return ''
+})
+
+const filteredOptions = computed(() => {
+  if (!inputValue.value) return props.options
+  return props.options.filter((option) =>
+    option.text.toLowerCase().includes(inputValue.value.toLowerCase())
+  )
+})
+
+const onInput = () => {
+  dropdownVisible.value = true
+  debounce(() => {
+    dropdownVisible.value = !!filteredOptions.value.length
+  }, 300)()
+  highlightedIndex.value = -1
+}
+
+const selectOption = (option: VLSelectOptionType) => {
+  if (props.multiple) {
+    if (!selectedOptions.value.some((o) => o.value === option.value)) {
+      selectedOptions.value.push(option)
+    }
+  } else {
+    selectedOptions.value = [option]
+  }
+  emit('update:modelValue', props.multiple ? selectedOptions.value : option)
+  inputValue.value = ''
+  dropdownVisible.value = false
+  highlightedIndex.value = -1
+}
+
+const removeOption = (index: number) => {
+  selectedOptions.value.splice(index, 1)
+  emit('update:modelValue', props.multiple ? selectedOptions.value : null)
+}
+
+const onEnter = () => {
+  if (highlightedIndex.value >= 0 && highlightedIndex.value < filteredOptions.value.length) {
+    selectOption(filteredOptions.value[highlightedIndex.value])
+  } else if (props.manual && inputValue.value) {
+    const newOption = { value: inputValue.value, text: inputValue.value }
+    selectOption(newOption)
+  }
+}
+const onArrowDown = () => {
+  if (!dropdownVisible.value) return
+  highlightedIndex.value = (highlightedIndex.value + 1) % filteredOptions.value.length
+}
+
+const onArrowUp = () => {
+  if (!dropdownVisible.value) return
+  highlightedIndex.value =
+    (highlightedIndex.value - 1 + filteredOptions.value.length) % filteredOptions.value.length
+}
+
+const closeDropdown = () => {
+  dropdownVisible.value = false
+}
+
+const toggleDropdown = () => {
+  if (!props.disabled) {
+    dropdownVisible.value = !dropdownVisible.value
+  }
+}
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    if (Array.isArray(newValue)) {
+      selectedOptions.value = newValue as VLSelectOptionType[]
+    } else if (newValue && typeof newValue === 'object') {
+      selectedOptions.value = [newValue as VLSelectOptionType]
+    } else {
+      selectedOptions.value = []
+    }
+  },
+  { immediate: true }
+)
+
+function debounce(func: Function, wait: number) {
+  let timeout: NodeJS.Timeout | null = null
+  return function (...args: any[]) {
+    if (timeout) clearTimeout(timeout)
+    timeout = setTimeout(() => func(...args), wait)
+  }
+}
+</script>
+
+<style scoped>
+.input-like {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--sl-input-height-medium);
+  padding: 0.25rem 1rem;
+  background-color: var(--sl-input-background-color);
+  border: solid var(--sl-input-border-width) var(--sl-input-border-color);
+  border-radius: 0.25rem;
+}
+
+.input-like:hover:not(.disabled) {
+  cursor: pointer;
+  background-color: var(--sl-input-background-color-hover);
+  border-color: var(--sl-input-border-color-hover);
+}
+.input-like:focus:not(.disabled) {
+  background-color: var(--sl-input-background-color-focus);
+  border-color: var(--sl-input-border-color-focus);
+  box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-input-focus-ring-color);
+}
+
+.input-like:focus-visible:not(.disabled) {
+  outline: none;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--sl-color-neutral-400);
+  background-color: var(--sl-color-neutral-100);
+}
+
+.error {
+  border-color: var(--sl-color-danger-500);
+  color: var(--sl-color-danger-500);
+}
+</style>
