@@ -3,13 +3,15 @@
     <label v-if="label" :for="name" class="pb-4" :class="[errorMessage?.length && 'error']">
       {{ label }} <span v-if="required">*</span>
     </label>
-    <div class="relative w-full rounded input-like" :class="[disabled && 'disabled']">
+    <div
+      class="relative w-full rounded input-like"
+      :class="[disabled && 'disabled', errorMessage?.length && 'error']"
+    >
       <input
         :name="name"
         :placeholder="placeholder"
         :disabled="disabled"
         class="flex-1 bg-transparent border-none outline-none"
-        :class="[errorMessage?.length && 'error']"
         v-model="inputValue"
         @input="onInput"
         @keydown.enter.prevent="onEnter"
@@ -84,6 +86,7 @@ import { ref, computed, watch } from 'vue'
 import VLIcon from '../VLIcon/VLIcon.vue'
 import type { VLSelectOptionType } from '../VLSelect'
 import type { VLDropdownProps } from './types'
+import type { VLInputRuleType } from '../utils/types'
 import ErrorMessage from '../utils/ErrorMessage.vue'
 
 const props = withDefaults(defineProps<VLDropdownProps>(), {
@@ -93,7 +96,8 @@ const props = withDefaults(defineProps<VLDropdownProps>(), {
   required: false,
   multiple: false,
   manual: false,
-  dropdown: false
+  dropdown: false,
+  rules: () => [] as VLInputRuleType[]
 })
 
 const model = defineModel<string | string[] | null>()
@@ -102,6 +106,14 @@ const inputValue = ref('')
 const dropdownVisible = ref(false)
 const selectedOptions = ref<string[]>([])
 const highlightedIndex = ref(-1)
+const validationError = ref<string | undefined>()
+
+const errorMessage = computed(() => {
+  if (props.error) {
+    return props.error
+  }
+  return validationError.value
+})
 
 const optionsMap = computed(() => {
   const map = new Map<string, string>()
@@ -112,24 +124,12 @@ const optionsMap = computed(() => {
   return map
 })
 
-const errorMessage = computed(() => {
-  if (props.error) {
-    return props.error
-  }
-  return ''
-})
-
 const filteredOptions = computed(() => {
   if (!inputValue.value) return props.options
   return props.options.filter((option) =>
     option.text.toLowerCase().includes(inputValue.value.toLowerCase())
   )
 })
-
-const onInput = () => {
-  openDropdown()
-  highlightedIndex.value = -1
-}
 
 const selectOption = (option: VLSelectOptionType) => {
   if (props.multiple) {
@@ -148,6 +148,11 @@ const selectOption = (option: VLSelectOptionType) => {
 const removeOption = (index: number) => {
   selectedOptions.value.splice(index, 1)
   model.value = props.multiple ? selectedOptions.value : null
+}
+
+const onInput = () => {
+  openDropdown()
+  highlightedIndex.value = -1
 }
 
 const onEnter = () => {
@@ -186,9 +191,23 @@ const toggleDropdown = () => {
   }
 }
 
+const validateInput = () => {
+  if (props.rules.length) {
+    for (const rule of props.rules) {
+      if (!rule.validateFn(model.value)) {
+        validationError.value = rule.message
+        return false
+      }
+    }
+  }
+  validationError.value = undefined
+  return true
+}
+
 watch(
   model,
   (newValue) => {
+    validateInput()
     if (Array.isArray(newValue)) {
       selectedOptions.value = newValue
     } else if (newValue) {
@@ -199,6 +218,11 @@ watch(
   },
   { immediate: true }
 )
+
+defineExpose({
+  isValid: () => errorMessage.value === undefined || errorMessage.value.length === 0,
+  validateInput
+})
 </script>
 
 <style scoped>

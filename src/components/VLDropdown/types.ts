@@ -1,3 +1,4 @@
+import type { VLInputRuleType } from '../utils/types'
 import type { VLSelectOptionType } from '../VLSelect'
 
 export interface VLDropdownProps {
@@ -11,4 +12,5 @@ export interface VLDropdownProps {
   manual?: boolean
   dropdown?: boolean
   error?: string
+  rules?: VLInputRuleType[]
 }
