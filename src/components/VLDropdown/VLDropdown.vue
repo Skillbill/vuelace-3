@@ -52,11 +52,11 @@
     </div>
     <div v-if="selectedOptions.length" class="flex flex-wrap max-w-full gap-2 mt-2 overflow-hidden">
       <div
-        v-for="(option, index) in selectedOptions"
+        v-for="(value, index) in selectedOptions"
         :key="index"
         class="flex items-center px-2 py-1 bg-gray-200 rounded"
       >
-        {{ option.text }}
+        {{ optionsMap.get(value) || value }}
         <VLIcon
           class="ml-2 text-[--sl-color-danger-600] cursor-pointer bg-none"
           name="closeCircle"
@@ -86,12 +86,21 @@ const props = withDefaults(defineProps<VLDropdownProps>(), {
   dropdown: false
 })
 
-const model = defineModel<string | string[] | VLSelectOptionType | VLSelectOptionType[] | null>()
+const model = defineModel<string | string[] | null>()
 
 const inputValue = ref('')
 const dropdownVisible = ref(false)
-const selectedOptions = ref<VLSelectOptionType[]>([])
+const selectedOptions = ref<string[]>([])
 const highlightedIndex = ref(-1)
+
+const optionsMap = computed(() => {
+  const map = new Map<string, string>()
+  for (const option of props.options) {
+    map.set(option.value, option.text)
+  }
+
+  return map
+})
 
 const errorMessage = computed(() => {
   if (props.error) {
@@ -114,13 +123,13 @@ const onInput = () => {
 
 const selectOption = (option: VLSelectOptionType) => {
   if (props.multiple) {
-    if (!selectedOptions.value.some((o) => o.value === option.value)) {
-      selectedOptions.value.push(option)
+    if (!selectedOptions.value.includes(option.value)) {
+      selectedOptions.value.push(option.value)
     }
     model.value = selectedOptions.value
   } else {
-    selectedOptions.value = [option]
-    model.value = option
+    selectedOptions.value = [option.value]
+    model.value = option.value
   }
   inputValue.value = ''
   closeDropdown()
@@ -171,9 +180,9 @@ watch(
   model,
   (newValue) => {
     if (Array.isArray(newValue)) {
-      selectedOptions.value = newValue as VLSelectOptionType[]
-    } else if (newValue && typeof newValue === 'object') {
-      selectedOptions.value = [newValue as VLSelectOptionType]
+      selectedOptions.value = newValue
+    } else if (newValue) {
+      selectedOptions.value = [newValue]
     } else {
       selectedOptions.value = []
     }
