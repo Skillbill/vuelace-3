@@ -3,16 +3,13 @@
     <label v-if="label" :for="name" class="pb-4" :class="[errorMessage?.length && 'error']">
       {{ label }} <span v-if="required">*</span>
     </label>
-    <div class="relative">
+    <div class="relative w-full rounded input-like" :class="[disabled && 'disabled']">
       <input
         :name="name"
         :placeholder="placeholder"
         :disabled="disabled"
-        :class="[
-          'w-full rounded input-like',
-          disabled && 'disabled',
-          errorMessage?.length && 'error'
-        ]"
+        class="flex-1 bg-transparent border-none outline-none"
+        :class="[errorMessage?.length && 'error']"
         v-model="inputValue"
         @input="onInput"
         @keydown.enter.prevent="onEnter"
@@ -23,9 +20,18 @@
         @click="() => dropdown && openDropdown()"
       />
       <VLIcon
+        v-if="
+          props.manual &&
+          inputValue &&
+          !filteredOptions.some((option) => option.text === inputValue)
+        "
+        class="mr-2 text-lg text-[--sl-color-primary-700] cursor-pointer hover:opacity-70"
+        name="plusCircle"
+        @click.prevent="onEnter"
+      />
+      <VLIcon
         v-if="dropdown"
-        class="absolute text-lg text-gray-500 transform -translate-y-1/2 cursor-pointer top-1/2 right-2"
-        library="system"
+        class="text-lg text-gray-500 cursor-pointer hover:opacity-70"
         :name="dropdownVisible ? 'chevronUp' : 'chevronDown'"
         @click.prevent="toggleDropdown"
       />
@@ -50,7 +56,12 @@
         </li>
       </ul>
     </div>
-    <div v-if="selectedOptions.length" class="flex flex-wrap max-w-full gap-2 mt-2 overflow-hidden">
+    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
+    <div
+      v-if="selectedOptions.length"
+      class="flex flex-wrap max-w-full gap-2 mt-2 overflow-hidden"
+      :class="[errorMessage?.length && 'pt-4']"
+    >
       <div
         v-for="(value, index) in selectedOptions"
         :key="index"
@@ -65,7 +76,6 @@
         />
       </div>
     </div>
-    <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
 </template>
 
@@ -206,6 +216,12 @@ watch(
   background-color: var(--sl-input-background-color-hover);
   border-color: var(--sl-input-border-color-hover);
 }
+
+.input-like:focus-within {
+  box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-input-focus-ring-color);
+  border: solid var(--sl-input-border-width) var(--sl-input-border-color-focus);
+}
+
 .input-like:focus:not(.disabled) {
   background-color: var(--sl-input-background-color-focus);
   border-color: var(--sl-input-border-color-focus);
