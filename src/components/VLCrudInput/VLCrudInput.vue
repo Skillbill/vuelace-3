@@ -95,6 +95,22 @@
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
+  <VLDropdown
+    v-else-if="type === 'dropdown'"
+    ref="inputRef"
+    :name="input_name"
+    :label="label"
+    :rules="rules"
+    :required="required"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :options="options"
+    :multiple="multiple"
+    :model-value="cheatType()"
+    manual
+    dropdown
+    @update:model-value="cheatUpdateFunction"
+  />
 </template>
 
 <script setup lang="ts">
@@ -109,6 +125,7 @@ import { VLDatePicker } from '../VLDatePicker'
 import { VLColorPicker } from '../VLColorPicker'
 import { VLImageUpload } from '../VLImageUpload'
 import { VLAutocomplete } from '../VLAutocomplete'
+import { VLDropdown } from '../VLDropdown'
 
 const emit = defineEmits(['error', 'update:modelValue'])
 
@@ -141,6 +158,10 @@ function cheatType<T>(): T {
   }
 
   if (props.type === 'autocomplete' && typeof model.value === 'number') {
+    model.value = `${model.value}`
+  }
+
+  if (props.type === 'dropdown' && typeof model.value === 'number') {
     model.value = `${model.value}`
   }
 

@@ -22,6 +22,8 @@ import pencil from '@mdi/svg/svg/pencil.svg'
 import deleteIcon from '@mdi/svg/svg/delete.svg'
 import pageFirst from '@mdi/svg/svg/page-first.svg'
 import pageLast from '@mdi/svg/svg/page-last.svg'
+import chevronUp from '@mdi/svg/svg/chevron-up.svg'
+import plusCircle from '@mdi/svg/svg/plus-circle.svg'
 
 export const icons = {
   paperclip,
@@ -47,7 +49,9 @@ export const icons = {
   pencil,
   delete: deleteIcon,
   pageFirst,
-  pageLast
+  pageLast,
+  chevronUp,
+  plusCircle
 }
 
 export const addIcon = (name: string, svg: string) => {
