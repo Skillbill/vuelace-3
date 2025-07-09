@@ -100,7 +100,7 @@ const props = withDefaults(defineProps<VLDropdownProps>(), {
   rules: () => [] as VLInputRuleType[]
 })
 
-const model = defineModel<string | string[] | null>()
+const model = defineModel<string | string[] | null | undefined>()
 
 const inputValue = ref('')
 const dropdownVisible = ref(false)
