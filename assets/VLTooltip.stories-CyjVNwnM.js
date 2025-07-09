@@ -1,4 +1,4 @@
-import{m as o}from"./VLTextArea-Co7hy01y.js";import"./vue.esm-bundler-B0YmCfnK.js";import"./api.esm-D392XNf6.js";const i={title:"Components/Tooltip",component:o,tags:["autodocs"],render:a=>({components:{VLTooltip:o},setup(){return{args:a}},template:`
+import{m as o}from"./VLTextArea-DYSxIw1W.js";import"./vue.esm-bundler-B0YmCfnK.js";import"./api.esm-D392XNf6.js";const i={title:"Components/Tooltip",component:o,tags:["autodocs"],render:a=>({components:{VLTooltip:o},setup(){return{args:a}},template:`
       <VLTooltip v-bind="args">
         <span>{{args.default}}</span>
       </VLTooltip>
