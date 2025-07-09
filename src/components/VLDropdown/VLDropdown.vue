@@ -35,6 +35,7 @@
           @keydown.arrow-down.prevent="onArrowDown"
           @keydown.arrow-up.prevent="onArrowUp"
           @click="() => dropdown && openDropdown()"
+          @blur="() => dropdownVisible && closeDropdown()"
         />
       </template>
       <VLIcon
@@ -67,6 +68,7 @@
             index === highlightedIndex &&
               'bg-[--sl-color-primary-700] text-[--sl-color-neutral-0] font-bold'
           ]"
+          @mousedown.prevent
           @click="selectOption(option)"
           @mouseover="() => (highlightedIndex = index)"
         >
