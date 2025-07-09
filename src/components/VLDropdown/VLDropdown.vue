@@ -7,20 +7,34 @@
       class="relative w-full rounded input-like"
       :class="[disabled && 'disabled', errorMessage?.length && 'error']"
     >
-      <input
-        :name="name"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        class="flex-1 bg-transparent border-none outline-none"
-        v-model="inputValue"
-        @input="onInput"
-        @keydown.enter.prevent="onEnter"
-        @keydown.esc.prevent="closeDropdown"
-        @keydown.tab="closeDropdown"
-        @keydown.arrow-down.prevent="onArrowDown"
-        @keydown.arrow-up.prevent="onArrowUp"
-        @click="() => dropdown && openDropdown()"
-      />
+      <template v-if="!props.multiple && selectedOptions.length">
+        <div class="flex-1">
+          <span class="items-center px-2 py-1 truncate bg-gray-200 rounded">{{
+            optionsMap.get(selectedOptions[0]) || selectedOptions[0]
+          }}</span>
+        </div>
+        <VLIcon
+          class="ml-2 text-[--sl-color-danger-600] cursor-pointer bg-none"
+          name="closeCircle"
+          @click.prevent="removeOption(0)"
+        />
+      </template>
+      <template v-else>
+        <input
+          :name="name"
+          :placeholder="placeholder"
+          :disabled="disabled"
+          class="flex-1 bg-transparent border-none outline-none"
+          v-model="inputValue"
+          @input="onInput"
+          @keydown.enter.prevent="onEnter"
+          @keydown.esc.prevent="closeDropdown"
+          @keydown.tab="closeDropdown"
+          @keydown.arrow-down.prevent="onArrowDown"
+          @keydown.arrow-up.prevent="onArrowUp"
+          @click="() => dropdown && openDropdown()"
+        />
+      </template>
       <VLIcon
         v-if="
           props.manual &&
@@ -60,7 +74,7 @@
     </div>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
     <div
-      v-if="selectedOptions.length"
+      v-if="props.multiple && selectedOptions.length"
       class="flex flex-wrap max-w-full gap-2 mt-2 overflow-hidden"
       :class="[errorMessage?.length && 'pt-4']"
     >
