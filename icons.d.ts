@@ -23,6 +23,8 @@ export declare const icons: {
     delete: string;
     pageFirst: string;
     pageLast: string;
+    chevronUp: string;
+    plusCircle: string;
 };
 export declare const addIcon: (name: string, svg: string) => void;
 export declare const addIcons: (icons: {
