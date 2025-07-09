@@ -8,16 +8,18 @@
       :class="[disabled && 'disabled', errorMessage?.length && 'error']"
     >
       <template v-if="!props.multiple && selectedOptions.length">
-        <div class="flex-1">
-          <span class="items-center px-2 py-1 truncate bg-gray-200 rounded">{{
-            optionsMap.get(selectedOptions[0]) || selectedOptions[0]
-          }}</span>
+        <div class="flex grow">
+          <div class="flex items-center gap-2 px-2 py-1 bg-gray-200 rounded">
+            <span class="truncate">
+              {{ optionsMap.get(selectedOptions[0]) || selectedOptions[0] }}
+            </span>
+            <VLIcon
+              class="text-[--sl-color-danger-600] cursor-pointer bg-none"
+              name="closeCircle"
+              @click.prevent="removeOption(0)"
+            />
+          </div>
         </div>
-        <VLIcon
-          class="ml-2 text-[--sl-color-danger-600] cursor-pointer bg-none"
-          name="closeCircle"
-          @click.prevent="removeOption(0)"
-        />
       </template>
       <template v-else>
         <input
