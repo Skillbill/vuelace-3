@@ -50,6 +50,10 @@ declare const _default: import('vue').DefineComponent<{
     onHide: {
         type: import('vue').PropType<() => void>;
     };
+    forceSelection: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
     emptySearchMessage: {
         type: import('vue').PropType<string>;
     };
@@ -144,6 +148,10 @@ declare const _default: import('vue').DefineComponent<{
     onHide: {
         type: import('vue').PropType<() => void>;
     };
+    forceSelection: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
     emptySearchMessage: {
         type: import('vue').PropType<string>;
     };
@@ -191,5 +199,6 @@ declare const _default: import('vue').DefineComponent<{
     required: boolean;
     rules: VLInputRuleType[];
     options: VLSelectOptionType[];
+    forceSelection: boolean;
 }, {}>;
 export default _default;

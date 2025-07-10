@@ -5,6 +5,7 @@ export interface VLAutocompleteProps {
     options?: VLSelectOptionType[];
     placeholder?: string;
     disabled?: boolean;
+    forceSelection?: boolean;
     emptySearchMessage?: string;
     optionLabel?: string;
     error?: string;
