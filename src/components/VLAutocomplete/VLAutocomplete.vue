@@ -12,7 +12,7 @@
       :emptySearchMessage="emptySearchMessage"
       :placeholder="placeholder"
       :disabled="disabled"
-      :forceSelection ="forceSelection"
+      :forceSelection="forceSelection"
       input-class="px-4 py-1"
       panel-class="py-2"
       dropdown
