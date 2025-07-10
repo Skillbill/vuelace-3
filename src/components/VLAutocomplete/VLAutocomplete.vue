@@ -12,7 +12,7 @@
       :emptySearchMessage="emptySearchMessage"
       :placeholder="placeholder"
       :disabled="disabled"
-      forceSelection
+      :forceSelection ="forceSelection"
       input-class="px-4 py-1"
       panel-class="py-2"
       dropdown
@@ -76,6 +76,7 @@ const emit = defineEmits([
 const props = withDefaults(defineProps<VLAutocompleteProps>(), {
   disabled: false,
   required: false,
+  forceSelection: true,
   options: () => [] as VLSelectOptionType[],
   rules: () => [] as VLInputRuleType[]
 })
