@@ -116,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed, nextTick } from 'vue'
+import { ref, reactive, watch, computed, nextTick, toRaw } from 'vue'
 
 import { VLCrudAction } from '../VLCrudAction'
 import { VLPaginator } from '../VLPaginator'
@@ -226,7 +226,7 @@ const onClickAction = (action: VLCrudActionType) => (data: any) => {
 
   lastSelectedItem.value = data?.[props.primary_key]
   if (action.component) {
-    selectedItem.value = data
+    selectedItem.value = structuredClone(toRaw(data))
     dialog.value = action.name
     dialogProps.value = action.dialogProperties ?? {}
     showDialog.value = true
@@ -285,7 +285,7 @@ const onAdd = async (data: any) => {
 const editAction = {
   name: 'edit',
   onClick: (data: any) => {
-    selectedItem.value = data
+    selectedItem.value = structuredClone(toRaw(data))
     dialog.value = 'edit'
     dialogProps.value = {}
     showDialog.value = true
