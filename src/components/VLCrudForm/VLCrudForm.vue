@@ -1,7 +1,6 @@
 <template>
   <div slot="label">{{ title }}</div>
-
-  <form class="flex flex-col gap-8" @submit.prevent="onConfirm">
+  <form :name="`${type}-crud-form`" class="flex flex-col gap-8" @submit.prevent="onConfirm">
     <VLCrudInput
       v-for="field in Object.values(fields)"
       v-show="isVisible(field)"
