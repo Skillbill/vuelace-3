@@ -49,7 +49,7 @@
     @update:model-value="cheatUpdateFunction"
   />
   <VLDatePicker
-    v-else-if="type === 'date'"
+    v-else-if="type === 'date' || type === 'datetime'"
     ref="inputRef"
     :name="input_name"
     :label="label"
@@ -57,6 +57,7 @@
     :required="required"
     :disabled="disabled"
     :placeholder="placeholder"
+    :with-time="type === 'datetime'"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
