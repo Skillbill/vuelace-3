@@ -93,6 +93,7 @@
     :placeholder="placeholder"
     :options="options"
     :model-value="cheatType()"
+    :force-selection="forceSelection"
     @update:model-value="cheatUpdateFunction"
   />
   <VLDropdown
@@ -145,7 +146,8 @@ const inputRef = ref<InstanceType<
 
 const props = withDefaults(defineProps<VLCrudInputProps>(), {
   disabled: false,
-  required: false
+  required: false,
+  forceSelection: true
 })
 
 function cheatType<T>(): T {
