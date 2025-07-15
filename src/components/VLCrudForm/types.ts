@@ -19,6 +19,7 @@ export interface VLCrudFormFieldType {
   disabled_on_edit?: boolean
   placeholder?: string
   multiple?: boolean
+  forceSelection?: boolean
   side_effect?: (
     model: { [key: string]: VLCrudInputValueType },
     fields: {

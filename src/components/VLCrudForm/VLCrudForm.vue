@@ -19,6 +19,7 @@
       :required="field.required"
       :multiple="field.multiple"
       :img_style="field.img_style"
+      :forceSelection="field.forceSelection"
       v-model="model[field.value]"
       @update:modelValue="() => field.side_effect?.(model, fields)"
       @error="(evt) => emit('error', evt)"

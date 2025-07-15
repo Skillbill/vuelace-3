@@ -21,7 +21,7 @@
       @complete="onCompleteEvent"
       @click="onClick"
       @focus="onFocus"
-      @change="(evt) => emit('change', evt)"
+      @change="onChange"
       @item-unselect="(evt) => emit('item-unselect', evt)"
       @dropdown-click="(evt) => emit('dropdown-click', evt)"
       @clear="() => emit('clear')"
@@ -100,16 +100,34 @@ watch(inputModel, () => {
 onMounted(() => {
   if (!model.value?.length) inputModel.value = { value: undefined, text: '' }
   else {
-    inputModel.value = props.options.find((option) => model.value === option.value)
+    inputModel.value =
+      props.options.find((option) => model.value === option.value) ?? !props.forceSelection
+        ? { value: model.value, text: model.value }
+        : undefined
   }
 })
 
 watch(model, (value) => {
   if (!value?.length) inputModel.value = { value: undefined, text: '' }
   else {
-    inputModel.value = props.options.find((option) => model.value === option.value)
+    inputModel.value =
+      props.options.find((option) => model.value === option.value) ?? !props.forceSelection
+        ? { value: model.value, text: model.value }
+        : undefined
   }
 })
+
+const onChange = (evt: any) => {
+  if (!props.forceSelection) {
+    if (evt.value && typeof evt.value === 'object') {
+      model.value = evt.value.value
+    } else {
+      model.value = evt.value
+    }
+  }
+
+  emit('change', evt)
+}
 
 const onItemSelect = (evt: any) => {
   model.value = evt.value.value
