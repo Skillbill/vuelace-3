@@ -33,6 +33,10 @@ declare const _default: import('vue').DefineComponent<{
     options: {
         type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
     };
+    forceSelection: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
     input_name: {
         type: import('vue').PropType<string>;
         required: true;
@@ -81,6 +85,10 @@ declare const _default: import('vue').DefineComponent<{
     options: {
         type: import('vue').PropType<import('../VLSelect').VLSelectOptionType[]>;
     };
+    forceSelection: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
     input_name: {
         type: import('vue').PropType<string>;
         required: true;
@@ -97,5 +105,6 @@ declare const _default: import('vue').DefineComponent<{
 }, {
     disabled: boolean;
     required: boolean;
+    forceSelection: boolean;
 }, {}>;
 export default _default;
