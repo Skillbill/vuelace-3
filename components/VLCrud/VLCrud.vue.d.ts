@@ -66,6 +66,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     actions?(_: {
         data: any;
     }): any;
+    "bottom-container"?(_: {}): any;
 }>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
