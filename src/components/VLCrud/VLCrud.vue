@@ -49,9 +49,12 @@
       </template>
     </VLDataTableCrud>
     <div class="flex justify-between w-full">
-      <VLButton v-if="showAddButton" variant="primary" @click="addItem">{{
-        translationFn(addButtonI18nKey ?? `button.add_${singular_label}`)
-      }}</VLButton>
+      <div class="flex grow">
+        <VLButton v-if="showAddButton" variant="primary" @click="addItem">{{
+          translationFn(addButtonI18nKey ?? `button.add_${singular_label}`)
+        }}</VLButton>
+        <slot name="bottom-container"></slot>
+      </div>
       <VLPaginator
         v-model:page="pagination.currentPage"
         v-model:rowsPerPage="pagination.rowsPerPage"
