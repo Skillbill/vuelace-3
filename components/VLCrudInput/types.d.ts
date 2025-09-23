@@ -2,7 +2,7 @@ import { VLFileInputErrorEvent, VLInputRuleType } from '..';
 import { VLSelectOptionType } from '../VLSelect';
 
 export type VLCrudInputValueType = string | string[] | boolean | Date | number | null | undefined;
-export type VLCrudInputFieldType = 'text' | 'checkbox' | 'select' | 'number' | 'date' | 'color' | 'image' | 'autocomplete' | 'dropdown';
+export type VLCrudInputFieldType = 'text' | 'checkbox' | 'select' | 'number' | 'date' | 'color' | 'image' | 'autocomplete' | 'dropdown' | 'textarea';
 export interface VLCrudInputProps {
     input_name: string;
     label: string;
