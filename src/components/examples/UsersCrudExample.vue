@@ -92,6 +92,10 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       value: 'expiration_date',
       sortable: false,
       type: 'date'
+    },
+    {
+      i18n_key: 'Description',
+      value: 'description'
     }
   ],
   filters: [
@@ -215,7 +219,8 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
       i18n_key: 'Expiration date',
       value: 'expiration_date',
       input_type: 'date'
-    }
+    },
+    { i18n_key: 'Description', value: 'description', input_type: 'textarea' }
   ],
   actions: [
     {
