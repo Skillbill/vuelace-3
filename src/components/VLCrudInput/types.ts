@@ -12,6 +12,7 @@ export type VLCrudInputFieldType =
   | 'image'
   | 'autocomplete'
   | 'dropdown'
+  | 'textarea'
 export interface VLCrudInputProps {
   input_name: string
   label: string

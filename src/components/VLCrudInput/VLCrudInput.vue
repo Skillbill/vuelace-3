@@ -11,6 +11,18 @@
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />
+  <VLTextArea
+    v-if="type === 'textarea'"
+    ref="inputRef"
+    :name="input_name"
+    :label="label"
+    :rules="rules"
+    :required="required"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :model-value="cheatType()"
+    @update:model-value="cheatUpdateFunction"
+  />
   <VLNumberInput
     v-else-if="type === 'number'"
     ref="inputRef"
@@ -127,6 +139,7 @@ import { VLColorPicker } from '../VLColorPicker'
 import { VLImageUpload } from '../VLImageUpload'
 import { VLAutocomplete } from '../VLAutocomplete'
 import { VLDropdown } from '../VLDropdown'
+import VLTextArea from '../VLTextArea/VLTextArea.vue'
 
 const emit = defineEmits(['error', 'update:modelValue'])
 
