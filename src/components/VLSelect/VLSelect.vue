@@ -37,6 +37,12 @@
         :key="option.value"
         :value="`${option.value}`.replaceAll(' ', '_')"
       >
+        <VLIcon
+          v-if="option.icon"
+          :name="option.icon"
+          slot="prefix"
+          :library="option.icon_library"
+        />
         {{ option.text }}
       </sl-option>
     </sl-select>
@@ -63,6 +69,7 @@ import type {
 import ErrorMessage from '../utils/ErrorMessage.vue'
 import type { VLSelectOptionType, VLSelectProps } from './types'
 import { SlSelect } from '@shoelace-style/shoelace'
+import { VLIcon } from '../VLIcon'
 
 const emit = defineEmits([
   'focus',
