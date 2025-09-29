@@ -30,6 +30,11 @@
 <script setup lang="ts">
 import { VLCrud, type VLCrudProps } from '../VLCrud'
 import { useUsersStore } from '../../stores/users'
+import { addIcon } from '../..'
+
+import ghost from '@mdi/svg/svg/ghost.svg'
+
+addIcon('ghost', ghost)
 
 import ActiveCell from './cells/ActiveCell.vue'
 import DateCell from './cells/DateCell.vue'
@@ -122,7 +127,7 @@ const users_crud: Omit<VLCrudProps, 'getItems'> = {
         { value: '', text: '' },
         { value: 'admin', text: 'admin' },
         { value: 'user', text: 'user' },
-        { value: 'guest', text: 'guest' }
+        { value: 'guest', text: 'guest', icon: 'ghost' }
       ],
       default_value: ''
     },
