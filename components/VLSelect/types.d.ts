@@ -3,6 +3,8 @@ import { VLInputRuleType, SlFocusEvent, SlBlurEvent, SlAfterHideEvent, SlInputEv
 export interface VLSelectOptionType {
     value: string;
     text: string;
+    icon?: string;
+    icon_library?: string;
 }
 export interface VLSelectProps {
     name?: string;
