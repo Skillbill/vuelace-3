@@ -12,7 +12,7 @@
     @update:model-value="cheatUpdateFunction"
   />
   <VLTextArea
-    v-if="type === 'textarea'"
+    v-else-if="type === 'textarea'"
     ref="inputRef"
     :name="input_name"
     :label="label"
