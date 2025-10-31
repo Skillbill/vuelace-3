@@ -112,6 +112,7 @@
           }"
           @close="closeDialog"
           @confirm="onConfirm"
+          @fetch-on-close="fetchOnCloseStatus = true"
         />
       </template>
     </VLDialog>
@@ -252,6 +253,8 @@ const onFiltersApplied = (filters: any) => {
 
 const lastSelectedItem = ref<any>(null)
 
+const fetchOnCloseStatus = ref(false)
+
 const onConfirm = async () => {
   await fetchData()
 }
@@ -320,7 +323,10 @@ const showDialog = ref(false)
 const closeDialog = () => {
   showDialog.value = false
   dialogProps.value = {}
-
+  if (fetchOnCloseStatus.value) {
+    fetchOnCloseStatus.value = false
+    fetchData()
+  }
   setTimeout(() => {
     dialog.value = null
   }, 300)
