@@ -20,6 +20,7 @@ export interface VLCrudFormFieldType {
   placeholder?: string
   multiple?: boolean
   forceSelection?: boolean
+  withTime?: boolean
   side_effect?: (
     model: { [key: string]: VLCrudInputValueType },
     fields: {

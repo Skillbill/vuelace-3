@@ -20,6 +20,7 @@
       :multiple="field.multiple"
       :img_style="field.img_style"
       :forceSelection="field.forceSelection"
+      :withTime="field.withTime"
       v-model="model[field.value]"
       @update:modelValue="() => field.side_effect?.(model, fields)"
       @error="(evt) => emit('error', evt)"
