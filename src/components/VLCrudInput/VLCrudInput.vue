@@ -69,6 +69,7 @@
     :required="required"
     :disabled="disabled"
     :placeholder="placeholder"
+    :with-time="withTime"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
   />

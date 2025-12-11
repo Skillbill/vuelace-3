@@ -27,6 +27,7 @@ export interface VLCrudInputProps {
   img_style?: string
   multiple?: boolean
   forceSelection?: boolean
+  withTime?: boolean
   onError?: (error: VLFileInputErrorEvent) => void
   // autofocus?: boolean
 }
