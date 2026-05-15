@@ -57,11 +57,13 @@ export interface VLCrudProps {
   highlightLastEdited?: boolean
   hightlightLastEditedClass?: string
   persistActionDialog?: boolean
+  sort?: boolean
   rowClass?: (data: any) => (string | object)[] | undefined
   getItems: (
     page: number,
     rowsPerPage: number,
-    filters: any
+    filters: any,
+    sort?: string
   ) => Promise<
     | {
         result: any[]

@@ -17,6 +17,7 @@
     :paginatorTemplate="paginatorTemplate"
     :currentPageReportTemplate="currentPageReportTemplate"
     @page="(evt) => emit('page', evt)"
+    @sort="(evt) => emit('sort', evt)"
   >
     <PrimeVueColumn
       v-if="selectionMode"
@@ -61,7 +62,7 @@ import DataTable from 'primevue/datatable'
 import PrimeVueColumn from 'primevue/column'
 import type { VLDataTableCrudProps } from './types'
 
-const emit = defineEmits(['page'])
+const emit = defineEmits(['page', 'sort'])
 
 withDefaults(defineProps<VLDataTableCrudProps>(), {
   size: undefined,

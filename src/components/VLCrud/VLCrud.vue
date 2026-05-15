@@ -19,6 +19,9 @@
       :paginator="false"
       :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
       :rowClass="rowClass"
+      :lazy="sort"
+      :totalRecords="pagination.totalRows"
+      @sort="onSort"
     >
       <!-- template for empty table state -->
       <template #empty>
@@ -149,6 +152,7 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   highlightLastEdited: true,
   hightlightLastEditedClass: '!bg-row-selected',
   persistActionDialog: true,
+  sort: false,
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })
@@ -156,6 +160,11 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
 const filtersRef = ref<InstanceType<typeof VLCrudFilters>>()
 
 const skipWatchers = ref(false)
+
+const sorting = ref<{ field: string | null; order: 1 | -1 | null }>({
+  field: null,
+  order: null
+})
 
 const filters = computed(() =>
   props.filters.map((filter) => ({
@@ -196,8 +205,17 @@ const pagination = reactive({
 const items = ref<any[]>([])
 
 const fetchData = async () => {
+  const sortString = sorting.value.field
+    ? `${sorting.value.field} ${sorting.value.order === -1 ? 'DESC' : 'ASC'}`
+    : undefined
+
   const response = await props
-    .getItems(pagination.currentPage, pagination.rowsPerPage, { ...filtersApplied.value })
+    .getItems(
+      pagination.currentPage,
+      pagination.rowsPerPage,
+      { ...filtersApplied.value },
+      sortString
+    )
     .catch((e) => {
       console.error(e)
       emit('fetchError')
@@ -248,6 +266,13 @@ const filtersApplied = ref({})
 
 const onFiltersApplied = (filters: any) => {
   filtersApplied.value = filters
+  pagination.currentPage = 1
+}
+
+const onSort = (evt: { sortField: string | null; sortOrder: 1 | -1 | null }) => {
+  if (!props.sort) return
+  sorting.value.field = evt.sortField
+  sorting.value.order = evt.sortOrder
   pagination.currentPage = 1
 }
 
@@ -306,7 +331,13 @@ const onEdit = async (data: any) => {
 }
 
 watch(
-  () => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value],
+  () => [
+    pagination.currentPage,
+    pagination.rowsPerPage,
+    filtersApplied.value,
+    sorting.value.field,
+    sorting.value.order
+  ],
   () => {
     if (!skipWatchers.value) {
       fetchData()
