@@ -16,6 +16,8 @@
     :paginatorPosition="paginatorPosition"
     :paginatorTemplate="paginatorTemplate"
     :currentPageReportTemplate="currentPageReportTemplate"
+    :sortField="dataSortField"
+    :sortOrder="dataSortOrder"
     @page="(evt) => emit('page', evt)"
     @sort="(evt) => emit('sort', evt)"
   >
@@ -58,13 +60,14 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import DataTable from 'primevue/datatable'
 import PrimeVueColumn from 'primevue/column'
 import type { VLDataTableCrudProps } from './types'
 
 const emit = defineEmits(['page', 'sort'])
 
-withDefaults(defineProps<VLDataTableCrudProps>(), {
+const props = withDefaults(defineProps<VLDataTableCrudProps>(), {
   size: undefined,
   stripedRows: false,
   removableSort: false,
@@ -81,6 +84,10 @@ const selection = defineModel('selection', {
   type: Array,
   default: () => []
 })
+
+// Convert null to undefined for PrimeVue compatibility
+const dataSortField = computed(() => props.sortField ?? undefined)
+const dataSortOrder = computed(() => props.sortOrder ?? undefined)
 </script>
 
 <style scoped>

@@ -21,6 +21,8 @@
       :rowClass="rowClass"
       :lazy="sort"
       :totalRecords="pagination.totalRows"
+      :sortField="displayedSort.field"
+      :sortOrder="displayedSort.order"
       @sort="onSort"
     >
       <!-- template for empty table state -->
@@ -161,10 +163,23 @@ const filtersRef = ref<InstanceType<typeof VLCrudFilters>>()
 
 const skipWatchers = ref(false)
 
-const sorting = ref<{ field: string | null; order: 1 | -1 | null }>({
+const userSort = ref<{ field: string | null; order: 1 | -1 | null }>({
   field: null,
   order: null
 })
+
+const defaultSort = computed(() => {
+  const h = props.headers.find((h) => h.defaultSort)
+  if (!h) return { field: null as string | null, order: null as 1 | -1 | null }
+  return {
+    field: h.value,
+    order: (h.defaultSort === 'DESC' ? -1 : 1) as 1 | -1
+  }
+})
+
+const displayedSort = computed(() =>
+  userSort.value.field ? userSort.value : defaultSort.value
+)
 
 const filters = computed(() =>
   props.filters.map((filter) => ({
@@ -205,8 +220,8 @@ const pagination = reactive({
 const items = ref<any[]>([])
 
 const fetchData = async () => {
-  const sortString = sorting.value.field
-    ? `${sorting.value.field} ${sorting.value.order === -1 ? 'DESC' : 'ASC'}`
+  const sortString = userSort.value.field
+    ? `${userSort.value.field} ${userSort.value.order === -1 ? 'DESC' : 'ASC'}`
     : undefined
 
   const response = await props
@@ -271,8 +286,8 @@ const onFiltersApplied = (filters: any) => {
 
 const onSort = (evt: { sortField: string | null; sortOrder: 1 | -1 | null }) => {
   if (!props.sort) return
-  sorting.value.field = evt.sortField
-  sorting.value.order = evt.sortOrder
+  userSort.value.field = evt.sortField
+  userSort.value.order = evt.sortOrder
   pagination.currentPage = 1
 }
 
@@ -335,8 +350,8 @@ watch(
     pagination.currentPage,
     pagination.rowsPerPage,
     filtersApplied.value,
-    sorting.value.field,
-    sorting.value.order
+    userSort.value.field,
+    userSort.value.order
   ],
   () => {
     if (!skipWatchers.value) {

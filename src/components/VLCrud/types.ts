@@ -9,6 +9,7 @@ export interface VLCrudHeaderType {
   i18n_key: string
   value: string
   sortable?: boolean
+  defaultSort?: 'ASC' | 'DESC'
   type?: string
   componentProps?: Object
   columnProps?: Omit<
