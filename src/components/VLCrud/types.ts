@@ -9,6 +9,7 @@ export interface VLCrudHeaderType {
   i18n_key: string
   value: string
   sortable?: boolean
+  defaultSort?: 'ASC' | 'DESC'
   type?: string
   componentProps?: Object
   columnProps?: Omit<
@@ -57,11 +58,13 @@ export interface VLCrudProps {
   highlightLastEdited?: boolean
   hightlightLastEditedClass?: string
   persistActionDialog?: boolean
+  sort?: boolean
   rowClass?: (data: any) => (string | object)[] | undefined
   getItems: (
     page: number,
     rowsPerPage: number,
-    filters: any
+    filters: any,
+    sort?: string
   ) => Promise<
     | {
         result: any[]

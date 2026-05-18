@@ -19,6 +19,10 @@
       :paginator="false"
       :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
       :rowClass="rowClass"
+      :lazy="sort"
+      :sortField="displayedSort.field"
+      :sortOrder="displayedSort.order"
+      @sort="onSort"
     >
       <!-- template for empty table state -->
       <template #empty>
@@ -149,6 +153,7 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
   highlightLastEdited: true,
   hightlightLastEditedClass: '!bg-row-selected',
   persistActionDialog: true,
+  sort: false,
   rowsPerPageOptions: () => [5, 10, 25, 50],
   translationFn: (key: string) => key
 })
@@ -156,6 +161,24 @@ const props = withDefaults(defineProps<VLCrudProps>(), {
 const filtersRef = ref<InstanceType<typeof VLCrudFilters>>()
 
 const skipWatchers = ref(false)
+
+const userSort = ref<{ field: string | null; order: 1 | -1 | null }>({
+  field: null,
+  order: null
+})
+
+const defaultSort = computed(() => {
+  const h = props.headers.find((h) => h.defaultSort)
+  if (!h) return { field: null as string | null, order: null as 1 | -1 | null }
+  return {
+    field: h.value,
+    order: (h.defaultSort === 'DESC' ? -1 : 1) as 1 | -1
+  }
+})
+
+const displayedSort = computed(() =>
+  userSort.value.field ? userSort.value : defaultSort.value
+)
 
 const filters = computed(() =>
   props.filters.map((filter) => ({
@@ -196,8 +219,17 @@ const pagination = reactive({
 const items = ref<any[]>([])
 
 const fetchData = async () => {
+  const sortString = userSort.value.field
+    ? `${userSort.value.field} ${userSort.value.order === -1 ? 'DESC' : 'ASC'}`
+    : undefined
+
   const response = await props
-    .getItems(pagination.currentPage, pagination.rowsPerPage, { ...filtersApplied.value })
+    .getItems(
+      pagination.currentPage,
+      pagination.rowsPerPage,
+      { ...filtersApplied.value },
+      sortString
+    )
     .catch((e) => {
       console.error(e)
       emit('fetchError')
@@ -248,6 +280,13 @@ const filtersApplied = ref({})
 
 const onFiltersApplied = (filters: any) => {
   filtersApplied.value = filters
+  pagination.currentPage = 1
+}
+
+const onSort = (evt: { sortField: string | null; sortOrder: 1 | -1 | null }) => {
+  if (!props.sort) return
+  userSort.value.field = evt.sortField
+  userSort.value.order = evt.sortOrder
   pagination.currentPage = 1
 }
 
@@ -306,7 +345,13 @@ const onEdit = async (data: any) => {
 }
 
 watch(
-  () => [pagination.currentPage, pagination.rowsPerPage, filtersApplied.value],
+  () => [
+    pagination.currentPage,
+    pagination.rowsPerPage,
+    filtersApplied.value,
+    userSort.value.field,
+    userSort.value.order
+  ],
   () => {
     if (!skipWatchers.value) {
       fetchData()
