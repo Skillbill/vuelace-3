@@ -20,7 +20,6 @@
       :actionHeaderLabel="translationFn(actionHeaderI18nKey)"
       :rowClass="rowClass"
       :lazy="sort"
-      :totalRecords="pagination.totalRows"
       :sortField="displayedSort.field"
       :sortOrder="displayedSort.order"
       @sort="onSort"
