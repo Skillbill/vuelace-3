@@ -15,6 +15,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         type: import('vue').PropType<any[]>;
         required: true;
     };
+    sortField: {
+        type: import('vue').PropType<string | null>;
+    };
     columns: {
         type: import('vue').PropType<import('./types').Column[]>;
         required: true;
@@ -73,10 +76,14 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     selectionColumnProps: {
         type: import('vue').PropType<object>;
     };
+    sortOrder: {
+        type: import('vue').PropType<1 | -1 | null>;
+    };
     onPage: {
         type: import('vue').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
     };
 }, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    sort: (...args: any[]) => void;
     page: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     selection: import('vue').PropType<any>;
@@ -95,6 +102,9 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
         type: import('vue').PropType<any[]>;
         required: true;
     };
+    sortField: {
+        type: import('vue').PropType<string | null>;
+    };
     columns: {
         type: import('vue').PropType<import('./types').Column[]>;
         required: true;
@@ -153,11 +163,15 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<{
     selectionColumnProps: {
         type: import('vue').PropType<object>;
     };
+    sortOrder: {
+        type: import('vue').PropType<1 | -1 | null>;
+    };
     onPage: {
         type: import('vue').PropType<(event: import('primevue/datatable').DataTablePageEvent) => void>;
     };
 }>> & {
     onPage?: ((...args: any[]) => any) | undefined;
+    onSort?: ((...args: any[]) => any) | undefined;
 }, {
     size: "small" | "large";
     loading: boolean;

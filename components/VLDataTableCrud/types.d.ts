@@ -36,5 +36,7 @@ export interface VLDataTableCrudProps {
     actionHeaderLabel?: string;
     selectionMode?: 'single' | 'multiple';
     selectionColumnProps?: object;
+    sortField?: string | null;
+    sortOrder?: 1 | -1 | null;
     onPage?: (event: DataTablePageEvent) => void;
 }

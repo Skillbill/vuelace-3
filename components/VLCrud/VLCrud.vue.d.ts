@@ -16,6 +16,7 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
+    sort: boolean;
     rowsPerPageOptions: () => number[];
     translationFn: (key: string) => string;
 }>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
@@ -37,12 +38,14 @@ declare const _default: __VLS_WithTemplateSlots<import('vue').DefineComponent<__
     highlightLastEdited: boolean;
     hightlightLastEditedClass: string;
     persistActionDialog: boolean;
+    sort: boolean;
     rowsPerPageOptions: () => number[];
     translationFn: (key: string) => string;
 }>>> & {
     onError?: ((...args: any[]) => any) | undefined;
     onFetchError?: ((...args: any[]) => any) | undefined;
 }, {
+    sort: boolean;
     showAddButton: boolean;
     rowsPerPageOptions: number[];
     rowsPerPage: number;
