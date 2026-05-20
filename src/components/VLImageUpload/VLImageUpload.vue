@@ -11,12 +11,21 @@
           :style="{ backgroundImage: imageUrl }"
         ></div>
       </div>
-      <VLIcon
-        class="text-2xl hover:opacity-40"
-        :class="[disabled && 'opacity-40']"
-        name="delete"
-        @click="clear"
-      ></VLIcon>
+      <div class="flex items-center gap-2">
+        <VLIcon
+          v-if="downloadable"
+          class="text-2xl hover:opacity-40"
+          :class="[disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer']"
+          name="download"
+          @click="download"
+        ></VLIcon>
+        <VLIcon
+          class="text-2xl hover:opacity-40"
+          :class="[disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer']"
+          name="delete"
+          @click="clear"
+        ></VLIcon>
+      </div>
     </div>
     <ErrorMessage v-if="errorMessage?.length">{{ errorMessage }}</ErrorMessage>
   </div>
@@ -56,6 +65,8 @@ const props = withDefaults(defineProps<VLImageUploadProps>(), {
   clearable: true,
   required: false,
   disabled: false,
+  downloadable: false,
+  downloadFilename: undefined,
   error: '',
   rules: () => [] as VLInputRuleType[]
 })
@@ -102,6 +113,35 @@ defineExpose({
   isValid: () => errorMessage.value === undefined || errorMessage.value.length === 0,
   validateInput
 })
+
+const mimeToExt = (mime: string): string => {
+  const m = (mime || '').toLowerCase()
+  if (m.includes('png')) return 'png'
+  if (m.includes('jpeg') || m.includes('jpg')) return 'jpg'
+  if (m.includes('svg')) return 'svg'
+  if (m.includes('webp')) return 'webp'
+  if (m.includes('gif')) return 'gif'
+  return 'png'
+}
+
+const download = async () => {
+  if (props.disabled || !model.value) return
+  try {
+    const res = await fetch(model.value)
+    const blob = await res.blob()
+    const ext = mimeToExt(blob.type)
+    const base = (props.downloadFilename || 'image').replace(/\.[^.]+$/, '')
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${base}.${ext}`
+    a.click()
+    URL.revokeObjectURL(url)
+    a.remove()
+  } catch (err) {
+    emit('error', err as never)
+  }
+}
 
 const clear = () => {
   if (props.disabled) return

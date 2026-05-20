@@ -11,6 +11,8 @@ export interface VLImageUploadProps {
   required?: boolean
   disabled?: boolean
   imgStyle?: string
+  downloadable?: boolean
+  downloadFilename?: string
   rules?: VLInputRuleType[]
   onError?: (error: VLFileInputErrorEvent) => void
 }
