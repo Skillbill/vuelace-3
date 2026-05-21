@@ -47,6 +47,14 @@ declare const _default: import('vue').DefineComponent<{
     imgStyle: {
         type: import('vue').PropType<string>;
     };
+    downloadable: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
+    downloadFilename: {
+        type: import('vue').PropType<string>;
+        default: undefined;
+    };
 }, {
     isValid: () => boolean;
     validateInput: () => boolean;
@@ -99,6 +107,14 @@ declare const _default: import('vue').DefineComponent<{
     imgStyle: {
         type: import('vue').PropType<string>;
     };
+    downloadable: {
+        type: import('vue').PropType<boolean>;
+        default: boolean;
+    };
+    downloadFilename: {
+        type: import('vue').PropType<string>;
+        default: undefined;
+    };
 }>> & {
     onError?: ((...args: any[]) => any) | undefined;
 }, {
@@ -110,5 +126,7 @@ declare const _default: import('vue').DefineComponent<{
     placeholder: string;
     required: boolean;
     rules: VLInputRuleType[];
+    downloadable: boolean;
+    downloadFilename: string;
 }, {}>;
 export default _default;

@@ -15,6 +15,8 @@ export interface VLCrudInputProps {
     disabled?: boolean;
     required?: boolean;
     img_style?: string;
+    downloadable?: boolean;
+    downloadFilename?: string;
     multiple?: boolean;
     forceSelection?: boolean;
     withTime?: boolean;

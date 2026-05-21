@@ -36,6 +36,12 @@ declare const _default: import('vue').DefineComponent<{
     withTime: {
         type: import('vue').PropType<boolean>;
     };
+    downloadable: {
+        type: import('vue').PropType<boolean>;
+    };
+    downloadFilename: {
+        type: import('vue').PropType<string>;
+    };
     forceSelection: {
         type: import('vue').PropType<boolean>;
         default: boolean;
@@ -90,6 +96,12 @@ declare const _default: import('vue').DefineComponent<{
     };
     withTime: {
         type: import('vue').PropType<boolean>;
+    };
+    downloadable: {
+        type: import('vue').PropType<boolean>;
+    };
+    downloadFilename: {
+        type: import('vue').PropType<string>;
     };
     forceSelection: {
         type: import('vue').PropType<boolean>;
