@@ -91,6 +91,8 @@
     :disabled="disabled"
     :placeholder="placeholder"
     :img-style="img_style"
+    :downloadable="downloadable"
+    :download-filename="downloadFilename"
     :model-value="cheatType()"
     @update:model-value="cheatUpdateFunction"
     @error="(evt) => emit('error', evt)"
