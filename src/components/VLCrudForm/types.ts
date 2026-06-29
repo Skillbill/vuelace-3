@@ -14,6 +14,8 @@ export interface VLCrudFormFieldType {
   disabled?: boolean
   required?: boolean
   img_style?: string
+  downloadable?: boolean
+  downloadFilename?: string | ((model: { [key: string]: VLCrudInputValueType }) => string)
   hidden?: boolean
   hidden_on_create?: boolean
   disabled_on_edit?: boolean

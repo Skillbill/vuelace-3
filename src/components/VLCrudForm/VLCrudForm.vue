@@ -19,6 +19,8 @@
       :required="field.required"
       :multiple="field.multiple"
       :img_style="field.img_style"
+      :downloadable="field.downloadable"
+      :downloadFilename="resolveDownloadFilename(field)"
       :forceSelection="field.forceSelection"
       :withTime="field.withTime"
       v-model="model[field.value]"
@@ -93,6 +95,11 @@ const isDisabled = (field: VLCrudFormFieldType) => {
   }
   return false
 }
+
+const resolveDownloadFilename = (field: VLCrudFormFieldType): string | undefined =>
+  typeof field.downloadFilename === 'function'
+    ? field.downloadFilename(model.value)
+    : field.downloadFilename
 
 const onConfirm = () => {
   let valid = true
